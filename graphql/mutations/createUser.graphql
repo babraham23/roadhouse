@@ -1,0 +1,42 @@
+mutation CreateUser(
+    $microsoftId: String!
+    $email: String!
+    $role: Float
+    $jobTitle: String
+    $displayName: String
+    $holidayAllowance: Float
+    $roleSubCategory: String
+    $mobileNumber: String
+    $profilePicture: String
+    $teamId: String
+    $surname: String
+    $givenName: String
+) {
+    createUser(
+        microsoftId: $microsoftId
+        email: $email
+        role: $role
+        jobTitle: $jobTitle
+        displayName: $displayName
+        holidayAllowance: $holidayAllowance
+        roleSubCategory: $roleSubCategory
+        mobileNumber: $mobileNumber
+        profilePicture: $profilePicture
+        teamId: $teamId
+        surname: $surname
+        givenName: $givenName
+    ) {
+        givenName
+        surname
+        displayName
+        jobTitle
+        email
+        teamId
+        roleSubCategory
+        profilePicture
+        mobileNumber
+        holidayAllowance
+        role
+        microsoftId
+    }
+}

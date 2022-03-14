@@ -1,0 +1,48 @@
+import React from 'react';
+import { Dimensions, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux'
+import { BoldText, LightText } from '../../style/typography';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
+const BigCard = ({ product, onPress, index }: any) => {
+    const { border }: any = useTheme();
+	return (
+		<TouchableOpacity onPress={onPress} activeOpacity={1} style={styles.container} >
+			<View style={[styles.card, { backgroundColor: product.color1, borderRadius: border.bigCard }]} >
+				<BoldText style={styles.title} color={product.textColor} center >{product.title}</BoldText>
+                <LightText numberOfLines={3} style={styles.subtitle} color={product.textColor} >{product.description}</LightText>			
+            </View>
+		</TouchableOpacity>
+	);
+};
+
+const { width } = Dimensions.get('window');
+export const CARD_HEIGHT = (width * 1250) / 974;
+const styles = StyleSheet.create({
+	container: {
+		width,
+        height: 450
+	},
+    card: {
+        borderRadius: 16,
+        margin: 32,
+        flex: 1,
+        padding: 16,
+        justifyContent: 'space-between',
+    },
+	title: {
+		textAlign: 'center',
+		// marginBottom: 16,
+        marginTop: 20
+	},
+	subtitle: {
+		fontFamily: 'Light',
+		fontSize: 16,
+		textAlign: 'center',
+		color: '#432406',
+	},
+});
+
+export default BigCard;
