@@ -11,13 +11,14 @@ const ExploreScreen = () => {
             <View style={styles.container}>
                 <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
                 <HorizontalParallax title={`Hot Spots`} />
+                <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
             {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
                 <HorizontalParallax title={'Top Rated'} />
                 <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
                 <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
                 <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
                 <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
-                <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} /> */}
+            <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} /> */}
             </View>
         </ParallaxScroll>
     );

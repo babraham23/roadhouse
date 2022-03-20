@@ -14,7 +14,7 @@ const DisplayCard = ({ style, onPress, title, location, logo }: any) => {
 							<Text fontSize={18}>{title}</Text>
 							<Text color={colors.greyText} >{location}</Text>
 						</View>
-						<Image source={logo} style={styles.logo} />
+						{/* <Image source={logo} style={styles.logo} /> */}
 					</View>
 				</View>
 			</TouchableOpacity>
@@ -50,10 +50,11 @@ const styles = StyleSheet.create({
 	},
 	titleWrapper: {},
     logo: {
-		// height: 50,
+		flex: 1,
+		height: 50,
 		width: 50,
         borderRadius: 13,
-		// resizeMode: 'contain',
+		resizeMode: 'contain',
 	},
 });
 

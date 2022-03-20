@@ -10,14 +10,13 @@ import { useDispatch } from 'react-redux';
 import { products, appIcon } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
 
-type Props = {
-    title?: string;
-};
 
-const HorizontalParallax = ({ title }: Props) => {
-    const { width } = useWindowDimensions();
+const HorizontalParallax = ({title}: any) => {
+    const { height, width } = useWindowDimensions();
     const navigation: any = useNavigation();
     const dispatch = useDispatch();
+    const CARD_WIDTH = width * 0.9;
+    const CARD_HEIGHT = CARD_WIDTH * 1.3;
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const handleNav = (id: any) => {
@@ -36,7 +35,7 @@ const HorizontalParallax = ({ title }: Props) => {
 
     return (
         <>
-            <Text fontSize={18} bold style={styles.title}>
+            <Text bold fontSize={18} style={styles.boldTitle}>
                 {title}
             </Text>
             <View style={styles.container}>
@@ -120,7 +119,9 @@ const HorizontalParallax = ({ title }: Props) => {
                                     />
                                     <View style={[styles.descriptionWrapper]}>
                                         <Text style={styles.title}>{item.name}</Text>
-                                        <Text style={styles.description}>{item.description}</Text>
+                                        <Text  style={styles.description}>
+                                            {item.description}
+                                        </Text>
                                     </View>
                                 </Animated.View>
                             </TouchableOpacity>
@@ -138,8 +139,15 @@ const CARD_HEIGHT = CARD_WIDTH * 1.3;
 
 const styles = StyleSheet.create({
     container: {
+        // height: 40
         flex: 1,
-        marginBottom: 20,
+        // borderRadius: 8
+        marginBottom: 40,
+    },
+    boldTitle: {
+        paddingLeft: 20,
+        marginTop: 20,
+        paddingBottom: 20,
     },
     cardContainer: {
         height: height * 0.6,
@@ -149,12 +157,14 @@ const styles = StyleSheet.create({
     },
     bigCard: {
         resizeMode: 'cover',
+        // borderRadius: 8,
         height: CARD_HEIGHT * 1.15,
         width: '100%',
     },
     cardInner: {
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
+        // justifyContent: 'flex-end',
         overflow: 'hidden',
         borderRadius: 10,
         borderWidth: 2,
@@ -176,8 +186,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     title: {
-        paddingLeft: 20,
-        paddingBottom: 20,
+        padding: 20
     },
     description: {
         color: '#fff',

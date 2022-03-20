@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingLeft: 20,
+        paddingTop: 20
     },
 });
 
