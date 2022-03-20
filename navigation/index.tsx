@@ -14,6 +14,7 @@ import DrawerContent from '../components/drawer/drawerContent';
 import { UserProvider } from '../context/user.context';
 import ExploreScreen from '../screens/explore/exploreScreen';
 import MenuScreen from '../screens/menu/menuScreen';
+import SelectedItemScreen from '../components/menu/selectedItemScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -63,7 +64,7 @@ function RootNavigator() {
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                {/* <Stack.Screen name="HQScreen" component={HQScreen} options={{ headerShown: false }} /> */}
+                <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
             </Stack.Group>
         </Stack.Navigator>
     );

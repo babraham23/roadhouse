@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
 	label: {
 		color: 'white',
 		fontSize: 16,
-		fontFamily: 'Bold',
 		alignSelf: 'center',
 	},
 	selectedButtonWrapper: {

@@ -35,7 +35,7 @@ const Content = ({ onPress }: any) => {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 // onPress={onPress}
-                                onPress={() => handleNav(items.image ? 'SelectedItemScreen' : 'SelectedItemModal', items)}
+                                onPress={() => handleNav('SelectedItemScreen', items)}
                                 key={j}
                             >
                                 <View

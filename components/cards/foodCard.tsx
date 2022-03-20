@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		marginTop: 5,
-		fontFamily: 'Bold',
 		fontSize: 20,
 		lineHeight: 20,
 		// textAlign: 'center'
