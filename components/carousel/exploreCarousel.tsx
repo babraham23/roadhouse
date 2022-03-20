@@ -13,13 +13,12 @@ import { products, appIcon } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
 import { useTheme } from '../../hooks/useTheme';
 
-export const ExploreCarousel = (props: any) => {
+export const ExploreCarousel = ({items, style, title}: any) => {
     // console.log('props -->', props)
     const { colors }: any = useTheme();
     const dispatch = useDispatch();
     const navigation: any = useNavigation();
-    const { items, style } = props;
-    const itemsPerInterval = props.itemsPerInterval === undefined ? 1 : props.itemsPerInterval;
+    // const itemsPerInterval = itemsPerInterval === undefined ? 1 : itemsPerInterval;
 
     const [interval, setInterval]: any = React.useState(1);
     const [intervals, setIntervals] = React.useState(1);
@@ -30,7 +29,7 @@ export const ExploreCarousel = (props: any) => {
         setWidth(width);
         // initialise total intervals
         const totalItems = items.length;
-        setIntervals(Math.ceil(totalItems / itemsPerInterval));
+        setIntervals(Math.ceil(totalItems / 1));
     };
 
     const getInterval = (offset: any) => {
@@ -51,11 +50,11 @@ export const ExploreCarousel = (props: any) => {
             <Text
                 color={colors.primary}
                 key={i}
-                style={{
-                    ...styles.bullet,
+                style={[
+                    styles.bullet, {
                     opacity: interval === i ? 0.8 : 0.1,
                     backgroundColor: colors.background,
-                }}
+                }]}
             >
                 &bull;
             </Text>
@@ -80,9 +79,9 @@ export const ExploreCarousel = (props: any) => {
 
     return (
         <>
-            <View style={[props.styles, { backgroundColor: colors.background }]}>
+            <View style={[style, { backgroundColor: colors.background }]}>
                 <Text fontSize={18} bold style={styles.title}>
-                    {props.title}
+                    {title}
                 </Text>
                 <ScrollView
                     horizontal={true}

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { View, StyleSheet, Animated, Dimensions, TouchableOpacity } from 'react-native';
-// import { items } from './assets';
 import { useNavigation } from '@react-navigation/core';
 import { Text } from '../../style/typography';
 import { SET_MENU } from '../../state/reducers/menuReducer';
