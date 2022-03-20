@@ -1,11 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { useTheme } from '@react-navigation/native';
-import { LightText, BoldText } from '../../style/typography';
-// import FoodCheckBox from '../checkbox/foodCheckBox';
-import FoodCheckBoxes from '../checkbox/foodCheckBoxes';
-import * as Animatable from 'react-native-animatable';
-import Feather from 'react-native-vector-icons/Feather';
+import { useTheme } from '../../hooks/useTheme';
+
 
 const Card = ({ style, title, handleOption, options }: any) => {
 	const { colors }: any = useTheme();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import MenuItems from '../cards/menuItems';
 import { menuModel } from '../../_models/menu.model'; // read 2 different models?
 

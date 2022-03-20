@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../style/typography';
 import * as Animatable from 'react-native-animatable';
 import AppIconBig from '../logo/appIconBig';

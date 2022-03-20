@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Separator, LightText, BoldText } from '../../style/typography';
-import { useTheme } from '@react-navigation/native';
+import { Text, } from '../../style/typography';
+import { useTheme } from '../../hooks/useTheme';
 
 // const title = "Boneless Banquet"
 // const description = "A banquet of three 100% chicken breast Mini Fillets, plus Popcorn Chicken, regular fries, regular side, one KFC Original Dip and drink. A fuss-free dipper's delight."
@@ -12,19 +12,17 @@ const MenuItems = ({ title, description, price }: any) => {
     const { border }: any = useTheme();
     return (
         <>
-            {/* <Separator /> */}
             <View style={[styles.wrapper]}>
                 <View style={styles.imageWrapper}>
                     {/* <View style={[styles.image, { borderRadius: border.bigCard }]} /> */}
                     <Image source={{ uri: 'https://picsum.photos/900' }}  style={[styles.image, { borderRadius: border.bigCard }]} /> 
                 </View>
                 <View style={styles.content} >
-                    <BoldText fontSize={18} style={styles.title} >{title}</BoldText>
-                    <LightText numberOfLines={3} style={styles.description} fontSize={16} >{description}</LightText>
-                    <BoldText fontSize={16} >{price}</BoldText>
+                    <Text fontSize={18} style={styles.title} >{title}</Text>
+                    <Text  style={styles.description} fontSize={16} >{description}</Text>
+                    <Text fontSize={16} >{price}</Text>
                 </View>
             </View>
-            <Separator />
         </>
     )
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Analytics from 'expo-firebase-analytics';
+// import * as Analytics from 'expo-firebase-analytics';
 import { NavigationContainer, useNavigationContainerRef, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';

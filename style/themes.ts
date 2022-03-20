@@ -4,7 +4,7 @@ export const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
     colors: {
         ...NavigationDefaultTheme.colors,
-        primary: '#29EA89', // Malakite
+        primary: '#ff225c', // Malakite
         secondary: '#12AC5D', // Meadow
         dark_grey: '#707070', // Dove
         grey: '#B4B4B4', // Nobel
@@ -23,10 +23,6 @@ export const CustomDefaultTheme = {
             wfo: '#FD9D42',
         },
     },
-    padding: {
-        common: 20,
-        sectionSpacing: 40,
-    },
     borderRadius: {
         input: 8,
         card: 8,
@@ -39,7 +35,7 @@ export const CustomDarkTheme = {
     ...NavigationDarkTheme,
     colors: {
         ...NavigationDarkTheme.colors,
-        primary: '#29EA89', // Malakite
+        primary: '#ff225c', // Malakite
         secondary: '#12AC5D', // Meadow
         dark_grey: '#707070', // Dove
         grey: '#B4B4B4', // Nobel
@@ -57,10 +53,6 @@ export const CustomDarkTheme = {
             maternity: '#E35DA4',
             wfo: '#FD9D42',
         },
-    },
-    padding: {
-        common: 20,
-        sectionSpacing: 40,
     },
     borderRadius: {
         input: 8,

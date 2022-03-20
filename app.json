@@ -16,15 +16,13 @@
         "assetBundlePatterns": ["**/*"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.boxmodel.boxmodelApp",
-            "googleServicesFile": "./GoogleService-Info.plist"
+            "bundleIdentifier": "com.boxmodel.boxmodelApp"
         },
         "android": {
             "adaptiveIcon": {
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.boxmodel.boxmodelApp",
-            "googleServicesFile": "./google-services.json"
+            "package": "com.boxmodel.boxmodelApp"
         },
         "web": {
             "favicon": "./assets/images/favicon.png",
@@ -39,18 +37,6 @@
                     "measurementId": "G-V9WN1BD5CX"
                 }
             }
-        },
-        "hooks": {
-            "postPublish": [
-                {
-                    "file": "sentry-expo/upload-sourcemaps",
-                    "config": {
-                        "organization": "boxmodel",
-                        "project": "boxmodelapp",
-                        "authToken": "0008044872d94848bc3d6fe0897c56ebddc1ed6b9e52402492a049331549fd6a"
-                    }
-                }
-            ]
         }
     }
 }

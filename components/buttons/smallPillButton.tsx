@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 
 const SmallPillButton = ({ onPress, title, clear, style }: any) => {
 	const { colors }: any = useTheme();
@@ -11,7 +11,7 @@ const SmallPillButton = ({ onPress, title, clear, style }: any) => {
 			style={[style]}
 			onPress={onPress}
 		>
-			<LinearGradient colors={[colors.primary, colors.primary_grad]} style={styles.wrapper}>
+			<LinearGradient colors={[ `${colors.primary}70`, colors.primary]} style={styles.wrapper}>
 				<Text style={[styles.text, { color: colors.card }]}>{title}</Text>
 			</LinearGradient>
 		</TouchableOpacity>

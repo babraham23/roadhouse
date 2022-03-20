@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import DescriptionLogo from '../layout/descriptionLogo';
 
 const TripleCard = ({ style, onPress, item }: any) => {

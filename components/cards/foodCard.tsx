@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { useTheme } from '@react-navigation/native';
-import { LightText, BoldText } from '../../style/typography';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTheme } from '../../hooks/useTheme';
+import { Text } from '../../style/typography';
 // import FoodCheckBox from '../checkbox/foodCheckBox';
 import * as Animatable from 'react-native-animatable';
-import Feather from 'react-native-vector-icons/Feather';
+import { Feather } from '@expo/vector-icons';
+
 
 const FoodCard = ({ style, title, handleOption, options }: any) => {
 	const { colors }: any = useTheme();
@@ -46,7 +47,7 @@ const FoodCard = ({ style, title, handleOption, options }: any) => {
 	return (
 		<View style={style}>
 			<View style={styles.titleWrapper}>
-				<BoldText color={colors.primary}>{title}</BoldText>
+				<Text color={colors.primary}>{title}</Text>
 			</View>
 			<View style={[styles.card, { backgroundColor: colors.card }]}>
 				<View style={[style, styles.container]}>
@@ -66,7 +67,7 @@ const FoodCard = ({ style, title, handleOption, options }: any) => {
 						</TouchableOpacity>
 
 						<View style={styles.contentWrapper}>
-							<BoldText textDecorationLine={'underline'} style={styles.option} fontSize={20}>Option 1</BoldText>
+							<Text textDecorationLine={'underline'} style={styles.option} fontSize={20}>Option 1</Text>
 							<Text style={[styles.description, { color: colors.text }]}>{options[0].description}</Text>
 						</View>
 					</View> : null}
@@ -86,7 +87,7 @@ const FoodCard = ({ style, title, handleOption, options }: any) => {
 						</TouchableOpacity>
 
 						<View style={styles.contentWrapper}>
-							<BoldText textDecorationLine={'underline'} style={styles.option} fontSize={20}>Option 2</BoldText>
+							<Text textDecorationLine={'underline'} style={styles.option} fontSize={20}>Option 2</Text>
 							<Text style={[styles.description, { color: colors.text }]}>{options[1].description}</Text>
 						</View>
 					</View> : null}
@@ -106,7 +107,7 @@ const FoodCard = ({ style, title, handleOption, options }: any) => {
 						</TouchableOpacity>
 
 						<View style={styles.contentWrapper}>
-							<BoldText textDecorationLine={'underline'} style={styles.option} fontSize={20}>Vegan</BoldText>
+							<Text textDecorationLine={'underline'} style={styles.option} fontSize={20}>Vegan</Text>
 							<Text style={[styles.description, { color: colors.text }]}>{options[2].description}</Text>
 						</View>
 					</View> : null}
@@ -126,7 +127,7 @@ const FoodCard = ({ style, title, handleOption, options }: any) => {
 						</TouchableOpacity>
 
 						<View style={styles.contentWrapper}>
-							<BoldText textDecorationLine={'underline'} style={styles.option} fontSize={20}>Gluten Free</BoldText>
+							<Text textDecorationLine={'underline'} style={styles.option} fontSize={20}>Gluten Free</Text>
 							<Text style={[styles.description, { color: colors.text }]}>{options[3].description}</Text>
 						</View>
 					</View>: null}

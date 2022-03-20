@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Animated, SafeAreaView, Image, View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import { Images } from '../../style/images';
 
 const HEADER_MAX_HEIGHT = 350;

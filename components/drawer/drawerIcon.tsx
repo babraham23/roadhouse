@@ -1,10 +1,9 @@
 import React from 'react';
-import { Props } from '../../_interfaces/components/drawer/drawerItem.interface';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../style/typography';
 
-const DrawerItem: React.FC<Props> = ({ title, onPress, icon }) => {
+const DrawerItem = ({ title, onPress, icon }: any) => {
     const { colors }: any = useTheme();
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
