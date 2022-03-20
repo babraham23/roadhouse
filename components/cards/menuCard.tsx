@@ -6,7 +6,7 @@ import { menuModel } from '../../_models/menu.model'; // read 2 different models
 
 
 const MenuCard = () => {
-	const { colors, border }: any = useTheme();
+	const { colors, borderRadius }: any = useTheme();
 	function renderItem({ item }: { item: any }) {
 		return <MenuItems key={item.Id} title={item.title} description={item.description} price={item.price} />;
 	}
@@ -14,7 +14,7 @@ const MenuCard = () => {
 		return item.Id.toString();
 	}
 	return (
-		<View style={[styles.container, { backgroundColor: colors.background, borderRadius: border.bigCard }]}>
+		<View style={[styles.container, { backgroundColor: colors.background, borderRadius: borderRadius.card }]}>
 			<FlatList
 				contentContainerStyle={{ backgroundColor: colors.background }}
 				style={{ backgroundColor: colors.background }}

@@ -11,9 +11,10 @@ type Props = {
     center?: boolean;
     children: any;
     noEnd?: boolean;
+    numberOfLines?: number
 };
 
-export const Text = ({ style, color, fontSize, bold, textDecorationLine, center, children }: Props) => {
+export const Text = ({ style, color, fontSize, bold, textDecorationLine, center, children, numberOfLines }: Props) => {
     const { colors }: any = useTheme();
     const styles = StyleSheet.create({
         text: {
@@ -24,7 +25,7 @@ export const Text = ({ style, color, fontSize, bold, textDecorationLine, center,
             color: color ? color : colors.text,
         },
     });
-    return <DefaultText style={[style, styles.text]}>{children}</DefaultText>;
+    return <DefaultText numberOfLines={numberOfLines}  style={[style, styles.text]}>{children}</DefaultText>;
 };
 
 export const SpaceMonoText = ({ style, color, fontSize, textDecorationLine, center, children }: Props) => {

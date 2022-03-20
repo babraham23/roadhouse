@@ -9,13 +9,13 @@ import { useTheme } from '../../hooks/useTheme';
 
 
 const MenuItems = ({ title, description, price }: any) => {
-    const { border }: any = useTheme();
+    const { borderRadius }: any = useTheme();
     return (
         <>
             <View style={[styles.wrapper]}>
                 <View style={styles.imageWrapper}>
-                    {/* <View style={[styles.image, { borderRadius: border.bigCard }]} /> */}
-                    <Image source={{ uri: 'https://picsum.photos/900' }}  style={[styles.image, { borderRadius: border.bigCard }]} /> 
+                    {/* <View style={[styles.image, { borderRadius: borderRadius.card }]} /> */}
+                    <Image source={{ uri: 'https://picsum.photos/900' }}  style={[styles.image, { borderRadius: borderRadius.card }]} /> 
                 </View>
                 <View style={styles.content} >
                     <Text fontSize={18} style={styles.title} >{title}</Text>

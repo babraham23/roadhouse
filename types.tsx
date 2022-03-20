@@ -15,4 +15,5 @@ declare global {
 
 export type RootStackParamList = {
     ExploreScreen: undefined;
+    MenuScreen: undefined
 };

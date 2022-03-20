@@ -1,18 +1,18 @@
 import React from 'react';
 import { Dimensions, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from '../../hooks/useTheme';
 import { useDispatch, useSelector } from 'react-redux'
-import { BoldText, LightText } from '../../style/typography';
+import { Text } from '../../style/typography';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const BigCard = ({ product, onPress, index }: any) => {
-    const { border }: any = useTheme();
+    const { borderRadius }: any = useTheme();
 	return (
 		<TouchableOpacity onPress={onPress} activeOpacity={1} style={styles.container} >
-			<View style={[styles.card, { backgroundColor: product.color1, borderRadius: border.bigCard }]} >
-				<BoldText style={styles.title} color={product.textColor} center >{product.title}</BoldText>
-                <LightText numberOfLines={3} style={styles.subtitle} color={product.textColor} >{product.description}</LightText>			
+			<View style={[styles.card, { backgroundColor: product.color1, borderRadius: borderRadius.card }]} >
+				<Text style={styles.title} color={product.textColor} center >{product.title}</Text>
+                <Text numberOfLines={3} style={styles.subtitle} color={product.textColor} >{product.description}</Text>			
             </View>
 		</TouchableOpacity>
 	);
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         marginTop: 20
 	},
 	subtitle: {
-		fontFamily: 'Light',
 		fontSize: 16,
 		textAlign: 'center',
 		color: '#432406',

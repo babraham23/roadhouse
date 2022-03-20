@@ -6,12 +6,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ColorSchemeName } from 'react-native';
 import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { CustomDefaultTheme, CustomDarkTheme } from '../style/themes';
 
 import DrawerContent from '../components/drawer/drawerContent';
 
 // Screens
 import { UserProvider } from '../context/user.context';
 import ExploreScreen from '../screens/explore/exploreScreen';
+import MenuScreen from '../screens/menu/menuScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -35,7 +37,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
             //     routeNameRef.current = currentRouteName;
             // }}
             linking={LinkingConfiguration}
-            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+            theme={colorScheme === 'dark' ? CustomDarkTheme : CustomDefaultTheme}
         >
             <UserProvider>
                 <DrawerNavigator />
@@ -59,6 +61,7 @@ function RootNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 {/* <Stack.Screen name="HQScreen" component={HQScreen} options={{ headerShown: false }} /> */}
             </Stack.Group>
