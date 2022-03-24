@@ -53,13 +53,14 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
                     return (
                         <View style={[styles.wrapper, { backgroundColor: colors.card, borderRadius: borderRadius.card }]}>
                             <AddOns
-								title={item.title}
-								maxNumber={item.maxNumber}
-								Id={item.Id}
-								counter={item.maxNumber > 1 ? true : false} 
-								addOns={addOns}
-								noBorder
-							/>
+                                key={i}
+                                title={item.title}
+                                maxNumber={item.maxNumber}
+                                Id={item.Id}
+                                counter={item.maxNumber > 1 ? true : false}
+                                addOns={addOns}
+                                // noBorder
+                            />
                         </View>
                     );
                 })}
@@ -74,11 +75,11 @@ const styles = StyleSheet.create({
     topWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 10,
+        padding: 20,
         // padding: 10
     },
     description: {
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         // paddingBottom: 10
     },
     contains: {
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         // marginTop: 5,
-        padding: 10,
+        // padding: 10,
         // alignItems: 'center',
         // justifyContent: 'center'
     },
