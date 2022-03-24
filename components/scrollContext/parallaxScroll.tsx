@@ -3,6 +3,7 @@ import { Animated, SafeAreaView, Image, View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { useTheme } from '../../hooks/useTheme';
 import { Images } from '../../style/images';
+import OpacityHeader from '../headers/opacityHeader';
 
 const HEADER_MAX_HEIGHT = 350;
 const HEADER_MIN_HEIGHT = 60;
@@ -64,7 +65,7 @@ const ParallaxScroll = ({ children, height, props }: any) => {
     const snapToOffsets = [0, 210]; // this jumps down card height, so fucking cool!
     return (
         <View style={styles.container}>
-            {/* <OpacityHeader clampedScroll={clampedScroll} /> */}
+            <OpacityHeader clampedScroll={clampedScroll} />
             <Animated.View
                 style={[
                     styles.container,
