@@ -2,9 +2,10 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { AntDesign as Icon } from '@expo/vector-icons';
-import { useTheme, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Text } from '../../style/typography';
 import { useSelector } from 'react-redux';
+import { useTheme } from '../../hooks/useTheme';
 
 const { height: wHeight, width: wWidth } = Dimensions.get('window');
 const HEADER_IMAGE_HEIGHT = wHeight / 3;
@@ -14,7 +15,7 @@ const MIN_HEADER_HEIGHT = 45;
 const { height } = Dimensions.get('window');
 
 const Content = ({ onPress }: any) => {
-    const { colors, borderRadius }: any = useTheme();
+    const { colors, borderRadius, dark } = useTheme();
     const navigation: any = useNavigation();
 	let products: any = useSelector((state: any) => state.menuReducer.menu);
 	let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
@@ -22,6 +23,8 @@ const Content = ({ onPress }: any) => {
     const handleNav = (route: any, items: any) => {
         navigation.navigate(route, items);
     };
+    
+    console.log(dark)
 
 	React.useEffect(() => {
 
@@ -43,7 +46,7 @@ const Content = ({ onPress }: any) => {
                                         styles.content,
                                         {
                                             backgroundColor: colors.card,
-                                            borderBottomColor: colors.border,
+                                            borderBottomColor: dark ? colors.dark_grey : colors.border,
                                             // borderBottomWidth: j === item.items.length - 1 ? 0 : 0.5,
                                             borderRadius: 0,
                                         },

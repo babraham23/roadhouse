@@ -15,7 +15,7 @@ const ViewBasketButton = ({ style }: any) => {
         <>
             {Basket.length ?
                 <View style={[style, styles.wrapper]}>
-                    <Animatable.View style={[styles.container, { backgroundColor: colors.background, borderTopColor: colors.seperator, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card }]} animation="fadeInUpBig">
+                    <Animatable.View style={[styles.container, { backgroundColor: colors.background, borderTopColor: colors.border, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card }]} animation="fadeInUpBig">
                         <ViewBasketButtonInner 
                             title={'View Basket'} 
                             onPress={() => navigation.navigate('BasketScreen')} 

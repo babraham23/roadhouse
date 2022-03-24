@@ -23,6 +23,7 @@ export const Text = ({ style, color, fontSize, bold, textDecorationLine, center,
             textAlign: center ? 'center' : 'left',
             textDecorationLine: textDecorationLine ? textDecorationLine : 'none',
             color: color ? color : colors.text,
+            lineHeight: fontSize ? fontSize + 10 : 20
         },
     });
     return <DefaultText numberOfLines={numberOfLines}  style={[style, styles.text]}>{children}</DefaultText>;

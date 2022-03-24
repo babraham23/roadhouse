@@ -5,6 +5,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { Images } from '../../style/images';
 import OpacityHeader from '../headers/opacityHeader';
 
+
 const HEADER_MAX_HEIGHT = 350;
 const HEADER_MIN_HEIGHT = 60;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;

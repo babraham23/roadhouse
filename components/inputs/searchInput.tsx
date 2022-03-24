@@ -16,7 +16,7 @@ const SearchInput = ({
 }: any) => {
 	const { colors, borderRadius }: any = useTheme();
 	return (
-		<View style={[style, styles.wrapper, { borderBottomColor: colors.text, backgroundColor: colors.border, borderRadius: borderRadius.input }]}>
+		<View style={[style, styles.wrapper, {  backgroundColor: colors.card, borderRadius: borderRadius.input, borderColor: colors.border }]}>
 			<View style={[styles.iconWrapper, { borderColor: colors.text }]}>
 				<FontAwesome name={'search'} color={colors.text} size={20} style={styles.icon} />
 			</View>
@@ -34,9 +34,9 @@ const SearchInput = ({
 				underlineColorAndroid="transparent"
 			/>
 
-            <TouchableOpacity style={[styles.iconWrapper, { borderColor: colors.text }]}>
+            {/* <TouchableOpacity style={[styles.iconWrapper, { borderColor: colors.text }]}>
 				<Ionicons name={'close'} color={colors.text} size={25}  />
-			</TouchableOpacity>
+			</TouchableOpacity> */}
 		</View>
 	);
 };
@@ -44,7 +44,7 @@ const SearchInput = ({
 const styles = StyleSheet.create({
 	wrapper: {
 		flexDirection: 'row',
-		// borderWidth: 1,
+		borderWidth: 0.5,
 		height: 50,
 		alignItems: 'center',
         width: '100%',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 	iconWrapper: {
 		// borderRightWidth: 1,
 		paddingLeft: 5,
-		paddingRight: 10,
+		paddingRight: 5,
 	},
 	icon: {
 		paddingBottom: 5,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 		// marginTop: Platform.OS === 'ios' ? 0 : -12,
 		paddingLeft: 10,
 		fontSize: 18,
-		fontFamily: 'Regular',
+		fontFamily: 'regular',
 	},
 });
 

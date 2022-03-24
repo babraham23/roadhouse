@@ -3,9 +3,12 @@ import React from 'react'
 import { Text } from '../../style/typography'
 import { useTheme } from '../../hooks/useTheme'
 import BackButton from '../buttons/backbutton'
+import { useSelector } from 'react-redux'
 
 const MenuHeader = () => {
   const { colors, borderRadius } = useTheme()
+  let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
+  console.log('selected menu -->', selectedMenuItem)
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]} >
       <BackButton style={styles.backbutton} />

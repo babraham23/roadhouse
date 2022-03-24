@@ -14,7 +14,8 @@ import DrawerContent from '../components/drawer/drawerContent';
 import { UserProvider } from '../context/user.context';
 import ExploreScreen from '../screens/explore/exploreScreen';
 import MenuScreen from '../screens/menu/menuScreen';
-import SelectedItemScreen from '../components/menu/selectedItemScreen';
+import SelectedItemScreen from '../screens/menu/selectedItemScreen';
+import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -50,7 +51,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
     return (
-        <Drawer.Navigator drawerContent={(props: any) => <DrawerContent {...props} />} screenOptions={{ drawerPosition: 'right' }}>
+        <Drawer.Navigator drawerContent={(props: any) => <ViewBasketDrawer {...props} />} screenOptions={{ drawerPosition: 'right' }}>
             <Drawer.Screen name="RootNavigator" component={RootNavigator} options={{ headerShown: false, swipeEnabled: false }} />
         </Drawer.Navigator>
     );

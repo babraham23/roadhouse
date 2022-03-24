@@ -3,11 +3,11 @@ import { StyleSheet, Image, View } from 'react-native';
 import { Text } from '../../style/typography';
 import { useTheme } from '../../hooks/useTheme';
 import { useDispatch } from 'react-redux';
-import ImageScrollContext from '../../components/scrollContext/imageScrollContext';
 import AddOns from '../../components/menu/addOns';
 import ShadowButton from '../../components/buttons/shadowButton';
 import { ADD_TO_BASKET } from '../../state/reducers/basketReducer';
 import { useNavigation } from '@react-navigation/native';
+import ImageScrollContext from '../../components/scrollContext/imageScrollContext';
 
 // const DATA = Array(10)
 // 	.fill(null)
@@ -51,7 +51,7 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
                 </Text>
                 {addOns.map((item: any, i: any) => {
                     return (
-                        <View style={[styles.wrapper, { backgroundColor: colors.card, borderRadius: borderRadius.card }]}>
+                        <View key={i} style={[styles.wrapper, { backgroundColor: colors.card, borderRadius: borderRadius.card }]}>
                             <AddOns
                                 key={i}
                                 title={item.title}

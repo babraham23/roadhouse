@@ -5,20 +5,22 @@ import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../style/typography';
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const ViewBasketButtonInner = ({ onPress, title, style, secondary }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
+    const navigation: any = useNavigation()
     let numOfItems = Basket.length;
     return (
-        <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={[style, styles.shadow, { shadowColor: colors.primary }]}>
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()} activeOpacity={0.8} style={[style, styles.shadow, { shadowColor: colors.primary }]}>
             <LinearGradient colors={[colors.primary, '#ff0e4e']} style={[styles.wrapper, { borderRadius: borderRadius.button }]}>
                 <View style={styles.inner}>
-                    <Text center style={styles.text} fontSize={18} color={'white'}>
+                    <Text bold center style={styles.text} fontSize={18} color={'white'}>
                         {title}
                     </Text>
                     <View style={styles.numWrapper}>
-                        <Text style={styles.text} fontSize={18} color={colors.primary}>
+                        <Text bold style={styles.text} fontSize={18} color={colors.primary}>
                             {numOfItems}
                         </Text>
                     </View>
