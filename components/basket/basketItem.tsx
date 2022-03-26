@@ -9,14 +9,16 @@ import RemoveItemButtom from './removeItemButton';
 type Props = {
     title?: string    
     style?: any
+    onRemovePress?: any
+    price?: string
 }
 
-const BasketItem = ({ style, title }: Props) => {
+const BasketItem = ({ style, title, onRemovePress, price }: Props) => {
     const { colors } = useTheme()
     const navigation = useNavigation()
 	return (
 		<View style={[style, styles.container, { borderBottomColor: colors.dark_grey }]}>
-            <RemoveItemButtom style={styles.removeButton} />
+            <RemoveItemButtom onPress={onRemovePress} style={styles.removeButton} />
             <View style={styles.titleWrapper} >
                 <Text bold numberOfLines={3} >{title}</Text>
             </View>
@@ -26,7 +28,7 @@ const BasketItem = ({ style, title }: Props) => {
             </View>
             <View style={styles.priceWrapper} >
                 <Text >1 x </Text>
-                <Text bold >£07.99</Text>
+                <Text bold >£{price}</Text>
             </View>
 
 
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
         position: 'absolute', 
         right: 1,
         // top: -15
+        zIndex: 99
     },
     addonWrapper: {
         paddingTop: 5

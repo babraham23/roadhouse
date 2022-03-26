@@ -6,8 +6,9 @@ import { Text } from '../../style/typography';
 import { SET_MENU } from '../../state/reducers/menuReducer';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { useDispatch } from 'react-redux';
-import { products, appIcon } from '../../_models/mcdonalds.model';
+import { products, restaurantDetails } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
+import { SET_RESTAURANT } from '../../state/reducers/restaurantReducer';
 
 
 const HorizontalParallax = ({title, items}: any) => {
@@ -23,13 +24,15 @@ const HorizontalParallax = ({title, items}: any) => {
             let selectedItem = { title: products[0].title, Id: products[0].Id };
             dispatch({ type: SET_MENU, payload: products });
             dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
+            dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
             navigation.navigate('MenuScreen');
-        } else if (id === 'subway') {
-            let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id };
-            dispatch({ type: SET_MENU, payload: subwayProducts });
-            dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
-            navigation.navigate('MenuScreen');
-        }
+        } 
+        // else if (id === 'subway') {
+        //     let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id };
+        //     dispatch({ type: SET_MENU, payload: subwayProducts });
+        //     dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
+        //     navigation.navigate('MenuScreen');
+        // }
     };
 
     return (

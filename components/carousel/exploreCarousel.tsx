@@ -9,9 +9,10 @@ import InfoCard from '../cards/infoCard';
 import TripleCard from '../cards/tripleCard';
 import DisplayCard from '../cards/displayCard';
 
-import { products, appIcon } from '../../_models/mcdonalds.model';
+import { products, restaurantDetails } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
 import { useTheme } from '../../hooks/useTheme';
+import { SET_RESTAURANT } from '../../state/reducers/restaurantReducer';
 
 export const ExploreCarousel = ({items, style, title}: any) => {
     // console.log('props -->', props)
@@ -66,6 +67,7 @@ export const ExploreCarousel = ({items, style, title}: any) => {
             // let selectedItem = { title: products[0].title, Id: products[0].Id}
             dispatch({ type: SET_MENU, payload: products });
             dispatch({ type: SET_MENU_ITEM, payload: products[0] });
+            dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
             navigation.navigate('MenuScreen');
         } else if (id === 'subway') {
             // let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id}

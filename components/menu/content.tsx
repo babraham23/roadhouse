@@ -24,8 +24,6 @@ const Content = ({ onPress }: any) => {
         navigation.navigate(route, items);
     };
     
-    console.log(dark)
-
 	React.useEffect(() => {
 
     }, [])

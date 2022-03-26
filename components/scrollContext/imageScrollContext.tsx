@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import { SafeAreaView, StyleSheet, Image, View, Animated } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
-import BlurBackButton from '../buttons/blurBackButton'
-import { Text } from '../../style/typography';
 import { ScrollContextProvider } from './scrollContext';
 import ModalHeader from '../headers/modalHeader';
 

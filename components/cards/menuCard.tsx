@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 import MenuItems from '../cards/menuItems';
-import { menuModel } from '../../_models/menu.model'; // read 2 different models?
 
 
 const MenuCard = () => {
@@ -18,7 +17,7 @@ const MenuCard = () => {
 			<FlatList
 				contentContainerStyle={{ backgroundColor: colors.background }}
 				style={{ backgroundColor: colors.background }}
-				data={menuModel}
+				data={[]}
 				renderItem={renderItem}
 				keyExtractor={keyExtractor}
 				ItemSeparatorComponent={() => <View style={{ height: StyleSheet.hairlineWidth }} />}

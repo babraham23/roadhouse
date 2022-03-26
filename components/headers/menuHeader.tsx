@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Text } from '../../style/typography'
 import { useTheme } from '../../hooks/useTheme'
@@ -7,20 +7,24 @@ import { useSelector } from 'react-redux'
 
 const MenuHeader = () => {
   const { colors, borderRadius } = useTheme()
-  let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
-  console.log('selected menu -->', selectedMenuItem)
+  let restaurantDetails: any = useSelector((state: any) => state.restaurantReducer);
+  console.log('restaurantDetails -->', restaurantDetails)
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]} >
       <BackButton style={styles.backbutton} />
-      <View style={styles.locationWrapper} >
-        <Text center bold numberOfLines={1} >Grainger Street</Text>
-      </View>
-      <View style={styles.collectWrapper} >
+      <TouchableOpacity style={styles.locationWrapper} >
+        <Text center bold numberOfLines={1} >{restaurantDetails.address1}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.collectWrapper} >
         <Text center bold numberOfLines={1}  >Table 23</Text>
-      </View>
-      <View style={[styles.logoWrapper, { borderRadius: borderRadius.card }]} >
-        <View style={styles.logo} />
-      </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={[styles.logoWrapper, { borderRadius: borderRadius.card }]} >
+        {restaurantDetails.logo == 24 ?
+          <Image style={[styles.logo, { borderRadius: borderRadius.card }]} source={require('../../assets/mcdonalds/mcd_logo.png')} />
+          :
+          <Image style={[styles.logo, { borderRadius: borderRadius.card }]} source={require('../../assets/mcdonalds/mcd_logo.png')} />
+        }
+      </TouchableOpacity>
     </View>
   )
 }

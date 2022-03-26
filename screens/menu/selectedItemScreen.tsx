@@ -9,6 +9,7 @@ import { ADD_TO_BASKET } from '../../state/reducers/basketReducer';
 import { useNavigation } from '@react-navigation/native';
 import ImageScrollContext from '../../components/scrollContext/imageScrollContext';
 
+
 // const DATA = Array(10)
 // 	.fill(null)
 // 	.map((_, idx) => ({
@@ -19,7 +20,7 @@ import ImageScrollContext from '../../components/scrollContext/imageScrollContex
 
 const SelectedItemScreen = ({ route, allergins }: any) => {
     const dispatch = useDispatch();
-    const { colors, borderRadius }: any = useTheme();
+    const { colors, borderRadius } = useTheme();
     const navigation = useNavigation();
     const { title, image, price, description, addOns, Id } = route.params;
     const item = { title, price, description, addOns, Id };
@@ -34,19 +35,21 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
         navigation.goBack();
     };
 
+    // console.log('addons -->', addOns)
+
     return (
         <>
             <ImageScrollContext image={image} title={title}>
                 <View style={styles.topWrapper}>
                     <Text fontSize={20}>{title}</Text>
-                    <Text color={colors.greyText} fontSize={18}>
+                    <Text color={colors.dark_grey} fontSize={18}>
                         £{price}
                     </Text>
                 </View>
                 <Text style={styles.description} color={colors.text} fontSize={18}>
                     {description}
                 </Text>
-                <Text color={colors.greyText} style={styles.contains} fontSize={14}>
+                <Text color={colors.dark_grey} style={styles.contains} fontSize={14}>
                     {allergins}
                 </Text>
                 {addOns.map((item: any, i: any) => {

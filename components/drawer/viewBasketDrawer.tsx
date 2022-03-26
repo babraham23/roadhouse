@@ -13,29 +13,34 @@ type Props = {
 };
 
 const dummyData = [
-    { title: 'Big Mac with large fries lnzskvnskanvalksnfk;lanmslknslknsfalkn', value: 1 },
-    { title: 'Some chicken', value: 2 },
-    { title: 'Big Mac with large fries', value: 3 },
-    { title: 'Happy Meal', value: 4 },
+    { title: 'Big Mac with large fries lnzskvnskanvalksnfk;lanmslknslknsfalkn', value: 1, id: 1 },
+    { title: 'Some chicken', value: 2, id: 2 },
+    { title: 'Big Mac with large fries', value: 3, id: 3 },
+    { title: 'Happy Meal', value: 4, id: 4 },
+    { title: 'Some chicken', value: 5, id: 5 },
+    { title: 'Big Mac with large fries', value: 6, id: 6 },
+    { title: 'Happy Meal', value: 7, id: 7 },
 ];
 
 const ViewBasketDrawer = ({ navigation }: Props) => {
     const { colors }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
-    console.log('basket -->', Basket)
+    // console.log('basket -->', Basket)
     return (
         <>
             <View style={[styles.closeWrapper, { backgroundColor: colors.card }]}>
                 <BasketCloseButton onPress={() => navigation.toggleDrawer()} style={styles.close} />
             </View>
-            <ScrollView style={styles.container}>
+            <ScrollView bounces={false} style={styles.container}>
                 <Text center bold fontSize={23}>
                     Basket
                 </Text>
 
                 <View style={styles.itemWrapper}>
-                    <BasketItem title="Big Mac with large fries lnzskvnskanvalksnfk;lanmslknslknsfalkn akjdbfkjabnfkjnasjf" />
-                    <BasketItem title="Big Mac with large fries" />
+                    {Basket.map((item: any, i: any) => {
+                        return <BasketItem price={item.Cost} key={i} title={item.Name} onRemovePress={() => console.log(item.id)} />
+                    } )}
+                    
                 </View>
                 <View style={[styles.totalWropper, { borderBottomColor: colors.dark_grey }]}>
                     <Text bold>Total: </Text>
@@ -85,7 +90,8 @@ const styles = StyleSheet.create({
     },
     checkoutWrapper: {
         marginHorizontal: 20,
-        marginVertical: 40,
+        marginTop: 40,
+        marginBottom: 80
     },
 });
 

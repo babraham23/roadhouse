@@ -17,7 +17,7 @@ const ModalHeader = ({ onClosePress, onBackPress, title }: Props) => {
     const { colors, borderRadius } = useTheme();
     const navigation = useNavigation();
     return (
-        <View style={[styles.container, { backgroundColor: colors.card }]}>
+        <View style={[styles.container, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
             <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={styles.arrowWrapper} >
                 <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
             </TouchableOpacity>
@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        shadowOffset: {
-            width: 0,
-            height: 0.2,
-        },
-        shadowOpacity: 0.28,
-        shadowRadius: 0.5,
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 0.2,
+        // },
+        // shadowOpacity: 0.28,
+        // shadowRadius: 0.5,
         zIndex: 1,
+        borderBottomWidth: 0.5
     },
     arrowWrapper: {
         position: 'absolute',
