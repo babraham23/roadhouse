@@ -1,34 +1,34 @@
 const addOns = [
 	{
 		title: 'Cheese',
-		maxNumber: 5,
-		id: 1,
+		maxNumber: 1,
+		Id: 1,
 		price: 1.99
 	},
 	{
 		title: 'Extra Fries',
 		maxNumber: 1,
-		id: 2,
+		Id: 2,
 		price: 2.99
 	},
-	{
-		title: 'Pickles',
-		maxNumber: 3,
-		id: 3,
-		price: 3.99
-	},
-	{
-		title: 'Halloumi',
-		maxNumber: 1,
-		id: 4,
-		price: 4.99
-	},
-	{
-		title: 'Hot Sauces',
-		maxNumber: 1,
-		id: 5,
-		price: 5.99
-	},
+	// {
+	// 	title: 'Pickles',
+	// 	maxNumber: 3,
+	// 	Id: 3,
+	// 	price: 3.99
+	// },
+	// {
+	// 	title: 'Halloumi',
+	// 	maxNumber: 1,
+	// 	Id: 4,
+	// 	price: 4.99
+	// },
+	// {
+	// 	title: 'Hot Sauces',
+	// 	maxNumber: 1,
+	// 	Id: 5,
+	// 	price: 5.99
+	// },
 ]
 
 

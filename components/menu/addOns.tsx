@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ADD_ADD_ON } from '../../state/reducers/addonsReducer';
 import { Feather } from '@expo/vector-icons';
 
-const AddOnItem = ({ style, title, onChangeCheck, counter, maxNumber, allergin, noBorder, Id, addOns }: any) => {
+const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder, Id, addOns }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const [check, toggleCheck] = React.useState(false);
     const [updatedAddOn, setUpdatedAddOn] = React.useState([]);
@@ -17,6 +17,7 @@ const AddOnItem = ({ style, title, onChangeCheck, counter, maxNumber, allergin, 
     const { Addons }: any = useSelector((state: any) => state.addOnReducer);
 
     const handleAddAddOn = () => {
+        console.log('adding');
         const item = { title, maxNumber, Id };
         // filter out prod options if already exists
         let ProductOptionsUpdated = addOns.filter((prodOpt: any) => prodOpt.Id !== Id);
@@ -30,6 +31,7 @@ const AddOnItem = ({ style, title, onChangeCheck, counter, maxNumber, allergin, 
     };
 
     const handleRemoveAddOn = () => {
+        console.log('removing');
         const item = { title, maxNumber, Id };
         // if (quantity == 0) {
         // 	// dispatch({ type: CLEAR_ADD_ON, payload: addOnCostPrice });
@@ -56,13 +58,15 @@ const AddOnItem = ({ style, title, onChangeCheck, counter, maxNumber, allergin, 
         // onChangeCheck(!check);
     };
 
+    console.log('updatedAddOn -->', updatedAddOn)
+
     return (
         <>
             <View style={[style, styles.container, { borderBottomColor: colors.border, borderBottomWidth: noBorder ? 0 : 0.5 }]}>
                 <View style={styles.titleWrapper}>
                     <Text fontSize={18}>{title}</Text>
-                    <Text  style={styles.contains} fontSize={15}>
-                        £2.00
+                    <Text style={styles.contains} fontSize={15}>
+                        £{price}
                     </Text>
                 </View>
                 {counter ? (

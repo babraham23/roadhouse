@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const MenuHeader = () => {
   const { colors, borderRadius } = useTheme()
   let restaurantDetails: any = useSelector((state: any) => state.restaurantReducer);
-  console.log('restaurantDetails -->', restaurantDetails)
+  // console.log('restaurantDetails -->', restaurantDetails)
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]} >
       <BackButton style={styles.backbutton} />

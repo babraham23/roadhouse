@@ -62,6 +62,7 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
                                 Id={item.Id}
                                 counter={item.maxNumber > 1 ? true : false}
                                 addOns={addOns}
+                                price={item.price}
                                 // noBorder
                             />
                         </View>

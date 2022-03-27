@@ -38,7 +38,7 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
 
                 <View style={styles.itemWrapper}>
                     {Basket.map((item: any, i: any) => {
-                        return <BasketItem price={item.Cost} key={i} title={item.Name} onRemovePress={() => console.log(item.id)} />
+                        return <BasketItem price={item.Cost} key={i} title={item.Name} onRemovePress={() => console.log(item.Id)} />
                     } )}
                     
                 </View>
