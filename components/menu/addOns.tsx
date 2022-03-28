@@ -12,7 +12,7 @@ import { Feather } from '@expo/vector-icons';
 const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder, Id, addOns }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const [check, toggleCheck] = React.useState(false);
-    const [updatedAddOn, setUpdatedAddOn] = React.useState([]);
+    const [updatedAddOn, setUpdatedAddOn]: any = React.useState([]);
     const dispatch = useDispatch();
     const { Addons }: any = useSelector((state: any) => state.addOnReducer);
 
@@ -20,9 +20,9 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
         console.log('adding');
         const item = { title, maxNumber, Id };
         // filter out prod options if already exists
-        let ProductOptionsUpdated = addOns.filter((prodOpt: any) => prodOpt.Id !== Id);
+        // let ProductOptionsUpdated = addOns.filter((prodOpt: any) => prodOpt.Id !== Id);
         // add it back with the updated quantity
-        ProductOptionsUpdated = [...Addons, ...[item]];
+        let ProductOptionsUpdated = [...Addons, ...[item]];
         // update state
         // dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
         console.log(ProductOptionsUpdated);
@@ -45,7 +45,6 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
         // dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
         setUpdatedAddOn(ProductOptionsUpdated);
         toggleCheck(false);
-        console.log('delete -->', ProductOptionsUpdated);
     };
 
     const addAddOn = (item: any) => {
@@ -58,7 +57,7 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
         // onChangeCheck(!check);
     };
 
-    console.log('updatedAddOn -->', updatedAddOn)
+    // console.log('updatedAddOn -->', updatedAddOn)
 
     return (
         <>

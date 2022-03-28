@@ -9,24 +9,28 @@ type Props = {
     onClosePress?: any
     onBackPress?: any
     title?: string
-    showBack?: boolean
-    showClose?: boolean
+    hideBack?: boolean
+    hideClose?: boolean
 }
 
-const ModalHeader = ({ onClosePress, onBackPress, title }: Props) => {
+const ModalHeader = ({ onClosePress, onBackPress, title, hideBack, hideClose }: Props) => {
     const { colors, borderRadius } = useTheme();
     const navigation = useNavigation();
     return (
         <View style={[styles.container, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
-            <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={styles.arrowWrapper} >
+            {hideBack ? null :
+                <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={styles.arrowWrapper} >
                 <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
-            </TouchableOpacity>
-            <Text center bold>
-                {title}
-            </Text>
-            <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={styles.closeWrapperWrapper}>
+            </TouchableOpacity>}
+            <View style={styles.titleWrapper} >
+                <Text center bold numberOfLines={1} >
+                    {title}
+                </Text>
+            </View>
+            {hideClose ? null :
+                <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={styles.closeWrapperWrapper}>
                 <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
-            </TouchableOpacity>
+            </TouchableOpacity>}
         </View>
     );
 };
@@ -56,6 +60,9 @@ const styles = StyleSheet.create({
         right: 20,
         zIndex: 1,
     },
+    titleWrapper: {
+        width: '70%',
+    }
 });
 
 export default ModalHeader;

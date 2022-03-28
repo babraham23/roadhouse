@@ -8,15 +8,8 @@ import ShadowButton from '../../components/buttons/shadowButton';
 import { ADD_TO_BASKET } from '../../state/reducers/basketReducer';
 import { useNavigation } from '@react-navigation/native';
 import ImageScrollContext from '../../components/scrollContext/imageScrollContext';
+import CustomActionButton from '../../components/buttons/customActionButton';
 
-
-// const DATA = Array(10)
-// 	.fill(null)
-// 	.map((_, idx) => ({
-// 		id: idx,
-// 		avatar: faker.image.avatar(),
-// 		fullName: `${faker.name.firstName()} ${faker.name.lastName()}`,
-// 	}));
 
 const SelectedItemScreen = ({ route, allergins }: any) => {
     const dispatch = useDispatch();
@@ -24,12 +17,14 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
     const navigation = useNavigation();
     const { title, image, price, description, addOns, Id } = route.params;
     const item = { title, price, description, addOns, Id };
+    const [selectedAddOns] = React.useState([])
 
     const addToBasket = () => {
         let data = {
-            Name: title,
+            title: title,
             Id,
-            Cost: price,
+            totalPrice: price,
+            addOns: selectedAddOns
         };
         dispatch({ type: ADD_TO_BASKET, payload: data });
         navigation.goBack();
@@ -39,7 +34,7 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
 
     return (
         <>
-            <ImageScrollContext image={image} title={title}>
+            <ImageScrollContext hideClose image={image} title={title}>
                 <View style={styles.topWrapper}>
                     <Text fontSize={20}>{title}</Text>
                     <Text color={colors.dark_grey} fontSize={18}>
@@ -69,7 +64,7 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
                     );
                 })}
 
-                <ShadowButton title={'Add to Basket'} style={styles.button} onPress={() => addToBasket()} />
+                <CustomActionButton title={'Add to Basket'} style={styles.button} onPress={() => addToBasket()} />
             </ImageScrollContext>
         </>
     );

@@ -10,7 +10,7 @@ const HEADER_MIN_HEIGHT = 85;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 
-const ImageScrollContext = ({ image, children, title }: any) => {
+const ImageScrollContext = ({ image, children, title, hideClose }: any) => {
     const { colors }: any = useTheme()
 	const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -47,7 +47,7 @@ const ImageScrollContext = ({ image, children, title }: any) => {
 	return (
         <>
 		{image ? <View style={{ flex: 1 }}>
-		<ModalHeader />
+		<ModalHeader hideClose={hideClose} title={title} />
 
 			<Animated.ScrollView
                 showsVerticalScrollIndicator={false}
@@ -91,7 +91,7 @@ const ImageScrollContext = ({ image, children, title }: any) => {
                 {/* <View style={{ width: 50, height: 50, backgroundColor: 'green' }} /> 
 			</Animated.View> */}
 		</View> :
-        <ScrollContextProvider title={title} >
+        <ScrollContextProvider hideClose={hideClose} title={title} >
             {children}
         </ScrollContextProvider>
         }

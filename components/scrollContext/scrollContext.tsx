@@ -32,6 +32,8 @@ export const ScrollContextProvider = (props: any) => {
 
 	const { colors } = useTheme()
 
+	let { title, children, hideClose } = props;
+
 	return (
 		<ScrollContext.Provider
 			value={{
@@ -42,9 +44,9 @@ export const ScrollContextProvider = (props: any) => {
 				updateOffset: updateOffset,
 			}}
 		>
-            <ModalHeader />
+            <ModalHeader hideClose={hideClose} title={title}  />
             <ScrollView style={{ flex: 1 }} >
-				{props.children}
+				{children}
             </ScrollView>
 		</ScrollContext.Provider>
 	);
