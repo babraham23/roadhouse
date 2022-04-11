@@ -18,7 +18,7 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
     const { ProductOptions, floatingCost } = useSelector((state: any) => state.addOnReducer);
 
     const handleAddAddOn = (quantity: any) => {
-        const item = { Id, Quantity: quantity };
+        const item = { Id, quantity: quantity, title };
         dispatch({ type: ADD_COST, payload: price * 1 });
 
         // filter out prod options if already exists
@@ -31,7 +31,7 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
     };
 
     const handleRemoveAddOn = (quantity: any) => {
-        const item = { Id, Quantity: quantity };
+        const item = { Id, quantity: quantity, title };
         if (quantity == 0) {
             dispatch({ type: CLEAR_ADD_ON, payload: price });
 

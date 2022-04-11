@@ -11,9 +11,10 @@ type Props = {
     style?: any;
     onRemovePress?: any;
     price?: string;
+    addOns?: any;
 };
 
-const BasketItem = ({ style, title, onRemovePress, price }: Props) => {
+const BasketItem = ({ style, title, onRemovePress, price, addOns }: Props) => {
     const { colors } = useTheme();
     const navigation = useNavigation();
     return (
@@ -25,8 +26,14 @@ const BasketItem = ({ style, title, onRemovePress, price }: Props) => {
                 </Text>
             </View>
             <View style={styles.addonWrapper}>
-                <Text color={colors.dark_grey}>No Pickles</Text>
-                <Text color={colors.dark_grey}>Extra Cheese</Text>
+                {addOns.map((addon: any, i: any) => {
+                    return (
+                        <View key={i} style={{flexDirection: 'row'}} >
+                            <Text color={colors.dark_grey}>{addon.quantity} x </Text>
+                            <Text color={colors.dark_grey}>{addon.title}</Text>
+                        </View>
+                        )
+                })}
             </View>
             <View style={styles.priceWrapper}>
                 <Text>1 x </Text>

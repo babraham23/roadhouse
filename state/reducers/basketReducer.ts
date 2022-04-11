@@ -17,7 +17,8 @@ const basketReducer = (state = initialState, action: any) => {
         case REMOVE_FROM_BASKET:
             return {
                 ...state,
-                Basket: [...state.Basket.filter((cartItem: any) => cartItem.Id !== action.payload)]};
+                Basket: [...state.Basket.filter((cartItem: any) => cartItem.Id !== action.payload)],
+            };
     }
     return state;
 };

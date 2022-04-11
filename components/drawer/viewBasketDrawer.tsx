@@ -17,11 +17,11 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
     const { colors }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
     const dispatch = useDispatch();
-    console.log('basket -->', Basket)
+    console.log('basket -->', Basket);
 
     const removeItem = (id: number) => {
         dispatch({ type: REMOVE_FROM_BASKET, payload: id });
-    }
+    };
 
     return (
         <>
@@ -35,7 +35,7 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
 
                 <View style={styles.itemWrapper}>
                     {Basket.map((item: any, i: any) => {
-                        return <BasketItem price={item.totalPrice} key={i} title={item.Name} onRemovePress={() => removeItem(item.Id)} />;
+                        return <BasketItem price={item.totalPrice} key={i} title={item.title} addOns={item.addOns} onRemovePress={() => removeItem(item.Id)} />;
                     })}
                 </View>
                 <View style={[styles.totalWropper, { borderBottomColor: colors.dark_grey }]}>
