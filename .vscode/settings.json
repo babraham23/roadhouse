@@ -5,13 +5,11 @@
         "titleBar.activeBackground": "#ff225c",
         "titleBar.inactiveBackground": "#ff225c",
 
-
-
-        "terminal.background":"#000",
-        "terminal.foreground":"#fff",
-        "terminalCursor.background":"#A89984",
-        "terminalCursor.foreground":"#A89984",
-        "terminal.letterSpacing": 15,
+        "terminal.background": "#000",
+        "terminal.foreground": "#fff",
+        "terminalCursor.background": "#A89984",
+        "terminalCursor.foreground": "#A89984",
+        "terminal.letterSpacing": 15
         // "terminal.ansiBlack":"#1D2021",
         // "terminal.ansiBlue":"#0D6678",
         // "terminal.ansiBrightBlack":"#665C54",
@@ -31,7 +29,6 @@
     },
     "editor.fontFamily": "Monaco, Input Mono, 'Courier New', monospace",
     "editor.fontWeight": "400",
-    "editor.fontSize": 12,
+    "editor.fontSize": 12
     // "workbench.panel.defaultLocation": "right",
-    
 }

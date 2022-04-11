@@ -11,7 +11,7 @@ type Props = {
     center?: boolean;
     children: any;
     noEnd?: boolean;
-    numberOfLines?: number
+    numberOfLines?: number;
 };
 
 export const Text = ({ style, color, fontSize, bold, textDecorationLine, center, children, numberOfLines }: Props) => {
@@ -23,10 +23,14 @@ export const Text = ({ style, color, fontSize, bold, textDecorationLine, center,
             textAlign: center ? 'center' : 'left',
             textDecorationLine: textDecorationLine ? textDecorationLine : 'none',
             color: color ? color : colors.text,
-            lineHeight: fontSize ? fontSize + 10 : 20
+            lineHeight: fontSize ? fontSize + 10 : 20,
         },
     });
-    return <DefaultText numberOfLines={numberOfLines}  style={[style, styles.text]}>{children}</DefaultText>;
+    return (
+        <DefaultText numberOfLines={numberOfLines} style={[style, styles.text]}>
+            {children}
+        </DefaultText>
+    );
 };
 
 export const SpaceMonoText = ({ style, color, fontSize, textDecorationLine, center, children }: Props) => {

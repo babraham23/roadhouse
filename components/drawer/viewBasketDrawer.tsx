@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View, Dimensions, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '../../hooks/useTheme';
+import { REMOVE_FROM_BASKET } from '../../state/reducers/basketReducer';
 import { Text } from '../../style/typography';
 import BasketItem from '../basket/basketItem';
 import BasketCloseButton from '../buttons/basketCloseButton';
@@ -12,11 +13,16 @@ type Props = {
     navigation?: any;
 };
 
-
 const ViewBasketDrawer = ({ navigation }: Props) => {
     const { colors }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
-    // console.log('basket -->', Basket)
+    const dispatch = useDispatch();
+    console.log('basket -->', Basket)
+
+    const removeItem = (id: number) => {
+        dispatch({ type: REMOVE_FROM_BASKET, payload: id });
+    }
+
     return (
         <>
             <View style={[styles.closeWrapper, { backgroundColor: colors.card }]}>
@@ -24,14 +30,13 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
             </View>
             <ScrollView bounces={false} style={styles.container}>
                 <Text center bold fontSize={23}>
-                   Your Basket
+                    Your Basket
                 </Text>
 
                 <View style={styles.itemWrapper}>
                     {Basket.map((item: any, i: any) => {
-                        return <BasketItem price={item.totalPrice} key={i} title={item.Name} onRemovePress={() => console.log(item.Id)} />
-                    } )}
-                    
+                        return <BasketItem price={item.totalPrice} key={i} title={item.Name} onRemovePress={() => removeItem(item.Id)} />;
+                    })}
                 </View>
                 <View style={[styles.totalWropper, { borderBottomColor: colors.dark_grey }]}>
                     <Text bold>Total: </Text>
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
         left: 20,
         top: 60,
         borderRadius: 13,
-        zIndex: 99
+        zIndex: 99,
     },
     close: {
         // position: 'absolute',
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
     checkoutWrapper: {
         marginHorizontal: 20,
         marginTop: 40,
-        marginBottom: 80
+        marginBottom: 80,
     },
 });
 

@@ -1,11 +1,11 @@
 export const SET_MENU_ITEM = 'SET_MENU_ITEM';
 
 const menuItemReducer = (state = {}, action: any) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_MENU_ITEM:
-            return Object.assign({}, state, action.payload );
+            return Object.assign({}, state, action.payload);
     }
-    return state
-}
+    return state;
+};
 
-export default menuItemReducer
+export default menuItemReducer;

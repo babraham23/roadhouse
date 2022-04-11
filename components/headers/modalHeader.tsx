@@ -6,31 +6,33 @@ import { useTheme } from '../../hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-    onClosePress?: any
-    onBackPress?: any
-    title?: string
-    hideBack?: boolean
-    hideClose?: boolean
-}
+    onClosePress?: any;
+    onBackPress?: any;
+    title?: string;
+    hideBack?: boolean;
+    hideClose?: boolean;
+};
 
 const ModalHeader = ({ onClosePress, onBackPress, title, hideBack, hideClose }: Props) => {
     const { colors, borderRadius } = useTheme();
     const navigation = useNavigation();
     return (
         <View style={[styles.container, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
-            {hideBack ? null :
-                <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={styles.arrowWrapper} >
-                <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
-            </TouchableOpacity>}
-            <View style={styles.titleWrapper} >
-                <Text center bold numberOfLines={1} >
+            {hideBack ? null : (
+                <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={styles.arrowWrapper}>
+                    <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
+                </TouchableOpacity>
+            )}
+            <View style={styles.titleWrapper}>
+                <Text center bold numberOfLines={1}>
                     {title}
                 </Text>
             </View>
-            {hideClose ? null :
+            {hideClose ? null : (
                 <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={styles.closeWrapperWrapper}>
-                <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
-            </TouchableOpacity>}
+                    <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
+                </TouchableOpacity>
+            )}
         </View>
     );
 };
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
         // shadowOpacity: 0.28,
         // shadowRadius: 0.5,
         zIndex: 1,
-        borderBottomWidth: 0.5
+        borderBottomWidth: 0.5,
     },
     arrowWrapper: {
         position: 'absolute',
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     },
     titleWrapper: {
         width: '70%',
-    }
+    },
 });
 
 export default ModalHeader;

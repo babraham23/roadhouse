@@ -5,11 +5,11 @@ export const CLEAR_ADD_ON = 'CLEAR_ADD_ON';
 
 const initialState: any = {
     ProductOptions: [],
-    floatingCost: 0
-}
+    floatingCost: 0,
+};
 
 const addOnReducer = (state = initialState, action: any) => {
-    switch(action.type) { 
+    switch (action.type) {
         case ADD_COST:
             return Object.assign({}, state, { floatingCost: state.floatingCost + action.payload });
         case MINUS_COST:
@@ -20,6 +20,6 @@ const addOnReducer = (state = initialState, action: any) => {
             return Object.assign({}, state, { floatingCost: state.floatingCost - action.payload });
     }
     return state;
-}
+};
 
 export default addOnReducer;

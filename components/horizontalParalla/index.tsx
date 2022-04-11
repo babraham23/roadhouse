@@ -10,8 +10,7 @@ import { useDispatch } from 'react-redux';
 import { products, appIcon } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
 
-
-const HorizontalParallax = ({title, items}: any) => {
+const HorizontalParallax = ({ title, items }: any) => {
     const { height, width } = useWindowDimensions();
     const navigation: any = useNavigation();
     const dispatch = useDispatch();
@@ -114,7 +113,7 @@ const HorizontalParallax = ({title, items}: any) => {
                                     />
                                     <View style={[styles.descriptionWrapper]}>
                                         <Text style={styles.title}>{item.name}</Text>
-                                        <Text color={'white'}  style={styles.description}>
+                                        <Text color={'white'} style={styles.description}>
                                             {item.description}
                                         </Text>
                                     </View>
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     title: {
-        padding: 20
+        padding: 20,
     },
     description: {
         color: '#fff',

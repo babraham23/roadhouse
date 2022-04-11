@@ -14,7 +14,7 @@ import { subwayProducts } from '../../_models/subway.model';
 import { useTheme } from '../../hooks/useTheme';
 import { SET_RESTAURANT } from '../../state/reducers/restaurantReducer';
 
-export const ExploreCarousel = ({items, style, title}: any) => {
+export const ExploreCarousel = ({ items, style, title }: any) => {
     // console.log('props -->', props)
     const { colors }: any = useTheme();
     const dispatch = useDispatch();
@@ -52,10 +52,12 @@ export const ExploreCarousel = ({items, style, title}: any) => {
                 color={colors.primary}
                 key={i}
                 style={[
-                    styles.bullet, {
-                    opacity: interval === i ? 0.8 : 0.1,
-                    backgroundColor: colors.background,
-                }]}
+                    styles.bullet,
+                    {
+                        opacity: interval === i ? 0.8 : 0.1,
+                        backgroundColor: colors.background,
+                    },
+                ]}
             >
                 &bull;
             </Text>
@@ -89,7 +91,7 @@ export const ExploreCarousel = ({items, style, title}: any) => {
                     horizontal={true}
                     contentContainerStyle={[{ width: `${100 * intervals}%` }]}
                     showsHorizontalScrollIndicator={false}
-                    snapToInterval={screenWidth} 
+                    snapToInterval={screenWidth}
                     onContentSizeChange={(w, h) => init(w)}
                     onScroll={(data: any) => {
                         setWidth(data.nativeEvent.contentSize.width);
@@ -101,15 +103,15 @@ export const ExploreCarousel = ({items, style, title}: any) => {
                 >
                     {items.map((item: any, index: number) => {
                         return (
-							<DisplayCard
-							logo={item.logo}
-							location={item.location}
-							key={index}
-							title={item.title}
-							// onPress={() => navigation.navigate('SetMenuScreen', item)}
-							onPress={() => handleNav(item.id)}
-						/>
-						)
+                            <DisplayCard
+                                logo={item.logo}
+                                location={item.location}
+                                key={index}
+                                title={item.title}
+                                // onPress={() => navigation.navigate('SetMenuScreen', item)}
+                                onPress={() => handleNav(item.id)}
+                            />
+                        );
                     })}
                 </ScrollView>
                 <View style={styles.bullets}>{bullets}</View>
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingLeft: 20,
-        paddingTop: 20
+        paddingTop: 20,
     },
 });
 

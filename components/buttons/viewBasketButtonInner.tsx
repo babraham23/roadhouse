@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 const ViewBasketButtonInner = ({ onPress, title, style, secondary }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
-    const navigation: any = useNavigation()
+    const navigation: any = useNavigation();
     let numOfItems = Basket.length;
     return (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()} activeOpacity={0.8} style={[style, styles.shadow, { shadowColor: colors.primary }]}>

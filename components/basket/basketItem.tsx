@@ -7,61 +7,61 @@ import { Text } from '../../style/typography';
 import RemoveItemButtom from './removeItemButton';
 
 type Props = {
-    title?: string    
-    style?: any
-    onRemovePress?: any
-    price?: string
-}
+    title?: string;
+    style?: any;
+    onRemovePress?: any;
+    price?: string;
+};
 
 const BasketItem = ({ style, title, onRemovePress, price }: Props) => {
-    const { colors } = useTheme()
-    const navigation = useNavigation()
-	return (
-		<View style={[style, styles.container, { borderBottomColor: colors.dark_grey }]}>
+    const { colors } = useTheme();
+    const navigation = useNavigation();
+    return (
+        <View style={[style, styles.container, { borderBottomColor: colors.dark_grey }]}>
             <RemoveItemButtom onPress={onRemovePress} style={styles.removeButton} />
-            <View style={styles.titleWrapper} >
-                <Text bold numberOfLines={3} >{title}</Text>
+            <View style={styles.titleWrapper}>
+                <Text bold numberOfLines={3}>
+                    {title}
+                </Text>
             </View>
-            <View style={styles.addonWrapper} >
-                <Text color={colors.dark_grey} >No Pickles</Text>
-                <Text color={colors.dark_grey}  >Extra Cheese</Text>
+            <View style={styles.addonWrapper}>
+                <Text color={colors.dark_grey}>No Pickles</Text>
+                <Text color={colors.dark_grey}>Extra Cheese</Text>
             </View>
-            <View style={styles.priceWrapper} >
-                <Text >1 x </Text>
-                <Text bold >£{price}</Text>
+            <View style={styles.priceWrapper}>
+                <Text>1 x </Text>
+                <Text bold>£{price}</Text>
             </View>
 
-
-
-			{/* <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
+            {/* <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
             <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
 			</TouchableOpacity> */}
-		</View>
-	);
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-	container: {
+    container: {
         // marginTop: 10,
         paddingBottom: 20,
         marginBottom: 20,
-        borderBottomWidth: 0.5
-	},
+        borderBottomWidth: 0.5,
+    },
     removeButton: {
-        position: 'absolute', 
+        position: 'absolute',
         right: 1,
         // top: -15
-        zIndex: 99
+        zIndex: 99,
     },
     addonWrapper: {
-        paddingTop: 5
+        paddingTop: 5,
     },
     titleWrapper: {
-        paddingRight: 40
+        paddingRight: 40,
     },
     priceWrapper: {
         paddingTop: 10,
-        flexDirection: 'row'
-    }
+        flexDirection: 'row',
+    },
 });
 export default BasketItem;

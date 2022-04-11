@@ -12,7 +12,7 @@ const ExploreScreen = () => {
                 <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
                 <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} />
                 <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
-            {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
+                {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
                 <HorizontalParallax title={'Top Rated'} />
                 <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
                 <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />

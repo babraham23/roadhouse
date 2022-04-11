@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text } from '../../style/typography';
 import { useTheme } from '../../hooks/useTheme';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AddOns from '../../components/menu/addOns';
 import ShadowButton from '../../components/buttons/shadowButton';
 import { ADD_TO_BASKET } from '../../state/reducers/basketReducer';
@@ -10,21 +10,21 @@ import { useNavigation } from '@react-navigation/native';
 import ImageScrollContext from '../../components/scrollContext/imageScrollContext';
 import CustomActionButton from '../../components/buttons/customActionButton';
 
-
 const SelectedItemScreen = ({ route, allergins }: any) => {
     const dispatch = useDispatch();
     const { colors, borderRadius } = useTheme();
     const navigation = useNavigation();
     const { title, image, price, description, addOns, Id } = route.params;
     const item = { title, price, description, addOns, Id };
-    const [selectedAddOns] = React.useState([])
+    const [selectedAddOns] = React.useState([]);
+    const { ProductOptions } = useSelector((state: any) => state.addOnReducer);
 
     const addToBasket = () => {
         let data = {
             title: title,
             Id,
             totalPrice: price,
-            addOns: selectedAddOns
+            addOns: ProductOptions,
         };
         dispatch({ type: ADD_TO_BASKET, payload: data });
         navigation.goBack();

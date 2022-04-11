@@ -11,80 +11,77 @@ const { height: wHeight, width: wWidth } = Dimensions.get('window');
 const HEADER_IMAGE_HEIGHT = wHeight / 3;
 const MIN_HEADER_HEIGHT = 45;
 
-
 const { height } = Dimensions.get('window');
 
 const Content = ({ onPress }: any) => {
     const { colors, borderRadius, dark } = useTheme();
     const navigation: any = useNavigation();
-	let products: any = useSelector((state: any) => state.menuReducer.menu);
-	let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
+    let products: any = useSelector((state: any) => state.menuReducer.menu);
+    let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
 
     const handleNav = (route: any, items: any) => {
         navigation.navigate(route, items);
     };
-    
-	React.useEffect(() => {
 
-    }, [])
+    React.useEffect(() => {}, []);
 
-    const { height } = Dimensions.get('window')
+    const { height } = Dimensions.get('window');
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background, borderRadius: borderRadius.card, marginTop: 20, minHeight: height }}>
-                        {selectedMenuItem.items.map((items: any, j: any) => (
-                            <TouchableOpacity
-                                activeOpacity={0.8}
-                                // onPress={onPress}
-                                onPress={() => handleNav('SelectedItemScreen', items)}
-                                key={j}
-                            >
-                                <View
-                                    style={[
-                                        styles.content,
-                                        {
-                                            backgroundColor: colors.card,
-                                            borderBottomColor: dark ? colors.dark_grey : colors.border,
-                                            // borderBottomWidth: j === item.items.length - 1 ? 0 : 0.5,
-                                            borderRadius: 0,
-                                        },
-                                    ]}
-                                >
-                                    {items.image ? (
-                                        <View style={{ width: '25%', justifyContent: 'center', alignItems: 'center' }}>
-                                            {/* <View style={{ width: 70, height: 70, backgroundColor: 'blue' }} />  */}
-                                            <Image
-                                                // source={{ uri: 'https://picsum.photos/900' }}
-                                                source={items.image}
-                                                style={[{ width: 70, height: 70, borderRadius: borderRadius.card }]}
-                                            />
-                                        </View>
-                                    ) : null}
-                                    <View
-                                        style={[
-                                            styles.item,
-                                            {
-                                                width: items.image ? '75%' : '100%',
-                                                backgroundColor: colors.card,
-                                                borderRadius: borderRadius.card,
-                                                paddingLeft: items.image ? 10 : 20,
-                                            },
-                                        ]}
-                                    >
-                                        <Text fontSize={18} style={styles.title}>
-                                            {items.title}
-                                        </Text>
-                                        <Text fontSize={16} style={styles.description} numberOfLines={2}>
-                                            {items.description}
-                                        </Text>
-                                        <Text fontSize={16} style={styles.price}>
-                                            £{items.price}
-                                        </Text>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        ))}
-        {/* <View style={{ height }} /> */}
+            {selectedMenuItem.items.map((items: any, j: any) => (
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    // onPress={onPress}
+                    onPress={() => handleNav('SelectedItemScreen', items)}
+                    key={j}
+                >
+                    <View
+                        style={[
+                            styles.content,
+                            {
+                                backgroundColor: colors.card,
+                                borderBottomColor: dark ? colors.dark_grey : colors.border,
+                                // borderBottomWidth: j === item.items.length - 1 ? 0 : 0.5,
+                                borderRadius: 0,
+                            },
+                        ]}
+                    >
+                        {items.image ? (
+                            <View style={{ width: '25%', justifyContent: 'center', alignItems: 'center' }}>
+                                {/* <View style={{ width: 70, height: 70, backgroundColor: 'blue' }} />  */}
+                                <Image
+                                    // source={{ uri: 'https://picsum.photos/900' }}
+                                    source={items.image}
+                                    style={[{ width: 70, height: 70, borderRadius: borderRadius.card }]}
+                                />
+                            </View>
+                        ) : null}
+                        <View
+                            style={[
+                                styles.item,
+                                {
+                                    width: items.image ? '75%' : '100%',
+                                    backgroundColor: colors.card,
+                                    borderRadius: borderRadius.card,
+                                    paddingLeft: items.image ? 10 : 20,
+                                },
+                            ]}
+                        >
+                            <Text fontSize={18} style={styles.title}>
+                                {items.title}
+                            </Text>
+                            <Text fontSize={16} style={styles.description} numberOfLines={2}>
+                                {items.description}
+                            </Text>
+                            <Text fontSize={16} style={styles.price}>
+                                £{items.price}
+                            </Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            ))}
+            {/* <View style={{ height }} /> */}
         </View>
     );
 };

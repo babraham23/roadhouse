@@ -51,7 +51,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
     return (
-        <Drawer.Navigator drawerContent={(props: any) => <ViewBasketDrawer {...props} />} screenOptions={{ drawerPosition: 'right', drawerStyle: { width: '80%'}}}  >
+        <Drawer.Navigator drawerContent={(props: any) => <ViewBasketDrawer {...props} />} screenOptions={{ drawerPosition: 'right', drawerStyle: { width: '80%' } }}>
             <Drawer.Screen name="RootNavigator" component={RootNavigator} options={{ headerShown: false, swipeEnabled: false }} />
         </Drawer.Navigator>
     );

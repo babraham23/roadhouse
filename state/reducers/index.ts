@@ -12,7 +12,7 @@ const appReducers = combineReducers({
     basketReducer,
     addOnReducer,
     menuItemReducer,
-    restaurantReducer
+    restaurantReducer,
 });
 
 export default appReducers;

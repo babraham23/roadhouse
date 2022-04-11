@@ -5,7 +5,6 @@ import { useTheme } from '../../hooks/useTheme';
 import { Images } from '../../style/images';
 import OpacityHeader from '../headers/opacityHeader';
 
-
 const HEADER_MAX_HEIGHT = 350;
 const HEADER_MIN_HEIGHT = 60;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
@@ -61,7 +60,6 @@ const ParallaxScroll = ({ children, height, props }: any) => {
         outputRange: [0, -HEADER_MAX_HEIGHT],
         extrapolate: 'clamp',
     });
-
 
     const snapToOffsets = [0, 210]; // this jumps down card height, so fucking cool!
     return (
