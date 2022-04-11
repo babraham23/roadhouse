@@ -5,16 +5,18 @@ import { useTheme } from '@react-navigation/native';
 import { Text } from '../../style/typography';
 import * as Animatable from 'react-native-animatable';
 
-const Counter = ({ style, maxNumber }: any) => {
+const Counter = ({ style, maxNumber, onMinusPress, onAddPress }: any) => {
 	const { colors }: any = useTheme();
 	const [ count, setCount ] = React.useState(0)
 
 	const handleCount = (type: string) => {
 		if (type == 'Add') {
 			setCount(count + 1)
+			onAddPress(count + 1)
 		}
 		else if (type == 'Minus') {
 			setCount(count - 1)
+			onMinusPress(count - 1)
 		}
 	}
 	

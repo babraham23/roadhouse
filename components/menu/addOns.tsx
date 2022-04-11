@@ -6,46 +6,45 @@ import { Text } from '../../style/typography';
 // import Counter from './counter';
 import AddOnCounter from '../counter/addOnCounter';
 import { useSelector, useDispatch } from 'react-redux';
-import { ADD_ADD_ON } from '../../state/reducers/addonsReducer';
+import { ADD_ADD_ON, ADD_COST, CLEAR_ADD_ON, MINUS_COST } from '../../state/reducers/addonsReducer';
 import { Feather } from '@expo/vector-icons';
+import CustomActionButton from '../buttons/customActionButton';
 
 const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder, Id, addOns }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const [check, toggleCheck] = React.useState(false);
-    const [updatedAddOn, setUpdatedAddOn]: any = React.useState([]);
+    const [updatedAddOn, setUpdatedAddOn] = React.useState(0);
     const dispatch = useDispatch();
-    const { Addons }: any = useSelector((state: any) => state.addOnReducer);
+	const { ProductOptions, floatingCost } = useSelector((state: any) => state.addOnReducer);
 
-    const handleAddAddOn = () => {
-        console.log('adding');
-        const item = { title, maxNumber, Id };
-        // filter out prod options if already exists
-        // let ProductOptionsUpdated = addOns.filter((prodOpt: any) => prodOpt.Id !== Id);
-        // add it back with the updated quantity
-        let ProductOptionsUpdated = [...Addons, ...[item]];
-        // update state
-        // dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
-        console.log(ProductOptionsUpdated);
-        setUpdatedAddOn(ProductOptionsUpdated);
-        toggleCheck(true);
-    };
+    const handleAddAddOn = (quantity: any) => {
+		const item = { Id, Quantity: quantity };
+		dispatch({ type: ADD_COST, payload: price * 1 });
 
-    const handleRemoveAddOn = () => {
-        console.log('removing');
-        const item = { title, maxNumber, Id };
-        // if (quantity == 0) {
-        // 	// dispatch({ type: CLEAR_ADD_ON, payload: addOnCostPrice });
+		// filter out prod options if already exists
+		let ProductOptionsUpdated = ProductOptions.filter((prodOpt: any) => prodOpt.Id !== Id);
+		// add it back with the updated quantity
+		ProductOptionsUpdated = [...ProductOptionsUpdated, ...[item]];
+		// update state
+		dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
+		setUpdatedAddOn(quantity);
+	};
 
-        // 	let ProductOptionsUpdated = addOns.filter((prodOpt: any) => prodOpt.Id !== Id);
-        // 	dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
-        // } else {
-        // 	dispatch({ type: MINUS_COST, payload: addOnCostPrice * 1 });
+    const handleRemoveAddOn = (quantity: any) => {
+		const item = { Id, Quantity: quantity };
+		if (quantity == 0) {
+			dispatch({ type: CLEAR_ADD_ON, payload: price });
 
-        let ProductOptionsUpdated = updatedAddOn.filter((prodOpt: any) => item.Id !== Id);
-        // dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
-        setUpdatedAddOn(ProductOptionsUpdated);
-        toggleCheck(false);
-    };
+			let ProductOptionsUpdated = ProductOptions.filter((prodOpt: any) => prodOpt.Id !== Id);
+			dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
+		} else {
+			dispatch({ type: MINUS_COST, payload: price * 1 });
+
+			let ProductOptionsUpdated = ProductOptions.map((prodOpt: any) => (prodOpt.Id === Id ? item : prodOpt));
+			dispatch({ type: ADD_ADD_ON, payload: ProductOptionsUpdated });
+		}
+		setUpdatedAddOn(quantity);
+	};
 
     const addAddOn = (item: any) => {
         dispatch({ type: ADD_ADD_ON, payload: item });
@@ -70,12 +69,12 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
                 </View>
                 {counter ? (
                     <View style={styles.checkboxWrapper}>
-                        <AddOnCounter maxNumber={maxNumber} />
+                        <AddOnCounter maxNumber={maxNumber} onAddPress={(value: number) => handleAddAddOn(value)} onMinusPress={(value: number) => handleRemoveAddOn(value)} />
                     </View>
                 ) : (
                     <TouchableOpacity
                         // onPress={() => handleCheck()}
-                        onPress={() => (check ? handleRemoveAddOn() : handleAddAddOn())}
+                        // onPress={() => (check ? handleRemoveAddOn() : handleAddAddOn())}
                         activeOpacity={0.5}
                         style={[styles.checkboxWrapper]}
                     >
@@ -89,6 +88,7 @@ const AddOnItem = ({ style, title, price, counter, maxNumber, allergin, noBorder
                     </TouchableOpacity>
                 )}
             </View>
+            <CustomActionButton title={'test'} onPress={() => console.log('floatingCost -->', ProductOptions)} />
         </>
     );
 };

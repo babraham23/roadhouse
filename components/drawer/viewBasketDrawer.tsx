@@ -12,15 +12,6 @@ type Props = {
     navigation?: any;
 };
 
-const dummyData = [
-    { title: 'Big Mac with large fries lnzskvnskanvalksnfk;lanmslknslknsfalkn', value: 1, id: 1 },
-    { title: 'Some chicken', value: 2, id: 2 },
-    { title: 'Big Mac with large fries', value: 3, id: 3 },
-    { title: 'Happy Meal', value: 4, id: 4 },
-    { title: 'Some chicken', value: 5, id: 5 },
-    { title: 'Big Mac with large fries', value: 6, id: 6 },
-    { title: 'Happy Meal', value: 7, id: 7 },
-];
 
 const ViewBasketDrawer = ({ navigation }: Props) => {
     const { colors }: any = useTheme();
@@ -33,12 +24,12 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
             </View>
             <ScrollView bounces={false} style={styles.container}>
                 <Text center bold fontSize={23}>
-                    Basket
+                   Your Basket
                 </Text>
 
                 <View style={styles.itemWrapper}>
                     {Basket.map((item: any, i: any) => {
-                        return <BasketItem price={item.Cost} key={i} title={item.Name} onRemovePress={() => console.log(item.Id)} />
+                        return <BasketItem price={item.totalPrice} key={i} title={item.Name} onRemovePress={() => console.log(item.Id)} />
                     } )}
                     
                 </View>

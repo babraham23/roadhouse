@@ -1,14 +1,14 @@
 const addOns = [
 	{
 		title: 'Cheese',
-		maxNumber: 1,
-		Id: 1,
+		maxNumber: 2,
+		Id: 123,
 		price: 1.99
 	},
 	{
 		title: 'Extra Fries',
-		maxNumber: 1,
-		Id: 2,
+		maxNumber: 2,
+		Id: 245,
 		price: 2.99
 	},
 	// {
