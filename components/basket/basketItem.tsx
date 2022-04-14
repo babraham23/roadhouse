@@ -28,11 +28,11 @@ const BasketItem = ({ style, title, onRemovePress, price, addOns }: Props) => {
             <View style={styles.addonWrapper}>
                 {addOns.map((addon: any, i: any) => {
                     return (
-                        <View key={i} style={{flexDirection: 'row'}} >
+                        <View key={i} style={{ flexDirection: 'row' }}>
                             <Text color={colors.dark_grey}>{addon.quantity} x </Text>
                             <Text color={colors.dark_grey}>{addon.title}</Text>
                         </View>
-                        )
+                    );
                 })}
             </View>
             <View style={styles.priceWrapper}>
