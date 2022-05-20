@@ -16,6 +16,7 @@ import ExploreScreen from '../screens/explore/exploreScreen';
 import MenuScreen from '../screens/menu/menuScreen';
 import SelectedItemScreen from '../screens/menu/selectedItemScreen';
 import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
+import MapScreen from '../screens/map';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -66,6 +67,7 @@ function RootNavigator() {
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
             </Stack.Group>
         </Stack.Navigator>
     );

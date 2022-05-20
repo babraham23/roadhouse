@@ -1,3 +1,5 @@
+import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
@@ -6,19 +8,19 @@ import SearchInput from '../inputs/searchInput';
 
 const ExploreHeader = ({ icon }: any) => {
     const { colors, borderRadius }: any = useTheme();
+    const navigation = useNavigation();
     return (
         <View style={[styles.container]}>
             <SearchInput placeholder={'Search..'} />
             <TouchableOpacity
+                onPress={() => navigation.navigate('MapScreen')}
                 activeOpacity={0.6}
                 style={[
                     styles.scannerWrapper,
                     { backgroundColor: colors.primary, borderBottomLeftRadius: borderRadius.input, borderBottomRightRadius: borderRadius.input, shadowColor: colors.primary },
                 ]}
             >
-                <Text fontSize={16} color={'white'}>
-                    Scan Barcode
-                </Text>
+                <FontAwesome name="map-o" size={24} color="black" />
             </TouchableOpacity>
         </View>
     );
@@ -41,8 +43,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 90,
         right: 35,
-        height: 30,
-        width: 150,
+        // height: 30,
+        // width: 150,
+        paddingHorizontal: 10,
+        padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
 

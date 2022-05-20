@@ -97,6 +97,7 @@ const ParallaxScroll = ({ children, height, props }: any) => {
             >
                 <View style={styles.content}>{children}</View>
             </Animated.ScrollView>
+            <View style={{ height: 200, width: '100%', backgroundColor: 'green' }} />
             <Animated.View style={[styles.header, { backgroundColor: colors.background, transform: [{ translateY: headerTranslateY }] }]}>
                 <Animated.Image
                     style={[
