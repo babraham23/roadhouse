@@ -104,10 +104,10 @@ export const ExploreCarousel = ({ items, style, title }: any) => {
                     {items.map((item: any, index: number) => {
                         return (
                             <DisplayCard
-                                logo={item.logo}
-                                location={item.location}
+                                logo={item.icon}
+                                location={item.price_level}
                                 key={index}
-                                title={item.title}
+                                title={item.name}
                                 // onPress={() => navigation.navigate('SetMenuScreen', item)}
                                 onPress={() => handleNav(item.id)}
                             />

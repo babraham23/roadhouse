@@ -39,6 +39,8 @@ const MenuScreen = () => {
     const onScroll = useAnimatedScrollHandler({
         onScroll: (event) => {
             translateX.value = event.contentOffset.x;
+            // console.log(event.contentSize.width / event.contentOffset.x);
+            // console.log(event)
             // setSliderPage(event);
         },
         //   onEndDrag: (event) => {
