@@ -16,27 +16,16 @@
         "assetBundlePatterns": ["**/*"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.boxmodel.boxmodelApp"
+            "bundleIdentifier": "com.roadhouse.roadhouseApp"
         },
         "android": {
             "adaptiveIcon": {
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.boxmodel.boxmodelApp"
+            "package": "com.roadhouse.roadhouseApp"
         },
         "web": {
-            "favicon": "./assets/images/favicon.png",
-            "config": {
-                "firebase": {
-                    "apiKey": "AIzaSyBcTQKnMNKL9D-zoZZ9Ut53nAHRQBU5hcg",
-                    "authDomain": "boxmodelapp-91bae.firebaseapp.com",
-                    "projectId": "boxmodelapp-91bae",
-                    "storageBucket": "boxmodelapp-91bae.appspot.com",
-                    "messagingSenderId": "676328670255",
-                    "appId": "1:676328670255:web:abc280f599aca26fabf2da",
-                    "measurementId": "G-V9WN1BD5CX"
-                }
-            }
+            "favicon": "./assets/images/favicon.png"
         }
     }
 }

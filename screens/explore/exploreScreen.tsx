@@ -6,23 +6,28 @@ import ExploreCarousel from '../../components/carousel/exploreCarousel';
 import HorizontalParallax from '../../components/carousel/horizontalParallax';
 import * as Location from 'expo-location';
 import { restDD } from './dd';
+import { MapButton } from '../../components/buttons/roundButtons';
 
 const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants&location=54.9696,1.6198&radius=9&key=AIzaSyBxDwgAiRmplHmbQfNrX4FJ4ZgqA0wp9X4';
 
 // 50.92759902014908, 5.338255252145561  HASSELT
 
-const ExploreScreen = () => {
+type Props = {
+    navigation?: any;
+};
+
+const ExploreScreen = ({ navigation }: Props) => {
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-
+    console.log('naviagiotn -->', typeof navigation);
     const getRestaurants = async () => {
         try {
             // const response = await fetch(url);
             // const json = await response.json();
             // setData(json.movies);
-            setData(restDD)
+            setData(restDD);
         } catch (error) {
             console.error(error);
         } finally {
@@ -34,27 +39,32 @@ const ExploreScreen = () => {
         getRestaurants();
     }, []);
 
-    console.log('data -->', data[0])
+    // console.log('data -->', data[0]);
 
     return (
-        <ParallaxScroll>
-            {isLoading ? (
-                <ActivityIndicator />
-            ) : (
-                <View style={styles.container}>
-                    <ExploreCarousel title={`Recommended`} style="display" items={data} />
-                    <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} />
-                    <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
-                    {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
+        <React.Fragment>
+            <ParallaxScroll>
+                {isLoading ? (
+                    <ActivityIndicator />
+                ) : (
+                    <View style={styles.container}>
+                        <ExploreCarousel title={`Recommended`} style="display" items={data} />
+                        <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} />
+                        <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
+                        {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
                 <HorizontalParallax title={'Top Rated'} />
                 <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
                 <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
                 <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
                 <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
             <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} /> */}
-                </View>
-            )}
-        </ParallaxScroll>
+                    </View>
+                )}
+            </ParallaxScroll>
+            <View style={styles.mapButton}>
+                <MapButton title="Map" onPress={() => navigation.navigate('MapScreen')} />
+            </View>
+        </React.Fragment>
     );
 };
 
@@ -63,5 +73,10 @@ export default ExploreScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    mapButton: {
+        position: 'absolute',
+        bottom: 60,
+        alignSelf: 'center',
     },
 });

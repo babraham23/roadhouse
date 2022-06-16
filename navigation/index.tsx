@@ -12,11 +12,11 @@ import DrawerContent from '../components/drawer/drawerContent';
 
 // Screens
 import { UserProvider } from '../context/user.context';
-import ExploreScreen from '../screens/explore/exploreScreen';
 import MenuScreen from '../screens/menu/menuScreen';
 import SelectedItemScreen from '../screens/menu/selectedItemScreen';
 import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
 import MapScreen from '../screens/map';
+import ExploreScreen from '../screens/explore/explore2';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();

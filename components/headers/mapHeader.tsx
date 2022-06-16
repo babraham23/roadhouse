@@ -6,30 +6,22 @@ import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../style/typography';
 import SearchInput from '../inputs/searchInput';
 
-const ExploreHeader = ({ icon }: any) => {
+const MapHeader = ({ icon }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const navigation = useNavigation();
     return (
-        <View style={[styles.container]}>
-            <SearchInput placeholder={'Search..'} />
-            {/* <TouchableOpacity
-                onPress={() => navigation.navigate('MapScreen')}
-                activeOpacity={0.6}
-                style={[
-                    styles.scannerWrapper,
-                    { backgroundColor: colors.primary, borderBottomLeftRadius: borderRadius.input, borderBottomRightRadius: borderRadius.input, shadowColor: colors.primary },
-                ]}
-            >
-                <FontAwesome name="map-o" size={24} color="black" />
-            </TouchableOpacity> */}
-        </View>
+        <React.Fragment>
+            <View style={[styles.container, { backgroundColor: colors.card }]}>
+                <SearchInput placeholder={'Search..'} />
+            </View>
+        </React.Fragment>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        height: 80,
+        height: 100,
         zIndex: 99,
     },
     blur: {
@@ -61,4 +53,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ExploreHeader;
+export default MapHeader;

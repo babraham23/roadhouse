@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
+import { Images } from '../../style/images';
 import { Text } from '../../style/typography';
+import StarRating from '../starRating/starRating';
 
-const DisplayCard = ({ style, onPress, title, location, logo }: any) => {
+const DisplayCard = ({ style, onPress, title, location, logo = Images.MCDEEZ, rating }: any) => {
     const { colors, dark, borderRadius }: any = useTheme();
     return (
         <View style={[styles.container]}>
@@ -12,28 +14,22 @@ const DisplayCard = ({ style, onPress, title, location, logo }: any) => {
                     <View style={styles.top}>
                         <View style={styles.titleWrapper}>
                             <Text fontSize={18}>{title}</Text>
-                            <Text color={colors.greyText}>{location}</Text>
+                            <Text style={{ marginTop: 20 }} numberOfLines={2} fontSize={14} color={colors.greyText}>
+                                {location}
+                            </Text>
                         </View>
-                        {/* <Image source={logo} style={styles.logo} /> */}
+                        <Image source={logo} style={styles.logo} />
                     </View>
                 </View>
+                <StarRating style={styles.rating} rating={rating} />
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // width: '100%',
-        // display: 'flex',
-        // flexDirection: 'row',
-        // backgroundColor: 'green',
-        // flexWrap: 'wrap',
-        // marginLeft: 20
-    },
+    container: {},
     wrapper: {
-        // paddingBottom: 20,
         paddingLeft: 20,
     },
     card: {
@@ -48,13 +44,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    titleWrapper: {},
+    titleWrapper: {
+        width: '80%',
+    },
     logo: {
-        flex: 1,
         height: 50,
         width: 50,
         borderRadius: 13,
-        resizeMode: 'contain',
+    },
+    rating: {
+        position: 'absolute',
+        right: 10,
+        bottom: 30,
+        zIndex: 50,
     },
 });
 

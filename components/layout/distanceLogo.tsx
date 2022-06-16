@@ -4,7 +4,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../../style/typography';
 import * as Animatable from 'react-native-animatable';
 import AppIconBig from '../logo/appIconBig';
-import SmallPillButton from '../buttons/smallPillButton';
+import { SmallPillButton } from '../buttons/roundButtons';
 
 const DescriptionLogo = ({ style, onPress, logo, noBorder, foodType, title }: any) => {
     const { colors, dark }: any = useTheme();

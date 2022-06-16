@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Map from '../../components/map';
-import ModalHeader from '../../components/headers/modalHeader';
+import MapHeader from '../../components/headers/mapHeader';
 
 const MapScreen = () => {
     return (
         <View style={styles.container}>
-            <ModalHeader />
             <Map />
         </View>
     );
