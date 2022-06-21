@@ -18,6 +18,8 @@ import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
 import MapScreen from '../screens/map';
 import ExploreScreen from '../screens/explore/explore2';
 
+import TestScreen from '../screens/test'
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
     // const routeNameRef: any = React.useRef();
@@ -63,6 +65,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
+            {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} />  */}
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>

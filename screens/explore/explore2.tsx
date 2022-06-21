@@ -1,33 +1,28 @@
-import { ActivityIndicator, Platform, StyleSheet, View, Animated } from 'react-native';
+import { StyleSheet, View, Animated } from 'react-native';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { RestuarantsData, TrippleData } from '../../_models/explore.model';
-import ParallaxScroll from '../../components/scrollContext/parallaxScroll';
-import ExploreCarousel from '../../components/carousel/exploreCarousel';
-import HorizontalParallax from '../../components/carousel/horizontalParallax';
 import * as Location from 'expo-location';
-import { restDD } from './dd';
 import { MapButton } from '../../components/buttons/roundButtons';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { Text } from '../../style/typography';
 import MapScreen from '../map';
 import MapHeader from '../../components/headers/mapHeader';
 import Content from '../../components/explore/content';
 import { useTheme } from '../../hooks/useTheme';
 import ScrollBar from '../../components/scrollbar';
-import TopTabBar from '../../components/scrollbar/topBar';
+import { getMyLocation } from '../../functions/locationFunction';
 
-// 50.92759902014908, 5.338255252145561  HASSELT
+type Props = {};
 
-type Props = {
-    navigation?: any;
-};
-
-const ExploreScreen = ({ navigation }: Props) => {
+const ExploreScreen = ({}: Props) => {
     const { colors } = useTheme();
     const sheetRef = useRef<BottomSheet>(null);
     const fadeAnimation = useRef(new Animated.Value(0)).current;
     const snapPoints = useMemo(() => ['10%', '83%'], []);
     const [sheetOpen, setSheetOpen] = useState(false);
+
+    const getUserLocation = async () => {
+        const res = await getMyLocation()
+        console.log('location res -->', res)
+    }
 
     const handleSheetChange = useCallback((index) => {
         if (index === 0) {
@@ -59,10 +54,13 @@ const ExploreScreen = ({ navigation }: Props) => {
         }).start();
     };
 
+    useEffect(() => {
+        getUserLocation()
+    }, [])
+
     return (
         <React.Fragment>
             <MapHeader />
-            {/* <TopTabBar /> */}
             <ScrollBar />
             <View style={styles.container}>
                 <MapScreen />
@@ -79,7 +77,7 @@ const ExploreScreen = ({ navigation }: Props) => {
             >
                 <BottomSheetView style={{ flex: 1, backgroundColor: colors.card }}>
                     <Animated.View style={{ flex: 1, opacity: fadeAnimation }}>
-                        <Content openSheet={() => handleSnapPress(1)} />
+                        <Content />
                     </Animated.View>
                 </BottomSheetView>
             </BottomSheet>
@@ -89,8 +87,6 @@ const ExploreScreen = ({ navigation }: Props) => {
         </React.Fragment>
     );
 };
-
-export default ExploreScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -112,3 +108,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+export default ExploreScreen;

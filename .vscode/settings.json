@@ -1,15 +1,14 @@
 {
     "workbench.colorCustomizations": {
-      "titleBar.activeForeground": "#ff225c",
-      "titleBar.inactiveForeground": "#ff225c",
-      "titleBar.activeBackground": "#000",
-      "titleBar.inactiveBackground": "#000",
-      "terminal.background":"#000",
-      "terminal.foreground":"#fff",
-      "contrastBorder": "#ff225c",
+        "titleBar.activeForeground": "#ff225c",
+        "titleBar.inactiveForeground": "#ff225c",
+        "titleBar.activeBackground": "#000",
+        "titleBar.inactiveBackground": "#000",
+        "terminal.background": "#000",
+        "terminal.foreground": "#fff",
+        "contrastBorder": "#ff225c"
     },
     "editor.fontFamily": "Input Mono, Monaco, 'Courier New', monospace",
     "editor.fontWeight": "400",
     "editor.fontSize": 12
 }
-  
