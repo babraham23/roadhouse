@@ -9,15 +9,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const data: any = [
     {
         Id: 1,
-        title: 'Pubs',
+        title: 'Recommended',
     },
     {
         Id: 2,
-        title: 'Cafes',
+        title: 'Highly Rated',
     },
     {
         Id: 3,
-        title: 'Highly Rated',
+        title: 'Pubs',
     },
     {
         Id: 4,
@@ -25,15 +25,15 @@ const data: any = [
     },
     {
         Id: 5,
-        title: 'Pubs',
+        title: 'Busy',
     },
     {
         Id: 6,
-        title: 'Cafes',
+        title: 'Burgers',
     },
     {
         Id: 7,
-        title: 'Highly Rated',
+        title: 'Cafes',
     },
     {
         Id: 8,
@@ -61,7 +61,7 @@ const ScrollBar = () => {
 
     const doScroll = (index: any) => {
         scrollview_ref.current?.scrollTo({
-            x: posArr[index || dynamicIndex],
+            x: posArr[index || dynamicIndex] - 50,
             animated: true,
         });
     };

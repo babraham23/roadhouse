@@ -29,7 +29,7 @@ const ContentItem = () => {
     const { colors } = useTheme();
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
-    const {loading} = useSelector((state: any) => state.loadingReducer);
+    const { loading } = useSelector((state: any) => state.loadingReducer);
 
     const { latitude, longitude } = useUserContext();
 

@@ -14,7 +14,7 @@ const appReducers = combineReducers({
     addOnReducer,
     menuItemReducer,
     restaurantReducer,
-    loadingReducer
+    loadingReducer,
 });
 
 export default appReducers;

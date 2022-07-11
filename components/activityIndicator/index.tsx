@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator as ActivityIndicatorElement } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
@@ -31,4 +30,3 @@ const styles = StyleSheet.create({
 });
 
 export default ActivityIndicator;
-

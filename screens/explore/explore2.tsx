@@ -10,7 +10,6 @@ import ScrollBar from '../../components/scrollbar';
 import { getMyLocation } from '../../functions/locationFunction';
 import { useUserContext } from '../../context/user.context';
 
-
 type Props = {};
 
 const ExploreScreen = ({}: Props) => {
@@ -49,7 +48,6 @@ const ExploreScreen = ({}: Props) => {
             useNativeDriver: false,
         }).start();
     };
-
 
     return (
         <React.Fragment>

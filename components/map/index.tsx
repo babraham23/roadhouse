@@ -1,8 +1,10 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import { useUserContext } from '../../context/user.context';
-import { mapOverlay } from './overlay' 
+import { mapOverlay } from './overlay';
+import { Images } from '../../style/images';
+import { restDD } from '../../screens/explore/dd';
 
 const Map = () => {
     const { latitude, longitude } = useUserContext();
@@ -16,11 +18,28 @@ const Map = () => {
         longitudeDelta: 0.01,
     });
 
+    let coordinate = {
+        latitude: 54.969608,
+        longitude: -1.619394,
+    };
+
     return (
         <View style={styles.container}>
-            <MapView customMapStyle={mapOverlay} style={styles.map} showsUserLocation={true} showsPointsOfInterest={false} region={mapRegion} />
-                {/* <Marker draggable coordinate={x} onDragEnd={(e) => setState({ x: e.nativeEvent.coordinate })} />
-            </MapView> */}
+            <MapView customMapStyle={mapOverlay} style={styles.map} showsUserLocation={true} showsPointsOfInterest={false} region={mapRegion}>
+                {restDD.map((item: any, i: number) => {
+                    let latitude = item.geometry.location.lat
+                    let longitude = item.geometry.location.lng
+                    return (
+                        <Marker 
+                            key={i}
+                            // coordinate={coordinate}
+                            coordinate={{ latitude, longitude }}
+                        >
+                            <Image source={Images.LOGO} style={styles.icon} />
+                        </Marker>
+                    );
+                })}
+            </MapView>
         </View>
     );
 };
@@ -35,6 +54,11 @@ const styles = StyleSheet.create({
     map: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
+    },
+    icon: {
+        width: 40,
+        height: 40,
+        resizeMode: 'contain',
     },
 });
 

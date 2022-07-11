@@ -6,7 +6,7 @@ import Navigation from './navigation';
 import useColorScheme from './hooks/useColorScheme';
 
 const Main = () => {
-    const {loading} = useSelector((state: any) => state.loadingReducer);
+    const { loading } = useSelector((state: any) => state.loadingReducer);
     const colorScheme = useColorScheme();
     return (
         <View style={styles.container}>
@@ -23,6 +23,3 @@ const styles = StyleSheet.create({
 });
 
 export default Main;
-
-
-
