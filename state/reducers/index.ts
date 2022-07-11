@@ -5,6 +5,7 @@ import basketReducer from './basketReducer';
 import addOnReducer from './addonsReducer';
 import menuItemReducer from './setMenuItem';
 import restaurantReducer from './restaurantReducer';
+import loadingReducer from './loadingReducer';
 
 const appReducers = combineReducers({
     userReducer,
@@ -13,6 +14,7 @@ const appReducers = combineReducers({
     addOnReducer,
     menuItemReducer,
     restaurantReducer,
+    loadingReducer
 });
 
 export default appReducers;

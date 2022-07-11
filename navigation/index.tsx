@@ -18,7 +18,7 @@ import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
 import MapScreen from '../screens/map';
 import ExploreScreen from '../screens/explore/explore2';
 
-import TestScreen from '../screens/test'
+import TestScreen from '../screens/test';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();

@@ -1,7 +1,6 @@
-import { Platform } from "react-native";
+import { Platform } from 'react-native';
 import Device from 'expo-device';
 import * as Location from 'expo-location';
-
 
 export const getMyLocation = async () => {
     if (Platform.OS === 'android' && !Device.isDevice) {
@@ -14,5 +13,5 @@ export const getMyLocation = async () => {
         return;
     }
     let location = await Location.getCurrentPositionAsync({});
-    return location
-}
+    return location;
+};

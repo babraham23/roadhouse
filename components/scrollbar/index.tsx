@@ -4,23 +4,40 @@ import { useTheme } from '../../hooks/useTheme';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const data: any = [
     {
         Id: 1,
-        title: 'Home',
+        title: 'Pubs',
     },
     {
         Id: 2,
-        title: 'About',
+        title: 'Cafes',
     },
     {
         Id: 3,
-        title: 'Contact',
+        title: 'Highly Rated',
     },
     {
         Id: 4,
-        title: 'Blog',
+        title: 'Price',
+    },
+    {
+        Id: 5,
+        title: 'Pubs',
+    },
+    {
+        Id: 6,
+        title: 'Cafes',
+    },
+    {
+        Id: 7,
+        title: 'Highly Rated',
+    },
+    {
+        Id: 8,
+        title: 'Price',
     },
 ];
 
@@ -28,20 +45,17 @@ const ScrollBar = () => {
     const { colors, borderRadius }: any = useTheme();
     const dispatch = useDispatch();
     const scrollview_ref: any = React.useRef({});
-    let selectedMenuItem: any = data[0];
+    let [selectedMenuItem, setSelectedMenuItem]: any = React.useState(data[0]);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
 
     const handleChange = (item: any, key: any) => {
-        dispatch({ type: SET_MENU_ITEM, payload: item }); // this works
+        setSelectedMenuItem(item);
         setState({ dynamicIndex: key }), () => doScroll(null);
     };
 
     const autoScroll = () => {
-        const selectedItem = data
-            // .map((item: any, index: any) => (console.log('item -->', item), { Id: item.Id, index: index }))
-            .find((item: any) => item.Id === selectedMenuItem.Id);
-        // setTimeout(() => doScroll(selectedItem.index), 150)
+        const selectedItem = data.find((item: any) => item.Id === selectedMenuItem.Id);
         doScroll(selectedItem.index);
     };
 
@@ -73,16 +87,18 @@ const ScrollBar = () => {
                             // onPress={onPressTouch}
                             style={[
                                 selectedMenuItem.Id == item.Id ? styles.selectedButtonWrapper : styles.buttonWrapper,
-                                { borderRadius: borderRadius.button, backgroundColor: selectedMenuItem.Id == item.Id ? colors.text : colors.dark_grey, shadowColor: '#ff0e4e' },
+                                { borderRadius: borderRadius.button, borderBottomColor: selectedMenuItem.Id == item.Id ? colors.text : colors.dark_grey },
                             ]}
                             onLayout={(event: any) => {
                                 const layout = event.nativeEvent.layout;
                                 posArr[key] = layout.x;
                             }}
                         >
+                            <MaterialCommunityIcons name="emoticon-happy-outline" size={16} color={colors.text} />
                             <Text
-                                color={selectedMenuItem.Id == item.Id ? colors.primary : colors.background}
-                                style={[styles.label, { color: selectedMenuItem.Id == item.Id ? colors.primary : colors.background }]}
+                                fontSize={14}
+                                color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text}
+                                style={[{ color: selectedMenuItem.Id == item.Id ? colors.primary : colors.background }]}
                             >
                                 {item.title}
                             </Text>
@@ -100,53 +116,28 @@ const styles = StyleSheet.create({
     container: {
         zIndex: 99,
         height: 50,
-        // borderBottomWidth: 0.5,
     },
     scroll: {
-        width: '100%',
-        // marginTop: 3,
+        // width: '100%',
         paddingLeft: 10,
     },
-    menuWrapper: {
-        borderWidth: 1,
-    },
     buttonWrapper: {
+        // borderBottomWidth: 1,
         justifyContent: 'center',
-        height: 25,
-        minWidth: 50,
         marginLeft: 5,
-        marginRight: 15,
-        paddingHorizontal: 15,
-        marginVertical: 10,
-        alignContent: 'center',
-    },
-    label: {
-        color: 'white',
-        fontSize: 16,
-        alignSelf: 'center',
+        marginRight: 10,
+        paddingHorizontal: 5,
+        alignItems: 'center',
+        marginHorizontal: 5,
     },
     selectedButtonWrapper: {
         justifyContent: 'center',
-        height: 25,
-        minWidth: 50,
         marginLeft: 5,
-        marginRight: 15,
-        paddingHorizontal: 15,
-        marginVertical: 10,
-        alignContent: 'center',
-        // shadowOffset: {
-        //     width: 1,
-        //     height: 2,
-        // },
-        // shadowOpacity: 0.58,
-        // shadowRadius: 16.0,
-        elevation: 24,
-    },
-    selectedLabel: {
-        color: 'white',
-        fontSize: 16,
-        fontFamily: 'Bold',
-        alignSelf: 'center',
+        marginRight: 10,
+        paddingHorizontal: 5,
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        marginBottom: 5,
     },
 });
 export default ScrollBar;

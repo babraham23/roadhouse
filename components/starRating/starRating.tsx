@@ -42,19 +42,19 @@ const StarRating = ({ title, onChange, style, rating }: Props) => {
     };
 
     const handleRating = (rating: number) => {
-        if (rating <= 2) {
+        if (rating <= 1) {
             setStar({ star1: true, star2: false, star3: false, star4: false, star5: false });
             // onChange(1);
-        } else if (rating <= 3) {
+        } else if (rating <= 2) {
             setStar({ star1: true, star2: true, star3: false, star4: false, star5: false });
             // onChange(2);
-        } else if (rating <= 4) {
+        } else if (rating <= 3) {
             setStar({ star1: true, star2: true, star3: true, star4: false, star5: false });
             // onChange(3);
-        } else if (rating <= 5) {
+        } else if (rating <= 4) {
             setStar({ star1: true, star2: true, star3: true, star4: true, star5: false });
             // onChange(4);
-        } else if (rating <= 6) {
+        } else if (rating <= 5) {
             setStar({ star1: true, star2: true, star3: true, star4: true, star5: true });
             // onChange(5);
         }

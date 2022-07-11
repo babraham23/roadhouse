@@ -17,7 +17,7 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
     const { colors }: any = useTheme();
     const { Basket }: any = useSelector((state: any) => state.basketReducer);
     const dispatch = useDispatch();
-    console.log('basket -->', Basket);
+    // console.log('basket -->', Basket);
 
     const removeItem = (id: number) => {
         dispatch({ type: REMOVE_FROM_BASKET, payload: id });

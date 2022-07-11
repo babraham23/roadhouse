@@ -5,22 +5,43 @@ import DisplayCard from '../cards/displayCard';
 import { useTheme } from '../../hooks/useTheme';
 import { restDD } from '../../screens/explore/dd';
 import { restaurant_location_search } from '../../api/endpoints';
+import { useUserContext } from '../../context/user.context';
+import { useSelector } from 'react-redux';
 
+// TODO
+/**
+    create api and google url files n shit
+    get images
+
+    sort by:
+        price_level
+        rating
+        type
+            meal_delivery
+            restuarant
+            food
+            point_of_interest
+            establishment
+        user_ratings_total
+ */
 
 const ContentItem = () => {
     const { colors } = useTheme();
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
+    const {loading} = useSelector((state: any) => state.loadingReducer);
+
+    const { latitude, longitude } = useUserContext();
 
     const getRestaurants = async () => {
-        let long = '-1.6193795715769634'
-        let lat = '54.969580986593435'
         try {
-            const response = await fetch(restaurant_location_search(long, lat));
+            const response = await fetch(restaurant_location_search(longitude, latitude));
             const json = await response.json();
-            console.log('response -->', json)
-            // setData(json.movies);
-            setData(restDD);
+            // const filterContent = json.results.filter((item: any) => item.rating === 2)
+            // console.log('filterd content -->', filterContent)
+            setData(json.results);
+            // setData(filterContent)
+            // setData(restDD);
             // getImages()
         } catch (error) {
             console.error(error);
@@ -29,14 +50,13 @@ const ContentItem = () => {
         }
     };
 
-
-
     useEffect(() => {
-        getRestaurants();
+        loading ? null : getRestaurants();
     }, []);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Recomended</Text>
+            <Text style={styles.header}>Google API</Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                 {data.map((item: any, index: number) => {
                     return <DisplayCard key={index} item={item} title={item.name} location={item.formatted_address} rating={item.rating} />;

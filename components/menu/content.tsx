@@ -23,7 +23,9 @@ const Content = ({ onPress }: any) => {
         navigation.navigate(route, items);
     };
 
-    React.useEffect(() => {}, []);
+    React.useEffect(() => {
+        
+    }, []);
 
     const { height } = Dimensions.get('window');
 

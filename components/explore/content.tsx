@@ -4,20 +4,16 @@ import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useTheme } from '../../hooks/useTheme';
 import ContentItem from './contentItem';
 
-// TODO
-/**
-    create api and google url files n shit
-    get images
- */
 
 const Content = () => {
     const { colors } = useTheme();
+
 
     return (
         <React.Fragment>
             <BottomSheetScrollView contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background }]}>
                 <ContentItem />
-                <ContentItem />
+                {/* <ContentItem /> */}
             </BottomSheetScrollView>
         </React.Fragment>
     );

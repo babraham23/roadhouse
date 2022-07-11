@@ -1,6 +1,5 @@
 import { StyleSheet, View, Animated } from 'react-native';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as Location from 'expo-location';
 import { MapButton } from '../../components/buttons/roundButtons';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import MapScreen from '../map';
@@ -9,20 +8,17 @@ import Content from '../../components/explore/content';
 import { useTheme } from '../../hooks/useTheme';
 import ScrollBar from '../../components/scrollbar';
 import { getMyLocation } from '../../functions/locationFunction';
+import { useUserContext } from '../../context/user.context';
+
 
 type Props = {};
 
 const ExploreScreen = ({}: Props) => {
     const { colors } = useTheme();
     const sheetRef = useRef<BottomSheet>(null);
-    const fadeAnimation = useRef(new Animated.Value(0)).current;
+    const fadeAnimation = useRef(new Animated.Value(1)).current;
     const snapPoints = useMemo(() => ['10%', '83%'], []);
     const [sheetOpen, setSheetOpen] = useState(false);
-
-    const getUserLocation = async () => {
-        const res = await getMyLocation()
-        console.log('location res -->', res)
-    }
 
     const handleSheetChange = useCallback((index) => {
         if (index === 0) {
@@ -54,9 +50,6 @@ const ExploreScreen = ({}: Props) => {
         }).start();
     };
 
-    useEffect(() => {
-        getUserLocation()
-    }, [])
 
     return (
         <React.Fragment>
