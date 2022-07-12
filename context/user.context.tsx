@@ -37,21 +37,21 @@ export const UserProvider: FC = ({ children }) => {
     const [userType, setUserType]: any = useState('');
     const [errorMsg, setErrorMsg]: any = useState(null);
     const dispatch = useDispatch();
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-            dispatch({ type: SET_LOADING, payload: true });
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation(location);
-            setLatitude(location.coords.latitude);
-            setLongitude(location.coords.longitude);
-            dispatch({ type: SET_LOADING, payload: false });
-        })();
-    }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //         let { status } = await Location.requestForegroundPermissionsAsync();
+    //         if (status !== 'granted') {
+    //             setErrorMsg('Permission to access location was denied');
+    //             return;
+    //         }
+    //         dispatch({ type: SET_LOADING, payload: true });
+    //         let location = await Location.getCurrentPositionAsync({});
+    //         setLocation(location);
+    //         setLatitude(location.coords.latitude);
+    //         setLongitude(location.coords.longitude);
+    //         dispatch({ type: SET_LOADING, payload: false });
+    //     })();
+    // }, []);
 
     return <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation }}>{children}</UserContext.Provider>;
 };

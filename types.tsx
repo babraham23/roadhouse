@@ -18,4 +18,5 @@ export type RootStackParamList = {
     MenuScreen: undefined;
     SelectedItemScreen: undefined;
     MapScreen: undefined;
+    BusinessScreen: undefined;
 };

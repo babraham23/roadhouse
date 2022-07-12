@@ -10,34 +10,42 @@ const data: any = [
     {
         Id: 1,
         title: 'Recommended',
+        icon: "beer-outline"
     },
     {
         Id: 2,
         title: 'Highly Rated',
+        icon: "emoticon-happy-outline"
     },
     {
         Id: 3,
         title: 'Pubs',
+        icon: "beer-outline"
     },
     {
         Id: 4,
         title: 'Price',
+        icon: "emoticon-happy-outline"
     },
     {
         Id: 5,
         title: 'Busy',
+        icon: "emoticon-happy-outline"
     },
     {
         Id: 6,
         title: 'Burgers',
+        icon: "emoticon-happy-outline"
     },
     {
         Id: 7,
         title: 'Cafes',
+        icon: "emoticon-happy-outline"
     },
     {
         Id: 8,
         title: 'Price',
+        icon: "emoticon-happy-outline"
     },
 ];
 
@@ -94,8 +102,9 @@ const ScrollBar = () => {
                                 posArr[key] = layout.x;
                             }}
                         >
-                            <MaterialCommunityIcons name="emoticon-happy-outline" size={16} color={colors.text} />
+                            <MaterialCommunityIcons name={item.icon} size={16} color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text} />
                             <Text
+                                bold={selectedMenuItem.Id == item.Id ? true : false}
                                 fontSize={14}
                                 color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text}
                                 style={[{ color: selectedMenuItem.Id == item.Id ? colors.primary : colors.background }]}

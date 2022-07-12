@@ -19,6 +19,7 @@ import MapScreen from '../screens/map';
 import ExploreScreen from '../screens/explore/explore2';
 
 import TestScreen from '../screens/test';
+import BusinessScreen from '../screens/business/businessScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -68,8 +69,10 @@ function RootNavigator() {
             {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} />  */}
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
+        
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
             </Stack.Group>
         </Stack.Navigator>

@@ -5,11 +5,13 @@ import { useUserContext } from '../../context/user.context';
 import { mapOverlay } from './overlay';
 import { Images } from '../../style/images';
 import { restDD } from '../../screens/explore/dd';
+import { useNavigation } from '@react-navigation/native';
 
 const Map = () => {
     const { latitude, longitude } = useUserContext();
     const [x, setState]: any = React.useState('');
     console.log(latitude, longitude);
+    const navigation: any = useNavigation()
 
     const [mapRegion, setmapRegion] = React.useState({
         latitude: 54.96958048441685,
@@ -27,15 +29,16 @@ const Map = () => {
         <View style={styles.container}>
             <MapView customMapStyle={mapOverlay} style={styles.map} showsUserLocation={true} showsPointsOfInterest={false} region={mapRegion}>
                 {restDD.map((item: any, i: number) => {
-                    let latitude = item.geometry.location.lat
-                    let longitude = item.geometry.location.lng
+                    let latitude = item.geometry.location.lat;
+                    let longitude = item.geometry.location.lng;
                     return (
-                        <Marker 
+                        <Marker
                             key={i}
+                            onPress={() => navigation.navigate('BusinessScreen', { item })}
                             // coordinate={coordinate}
                             coordinate={{ latitude, longitude }}
                         >
-                            <Image source={Images.LOGO} style={styles.icon} />
+                            <Image source={Images.MARKER} style={styles.icon} />
                         </Marker>
                     );
                 })}

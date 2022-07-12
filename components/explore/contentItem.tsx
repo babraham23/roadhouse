@@ -39,9 +39,9 @@ const ContentItem = () => {
             const json = await response.json();
             // const filterContent = json.results.filter((item: any) => item.rating === 2)
             // console.log('filterd content -->', filterContent)
-            setData(json.results);
+            // setData(json.results);
             // setData(filterContent)
-            // setData(restDD);
+            setData(restDD);
             // getImages()
         } catch (error) {
             console.error(error);
