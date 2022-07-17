@@ -7,7 +7,7 @@ import { Text } from '../../style/typography';
 import { SET_MENU } from '../../state/reducers/menuReducer';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { useDispatch } from 'react-redux';
-import { products, appIcon } from '../../_models/mcdonalds.model';
+import { products } from '../../_models/mcdonalds.model';
 import { subwayProducts } from '../../_models/subway.model';
 
 const HorizontalParallax = ({ title, items }: any) => {

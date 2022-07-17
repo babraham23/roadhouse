@@ -91,5 +91,4 @@ export const restDD = [
         types: ['restaurant', 'food', 'point_of_interest', 'establishment'],
         user_ratings_total: 211,
     },
-
 ];

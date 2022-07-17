@@ -9,43 +9,43 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const data: any = [
     {
         Id: 1,
-        title: 'Recommended',
-        icon: "beer-outline"
+        title: 'Near By',
+        icon: 'beer-outline',
     },
     {
         Id: 2,
         title: 'Highly Rated',
-        icon: "emoticon-happy-outline"
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 3,
         title: 'Pubs',
-        icon: "beer-outline"
+        icon: 'beer-outline',
     },
     {
         Id: 4,
         title: 'Price',
-        icon: "emoticon-happy-outline"
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 5,
-        title: 'Busy',
-        icon: "emoticon-happy-outline"
+        title: 'Recommended',
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 6,
         title: 'Burgers',
-        icon: "emoticon-happy-outline"
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 7,
         title: 'Cafes',
-        icon: "emoticon-happy-outline"
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 8,
-        title: 'Price',
-        icon: "emoticon-happy-outline"
+        title: 'Seating Availible',
+        icon: 'emoticon-happy-outline',
     },
 ];
 

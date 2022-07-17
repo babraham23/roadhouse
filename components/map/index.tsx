@@ -6,12 +6,17 @@ import { mapOverlay } from './overlay';
 import { Images } from '../../style/images';
 import { restDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
+import MapViewDirections from 'react-native-maps-directions';
+import { API_KEY, restaurant_location_search } from '../../api/endpoints';
 
 const Map = () => {
     const { latitude, longitude } = useUserContext();
+    const [resturants, setRestuarants] = React.useState([]);
     const [x, setState]: any = React.useState('');
-    console.log(latitude, longitude);
-    const navigation: any = useNavigation()
+    const [origin, setOrigin] = React.useState({});
+    const [start, setStart]: any = React.useState({});
+    const [end, setEnd]: any = React.useState({});
+    const navigation: any = useNavigation();
 
     const [mapRegion, setmapRegion] = React.useState({
         latitude: 54.96958048441685,
@@ -20,21 +25,57 @@ const Map = () => {
         longitudeDelta: 0.01,
     });
 
-    let coordinate = {
-        latitude: 54.969608,
-        longitude: -1.619394,
+    let lat1 = 54.96954708524686;
+    let lng1 = -1.6185816574923975;
+
+    let lat2 = 54.97182431251328;
+    let lng2 = -1.614705617306483;
+
+    // const origin = { latitude: lat1, longitude: lng1 };
+    const destination = { latitude: lat2, longitude: lng2 };
+
+    const calculateDistance = () => {
+        setStart({ latitude: lat1, longitude: lng1 });
+        setEnd({ latitude: lat2, longitude: lng2 });
     };
+
+    const getRestaurants = async () => {
+        let lat = 54.96963755347803;
+        let lng = -1.619493032708466;
+        try {
+            const response = await fetch(restaurant_location_search(lng, lat));
+            const json = await response.json();
+            // const filterContent = json.results.filter((item: any) => item.rating === 2)
+            setRestuarants(json.results);
+        } catch (error) {
+            console.error(error);
+        } finally {
+        }
+    };
+
+    React.useEffect(() => {
+        getRestaurants();
+    }, [origin]);
 
     return (
         <View style={styles.container}>
-            <MapView customMapStyle={mapOverlay} style={styles.map} showsUserLocation={true} showsPointsOfInterest={false} region={mapRegion}>
-                {restDD.map((item: any, i: number) => {
+            <MapView
+                onUserLocationChange={(event) => console.log('event', event.nativeEvent.coordinate)}
+                customMapStyle={mapOverlay}
+                style={styles.map}
+                userLocationCalloutEnabled
+                showsUserLocation={true}
+                showsPointsOfInterest={false}
+                region={mapRegion}
+            >
+                {resturants.map((item: any, i: number) => {
                     let latitude = item.geometry.location.lat;
                     let longitude = item.geometry.location.lng;
                     return (
                         <Marker
                             key={i}
-                            onPress={() => navigation.navigate('BusinessScreen', { item })}
+                            onPress={() => calculateDistance()}
+                            // onPress={() => navigation.navigate('BusinessScreen', { item })}
                             // coordinate={coordinate}
                             coordinate={{ latitude, longitude }}
                         >
@@ -42,6 +83,7 @@ const Map = () => {
                         </Marker>
                     );
                 })}
+                <MapViewDirections mode={'WALKING'} strokeWidth={4} strokeColor="#ff225c" origin={start} destination={end} apikey={API_KEY} />
             </MapView>
         </View>
     );

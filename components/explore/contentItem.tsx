@@ -34,11 +34,13 @@ const ContentItem = () => {
     const { latitude, longitude } = useUserContext();
 
     const getRestaurants = async () => {
+        let lat = 54.96963755347803
+        let lng = -1.619493032708466
         try {
-            const response = await fetch(restaurant_location_search(longitude, latitude));
-            const json = await response.json();
+            const response = await fetch(restaurant_location_search(lng, lat));
+            // const json = await response.json();
             // const filterContent = json.results.filter((item: any) => item.rating === 2)
-            // console.log('filterd content -->', filterContent)
+            // console.log('filterd content -->', json)
             // setData(json.results);
             // setData(filterContent)
             setData(restDD);

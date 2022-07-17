@@ -6,7 +6,7 @@ export const BASE_API = 'https://maps.googleapis.com/maps/api/place/textsearch/j
 export const API_KEY = `AIzaSyBxDwgAiRmplHmbQfNrX4FJ4ZgqA0wp9X4`;
 export const radius_number_of_meters = 1;
 
-export const restaurant_location_search = (long: string, lat: string) => `${BASE_API}${lat},${long}&radius=${radius_number_of_meters}&key=${API_KEY}`;
+export const restaurant_location_search = (long: number, lat: number) => `${BASE_API}${lat},${long}&radius=${radius_number_of_meters}&key=${API_KEY}`;
 
 // export const TASK_PROGRESS = learnerId => `${BASE_API_URL}v1/progressTaskRecords/${learnerId}`;
 
