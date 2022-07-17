@@ -34,8 +34,8 @@ const ContentItem = () => {
     const { latitude, longitude } = useUserContext();
 
     const getRestaurants = async () => {
-        let lat = 54.96963755347803
-        let lng = -1.619493032708466
+        let lat = 54.96963755347803;
+        let lng = -1.619493032708466;
         try {
             const response = await fetch(restaurant_location_search(lng, lat));
             // const json = await response.json();

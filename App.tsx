@@ -9,8 +9,7 @@ import Navigation from './navigation';
 import store from './state/store';
 import { client } from './client';
 import Main from './main';
-import DirectionsTest from './components/map/directionTest';
-import DirectionsTest2 from './components/map/dt2';
+import Map from './components/map';
 // import * as Sentry from 'sentry-expo';
 
 // npm run type-gen
@@ -35,11 +34,10 @@ const App: React.FC<any> = () => {
             <SafeAreaProvider>
                 <ApolloProvider client={client}>
                     <Provider store={store}>
-                        {/* <Navigation colorScheme={colorScheme} /> */}
+                        <Navigation colorScheme={colorScheme} />
                         {/* <Main />
                         <StatusBar /> */}
-                        {/* <DirectionsTest /> */}
-                        <DirectionsTest2 />
+                        {/* <Map /> */}
                     </Provider>
                 </ApolloProvider>
             </SafeAreaProvider>

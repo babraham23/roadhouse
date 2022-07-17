@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Map from '../../components/map';
-import MapHeader from '../../components/headers/mapHeader';
 
 const MapScreen = () => {
     return (

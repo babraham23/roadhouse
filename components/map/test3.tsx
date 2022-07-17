@@ -1,17 +1,15 @@
-import { Dimensions, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import React, { useRef, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY } from '../../api/endpoints';
-import { useUserContext } from '../../context/user.context';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 54.96958048441685;
 const LONGITUDE = -1.6190185635742933;
-const LATITUDE_DELTA = 0.1;
-const LONGITUDE_DELTA = 0.1;
-// const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const GOOGLE_MAPS_APIKEY = API_KEY;
 
@@ -36,9 +34,6 @@ let locationModel = {
 const Map = () => {
     let mapView: any = useRef();
     const [userLocation, setUserLocation] = useState(locationModel);
-    const { longitude, latitude } = useUserContext();
-    const [ destination, setDestination ] = useState({ latitude: 0, longitude: 0 })
-    const [ directionActive, setDirectionActive ] = useState(false)
     const [coords, setCoords]: any = useState({
         coordinates: [
             // {
@@ -59,43 +54,26 @@ const Map = () => {
     });
 
     const onMapPress = (e: any) => {
-        // setCoords({
-        //     coordinates: [...coords.coordinates, e.nativeEvent.coordinate],
-        // });
-        const { latitude, longitude } = e.nativeEvent.coordinate
-        setDestination({ latitude, longitude })
-        setDirectionActive(true)
+        setCoords({
+            coordinates: [...coords.coordinates, e.nativeEvent.coordinate],
+        });
     };
 
-    const setDirection = () => {
-    };
+    const setDirection = () => {};
 
     // console.log('state userlocation --.', userLocation)
 
     let userCurrentLocation = {
         coordinates: [
             {
-                latitude: latitude,
-                longitude: longitude,
+                latitude: userLocation.latitude,
+                longitude: userLocation.longitude,
             },
             {
                 latitude: 54.97333100701173,
                 longitude: -1.6150698456255437,
             },
         ],
-    };
-
-    const onMarkerSelect = (e: any) => {
-        setCoords([
-            {
-                latitude: latitude,
-                longitude: longitude,
-            },
-            {
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-            },
-        ]);
     };
 
     return (
@@ -113,18 +91,17 @@ const Map = () => {
             onPress={(e) => onMapPress(e)}
             showsUserLocation
             userLocationCalloutEnabled
-            // onUserLocationChange={(event: any) => setUserLocation(event.nativeEvent.coordinate)}
+            onUserLocationChange={(event: any) => setUserLocation(event.nativeEvent.coordinate)}
         >
             {coords.coordinates.map((item: any, i: number) => {
-                return <Marker onPress={(eL) => setDirection()} key={`coordinate_${i}`} coordinate={item} />;
+                return <Marker onPress={() => setDirection()} key={`coordinate_${i}`} coordinate={item} />;
             })}
-            {directionActive && (
+            {coords.coordinates.length >= 2 && (
                 <MapViewDirections
                     mode="WALKING"
-                    origin={{ latitude, longitude }}
-                    // waypoints={userCurrentLocation.coordinates.length > 2 ? coords.coordinates.slice(1, -1) : undefined}
-                    // destination={userCurrentLocation.coordinates[userCurrentLocation.coordinates.length - 1]}
-                    destination={destination}
+                    origin={userCurrentLocation.coordinates[0]}
+                    waypoints={userCurrentLocation.coordinates.length > 2 ? coords.coordinates.slice(1, -1) : undefined}
+                    destination={userCurrentLocation.coordinates[userCurrentLocation.coordinates.length - 1]}
                     apikey={GOOGLE_MAPS_APIKEY}
                     strokeWidth={3}
                     strokeColor="hotpink"

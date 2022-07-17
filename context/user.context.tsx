@@ -17,6 +17,7 @@ type Context = {
     setLatitude?: any;
     setLongitude?: any;
     setLocation?: any;
+    getUsetLocation?: any;
 };
 
 const UserContext = createContext<Context>({
@@ -28,6 +29,7 @@ const UserContext = createContext<Context>({
     setLatitude: undefined,
     setLongitude: undefined,
     setLocation: undefined,
+    getUsetLocation: undefined
 });
 
 export const UserProvider: FC = ({ children }) => {
@@ -37,24 +39,28 @@ export const UserProvider: FC = ({ children }) => {
     const [userType, setUserType]: any = useState('');
     const [errorMsg, setErrorMsg]: any = useState(null);
     const dispatch = useDispatch();
+
+    const getUsetLocation = async () => {
+        console.log('running')
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+        }
+        dispatch({ type: SET_LOADING, payload: true });
+        let location = await Location.getCurrentPositionAsync({});
+        // console.log('location -->', location)
+        setLocation(location);
+        setLatitude(location.coords.latitude);
+        setLongitude(location.coords.longitude);
+        dispatch({ type: SET_LOADING, payload: false });
+    }
+
     useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-            dispatch({ type: SET_LOADING, payload: true });
-            let location = await Location.getCurrentPositionAsync({});
-            // console.log('location -->', location)
-            setLocation(location);
-            setLatitude(location.coords.latitude);
-            setLongitude(location.coords.longitude);
-            dispatch({ type: SET_LOADING, payload: false });
-        })();
+        getUsetLocation()
     }, []);
 
-    return <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation }}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation, getUsetLocation }}>{children}</UserContext.Provider>;
 };
 
 export const useUserContext = (): Context => useContext<Context>(UserContext);

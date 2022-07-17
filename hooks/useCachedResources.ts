@@ -30,6 +30,6 @@ const useCachedResources = () => {
     }, []);
 
     return isLoadingComplete;
-}
+};
 
 export default useCachedResources;
