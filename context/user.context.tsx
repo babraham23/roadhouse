@@ -2,6 +2,7 @@ import React, { createContext, FC, useContext, useEffect, useState } from 'react
 import * as Location from 'expo-location';
 import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
+import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
 
 type User = {
     userType?: string;
@@ -17,7 +18,9 @@ type Context = {
     setLatitude?: any;
     setLongitude?: any;
     setLocation?: any;
-    getUsetLocation?: any;
+    getUserLocation?: any;
+    places?: any;
+    getPlaces?: any;
 };
 
 const UserContext = createContext<Context>({
@@ -29,7 +32,8 @@ const UserContext = createContext<Context>({
     setLatitude: undefined,
     setLongitude: undefined,
     setLocation: undefined,
-    getUsetLocation: undefined
+    getUserLocation: undefined,
+    getPlaces: undefined,
 });
 
 export const UserProvider: FC = ({ children }) => {
@@ -38,10 +42,12 @@ export const UserProvider: FC = ({ children }) => {
     const [longitude, setLongitude]: any = useState('');
     const [userType, setUserType]: any = useState('');
     const [errorMsg, setErrorMsg]: any = useState(null);
+    const [restaurants, setRestaurants]: any = useState([]);
+    const [bars, setBars]: any = useState([]);
+    let [places, setPlaces]: any = useState([]);
     const dispatch = useDispatch();
 
-    const getUsetLocation = async () => {
-        console.log('running')
+    const getUserLocation = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
             setErrorMsg('Permission to access location was denied');
@@ -49,18 +55,54 @@ export const UserProvider: FC = ({ children }) => {
         }
         dispatch({ type: SET_LOADING, payload: true });
         let location = await Location.getCurrentPositionAsync({});
-        // console.log('location -->', location)
         setLocation(location);
         setLatitude(location.coords.latitude);
         setLongitude(location.coords.longitude);
         dispatch({ type: SET_LOADING, payload: false });
-    }
+    };
+
+    const getPlaces = async (type: any) => {
+        if (type === 'Bars') {
+            getBars();
+        } else if (type === 'Restaurants') {
+            getRestaurants();
+        } else setPlaces([])
+    };
+
+    const getBars = async () => {
+        let lat = 54.96963755347803;
+        let lng = -1.619493032708466;
+        try {
+            const barResponse = await fetch(pub_search(lng, lat));
+            const bars = await barResponse.json();
+            setPlaces(bars.results);
+        } catch (error) {
+            console.error('error 532 -->', error);
+        }
+    };
+
+    const getRestaurants = async () => {
+        let lat = 54.96963755347803;
+        let lng = -1.619493032708466;
+        try {
+            const restaurantResponse = await fetch(restaurant_search(lng, lat));
+            const restaurant = await restaurantResponse.json();
+            setPlaces(restaurant.results);
+        } catch (error) {
+            console.error('error e62 -->', error);
+        }
+    };
 
     useEffect(() => {
-        getUsetLocation()
+        getUserLocation();
+        getRestaurants();
     }, []);
 
-    return <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation, getUsetLocation }}>{children}</UserContext.Provider>;
+    return (
+        <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation, getUserLocation, places, getPlaces }}>
+            {children}
+        </UserContext.Provider>
+    );
 };
 
 export const useUserContext = (): Context => useContext<Context>(UserContext);

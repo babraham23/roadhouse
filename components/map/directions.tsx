@@ -5,12 +5,11 @@ import { API_KEY } from '../../api/endpoints';
 
 type Props = {
     coords?: any;
-    userLocation?: any
-    mapView?: any
+    userLocation?: any;
+    mapView?: any;
 };
 
 const { width, height } = Dimensions.get('window');
-
 
 const Directions = ({ coords, userLocation, mapView }: Props) => {
     let userCurrentLocation = {

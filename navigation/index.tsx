@@ -66,6 +66,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
+            {/* <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} /> */}
             {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} />  */}
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />

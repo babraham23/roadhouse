@@ -5,22 +5,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useUserContext } from '../../context/user.context';
 
 const data: any = [
     {
         Id: 1,
-        title: 'Near By',
-        icon: 'beer-outline',
+        title: 'Restaurants',
+        icon: 'food-outline',
     },
     {
         Id: 2,
-        title: 'Highly Rated',
-        icon: 'emoticon-happy-outline',
+        title: 'Bars',
+        icon: 'beer-outline',
     },
     {
         Id: 3,
-        title: 'Pubs',
-        icon: 'beer-outline',
+        title: 'Top Rated',
+        icon: 'emoticon-happy-outline',
     },
     {
         Id: 4,
@@ -56,10 +57,13 @@ const ScrollBar = () => {
     let [selectedMenuItem, setSelectedMenuItem]: any = React.useState(data[0]);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
+    const { getPlaces } = useUserContext();
 
     const handleChange = (item: any, key: any) => {
         setSelectedMenuItem(item);
         setState({ dynamicIndex: key }), () => doScroll(null);
+        let place = item.title;
+        getPlaces(place);
     };
 
     const autoScroll = () => {
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         paddingHorizontal: 5,
         alignItems: 'center',
-        borderBottomWidth: 1,
+        // borderBottomWidth: 1,
         marginBottom: 5,
     },
 });

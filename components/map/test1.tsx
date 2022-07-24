@@ -6,7 +6,7 @@ import { Images } from '../../style/images';
 import { restDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
 import MapViewDirections from 'react-native-maps-directions';
-import { API_KEY, restaurant_location_search } from '../../api/endpoints';
+import { API_KEY, restaurant_search } from '../../api/endpoints';
 
 const Map = () => {
     const { latitude, longitude } = useUserContext();
@@ -42,7 +42,7 @@ const Map = () => {
         let lat = 54.96963755347803;
         let lng = -1.619493032708466;
         try {
-            const response = await fetch(restaurant_location_search(lng, lat));
+            const response = await fetch(restaurant_search(lng, lat));
             const json = await response.json();
             // const filterContent = json.results.filter((item: any) => item.rating === 2)
             setRestuarants(json.results);

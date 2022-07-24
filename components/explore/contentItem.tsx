@@ -4,7 +4,6 @@ import { Text } from '../../style/typography';
 import DisplayCard from '../cards/displayCard';
 import { useTheme } from '../../hooks/useTheme';
 import { restDD } from '../../screens/explore/dd';
-import { restaurant_location_search } from '../../api/endpoints';
 import { useUserContext } from '../../context/user.context';
 import { useSelector } from 'react-redux';
 
@@ -30,37 +29,13 @@ const ContentItem = () => {
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
     const { loading } = useSelector((state: any) => state.loadingReducer);
-
-    const { latitude, longitude } = useUserContext();
-
-    const getRestaurants = async () => {
-        let lat = 54.96963755347803;
-        let lng = -1.619493032708466;
-        try {
-            const response = await fetch(restaurant_location_search(lng, lat));
-            // const json = await response.json();
-            // const filterContent = json.results.filter((item: any) => item.rating === 2)
-            // console.log('filterd content -->', json)
-            // setData(json.results);
-            // setData(filterContent)
-            setData(restDD);
-            // getImages()
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        loading ? null : getRestaurants();
-    }, []);
+    const { longitude, latitude, places } = useUserContext();
 
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Google API</Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
-                {data.map((item: any, index: number) => {
+                {places.map((item: any, index: number) => {
                     return <DisplayCard key={index} item={item} title={item.name} location={item.formatted_address} rating={item.rating} />;
                 })}
             </ScrollView>

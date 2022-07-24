@@ -1,61 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
-import Device from 'expo-device';
-import * as Location from 'expo-location';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { API_KEY } from '../../api/endpoints';
 
-export default function App() {
-    const [location, setLocation] = useState({});
-    const [errorMsg, setErrorMsg] = useState('');
-    const [loading, setLoading] = useState(false);
+let photo_reference = "AeJbb3eb_ZErxkLGaSMG0gaAnFU6dffCrBrl4GT_rAtpIZYvKu3d-dBt-NmcmBIHMnNQrJpgfZvkSD4eiaM3JW3AczALMyxklvW5MTTwwY1LSdnB9PmxiNePiS8vVtTzTqPRkduxHZxmyn0UhcSgc8I8PbqUk0Ot9AGRxPpSxZpoETsaVFoP"
+let maxheight = 2340
+let maxwidth = 4160
+const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxwidth}&maxheight=${maxheight}&photo_reference=${photo_reference}&key=${API_KEY}`;
 
-    useEffect(() => {
-        (async () => {
-            if (Platform.OS === 'android' && !Device.isDevice) {
-                setErrorMsg('Oops, this will not work on Snack in an Android Emulator. Try it on your device!');
-                return;
-            }
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-            setLoading(true);
-            let location = await Location.getCurrentPositionAsync({});
-            console.log('location -->', location);
-            setLocation(location);
-            setLoading(false);
-        })();
-    }, []);
-
-    let text = 'Waiting..';
-    if (errorMsg) {
-        text = errorMsg;
-    } else if (location) {
-        text = JSON.stringify(location);
-    }
-
+const TestScreen = () => {
     return (
-        <React.Fragment>
-            {loading ? (
-                <View style={{ width: '100%', height: '100%', backgroundColor: 'red' }} />
-            ) : (
-                <View style={styles.container}>
-                    <Text style={styles.paragraph}>{text}</Text>
-                </View>
-            )}
-        </React.Fragment>
+        <View style={styles.container}>
+            <Image source={{ uri: imageUrl }} style={styles.image} />
+        </View>
     );
-}
+};
 
+export default TestScreen;
+
+let { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        // justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
     },
-    paragraph: {
-        fontSize: 18,
-        textAlign: 'center',
+    image: {
+        width,
+        height: 500,
+        resizeMode: 'center',
     },
 });

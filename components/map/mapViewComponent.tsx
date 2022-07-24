@@ -7,7 +7,7 @@ type Props = {
     setUserLocation?: any;
     coords?: any;
     setCoords?: any;
-    mapView?: any
+    mapView?: any;
 };
 
 const regionModel = {
