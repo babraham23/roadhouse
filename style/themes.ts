@@ -22,6 +22,7 @@ export const CustomDefaultTheme = {
             maternity: '#E35DA4',
             wfo: '#FD9D42',
         },
+        seperator: '#B4B4B4',
     },
     borderRadius: {
         input: 8,
@@ -45,7 +46,7 @@ export const CustomDarkTheme = {
         card: '#111417',
         button: '#FAFAFA',
         buttonText: '#111417',
-        border: '#EAEAEA',
+        border: '#3a3b3c',
         tags: {
             annualLeave: '#677BE7',
             sickness: '#53B990',
@@ -53,6 +54,7 @@ export const CustomDarkTheme = {
             maternity: '#E35DA4',
             wfo: '#FD9D42',
         },
+        seperator: '#3a3b3c',
     },
     borderRadius: {
         input: 8,

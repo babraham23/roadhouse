@@ -138,4 +138,4 @@ export const mcdDD = {
     reference: 'ChIJUTiCesu_eEgRGIl-73jkzLo',
     types: ['restaurant', 'food', 'point_of_interest', 'establishment'],
     user_ratings_total: 211,
-}
+};

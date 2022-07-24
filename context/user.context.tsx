@@ -66,7 +66,7 @@ export const UserProvider: FC = ({ children }) => {
             getBars();
         } else if (type === 'Restaurants') {
             getRestaurants();
-        } else setPlaces([])
+        } else setPlaces([]);
     };
 
     const getBars = async () => {

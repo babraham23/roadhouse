@@ -16,7 +16,7 @@ const { width, height } = Dimensions.get('window');
 const GOOGLE_MAPS_APIKEY = API_KEY;
 
 const Map = () => {
-    const navigation: any = useNavigation()
+    const navigation: any = useNavigation();
     let mapView: any = useRef();
     const { longitude, latitude, places } = useUserContext();
     const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
@@ -32,7 +32,7 @@ const Map = () => {
         // longitude: number, latitude: number
         // setDestination({ latitude, longitude });
         // setDirectionActive(true);
-        navigation.navigate('BusinessScreen', { item })
+        navigation.navigate('BusinessScreen', { item });
     };
 
     return (
@@ -41,10 +41,12 @@ const Map = () => {
                 let latitude = item.geometry.location.lat;
                 let longitude = item.geometry.location.lng;
                 return (
-                    <Marker 
-                        // onPress={() => onIconPress(longitude, latitude)} 
+                    <Marker
+                        // onPress={() => onIconPress(longitude, latitude)}
                         onPress={() => onIconPress(item)}
-                        key={`coordinate_${i}`} coordinate={{ latitude, longitude }}>
+                        key={`coordinate_${i}`}
+                        coordinate={{ latitude, longitude }}
+                    >
                         <Image source={Images.MARKER} style={styles.icon} />
                     </Marker>
                 );

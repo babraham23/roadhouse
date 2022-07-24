@@ -4,6 +4,8 @@ import { useTheme } from '../../hooks/useTheme';
 import { ScrollContextProvider } from './scrollContext';
 import ModalHeader from '../headers/modalHeader';
 import { API_KEY, getPlacesPhotos } from '../../api/endpoints';
+import BusinessModalHeader from '../headers/businessModel';
+import ImageCounter from '../carousel/imageCounter';
 
 const IMAGE_MAX_HEIGHT = 250;
 const HEADER_MIN_HEIGHT = 85;
@@ -41,7 +43,7 @@ const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }:
 
     return (
         <View style={styles.container}>
-            <ModalHeader hideClose={hideClose} title={title} />
+            <BusinessModalHeader hideClose={hideClose} title={title} />
             <Animated.ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingTop: IMAGE_MAX_HEIGHT - 32 }}
@@ -70,6 +72,9 @@ const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }:
                         );
                     })}
                 </ScrollView>
+                <Animated.View style={[styles.indexBox, { opacity: imageOpacity }]} >
+                    <ImageCounter />
+                </Animated.View>
             </Animated.View>
         </View>
     );
@@ -94,6 +99,11 @@ const styles = StyleSheet.create({
         width,
         resizeMode: 'cover',
     },
+    indexBox: {
+        position: 'absolute',
+        bottom: 10,
+        alignSelf: 'center'
+    }
 });
 
 export default ImageHeaderScroll;

@@ -6,6 +6,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { restDD } from '../../screens/explore/dd';
 import { useUserContext } from '../../context/user.context';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 // TODO
 /**
@@ -30,13 +31,13 @@ const ContentItem = () => {
     const [data, setData]: any = useState([]);
     const { loading } = useSelector((state: any) => state.loadingReducer);
     const { longitude, latitude, places } = useUserContext();
-
+    const navigation: any = useNavigation();
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Google API</Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                 {places.map((item: any, index: number) => {
-                    return <DisplayCard key={index} item={item} title={item.name} location={item.formatted_address} rating={item.rating} />;
+                    return <DisplayCard onPress={() => navigation.navigate('BusinessScreen', { item })} key={index} item={item} title={item.name} location={item.formatted_address} rating={item.rating} />;
                 })}
             </ScrollView>
         </View>
