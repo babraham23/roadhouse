@@ -4,6 +4,7 @@ import { HeaderText, Text } from '../../style/typography';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from '../../hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
+import HeartButton from '../buttons/heartButton';
 
 type Props = {
     onClosePress?: any;
@@ -33,9 +34,10 @@ const BusinessModalHeader = ({ onClosePress, onBackPress, title, hideBack, hideC
                     <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
                 </TouchableOpacity>
             )}
-                <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={styles.closeWrapperWrapper}>
-                    <MaterialCommunityIcons name="heart-outline" size={20} color={colors.text} />
-                </TouchableOpacity>
+            <HeartButton style={styles.closeWrapperWrapper} />
+            {/* <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={styles.closeWrapperWrapper}>
+                <MaterialCommunityIcons name="heart-outline" size={20} color={colors.text} />
+            </TouchableOpacity> */}
         </View>
     );
 };

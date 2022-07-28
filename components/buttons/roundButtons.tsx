@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../hooks/useTheme';
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 
 export const SmallPillButton = ({ onPress, title, clear, style }: any) => {
     const { colors }: any = useTheme();
@@ -15,14 +15,18 @@ export const SmallPillButton = ({ onPress, title, clear, style }: any) => {
     );
 };
 
-export const MapButton = ({ onPress, title, clear, style }: any) => {
+export const MapButton = ({ onPress, title, clear, style, map }: any) => {
     const { colors }: any = useTheme();
     return (
         <TouchableOpacity activeOpacity={0.8} style={[style]} onPress={onPress}>
             <LinearGradient colors={[`${colors.primary}70`, colors.primary]} style={styles.mapWrapper}>
                 <Text style={[styles.text, { color: colors.card }]}>{title}</Text>
                 <View style={{ marginLeft: 10 }}>
-                    <FontAwesome name="map-o" size={14} color={colors.card} />
+                    {map ?
+                        <FontAwesome name="map-o" size={14} color={colors.card} />
+                        :
+                        <Feather name="list" size={14} color={colors.card} />
+                    }
                 </View>
             </LinearGradient>
         </TouchableOpacity>
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
     },
     mapWrapper: {
         flexDirection: 'row',
-        // width: 70,
+        width: 85,
         height: 30,
         borderRadius: 20,
         justifyContent: 'space-between',

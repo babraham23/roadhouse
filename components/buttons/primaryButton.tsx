@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         // marginTop: 30,
     },
-    text: {
-    },
+    text: {},
 });
 
 export default PrimaryButton;

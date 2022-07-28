@@ -5,9 +5,16 @@ import { Text } from '../../style/typography';
 const ImageCounter = ({ index, numOfImages }: any) => {
     return (
         <View style={styles.container}>
-            <Text fontSize={14} bold color={'white'}>1</Text>
-            <Text fontSize={14} bold color={'white'}> / </Text>
-            <Text fontSize={14} bold color={'white'}>20</Text>
+            <Text fontSize={14} bold color={'white'}>
+                1
+            </Text>
+            <Text fontSize={14} bold color={'white'}>
+                {' '}
+                /{' '}
+            </Text>
+            <Text fontSize={14} bold color={'white'}>
+                {numOfImages}
+            </Text>
         </View>
     );
 };
@@ -23,6 +30,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 6,
-        opacity: 0.8
+        opacity: 0.8,
     },
 });

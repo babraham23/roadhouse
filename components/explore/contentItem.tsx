@@ -37,7 +37,16 @@ const ContentItem = () => {
             <Text style={styles.header}>Google API</Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                 {places.map((item: any, index: number) => {
-                    return <DisplayCard onPress={() => navigation.navigate('BusinessScreen', { item })} key={index} item={item} title={item.name} location={item.formatted_address} rating={item.rating} />;
+                    return (
+                        <DisplayCard
+                            onPress={() => navigation.navigate('BusinessScreen', { item })}
+                            key={index}
+                            item={item}
+                            title={item.name}
+                            location={item.formatted_address}
+                            rating={item.rating}
+                        />
+                    );
                 })}
             </ScrollView>
         </View>

@@ -18,6 +18,8 @@ const ExploreScreen = ({}: Props) => {
     const fadeAnimation = useRef(new Animated.Value(1)).current;
     const snapPoints = useMemo(() => ['10%', '83%'], []);
     const [sheetOpen, setSheetOpen] = useState(false);
+    const { places } = useUserContext();
+
 
     const handleSheetChange = useCallback((index) => {
         if (index === 0) {
@@ -72,9 +74,9 @@ const ExploreScreen = ({}: Props) => {
                     </Animated.View>
                 </BottomSheetView>
             </BottomSheet>
-            <Animated.View style={{ opacity: fadeAnimation }}>
-                <MapButton opacity={fadeAnimation} title="Map" style={styles.mapButton} onPress={() => handleSnapPress(0)} />
-            </Animated.View>
+            {/* <Animated.View style={{ opacity: fadeAnimation }}> */}
+                <MapButton opacity={fadeAnimation} map={sheetOpen} title={sheetOpen ? "Map" : "List"} style={styles.mapButton} onPress={sheetOpen ? () =>handleSnapPress(0) : () => handleSnapPress(1)} />
+            {/* </Animated.View> */}
         </React.Fragment>
     );
 };

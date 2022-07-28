@@ -42,8 +42,6 @@ export const UserProvider: FC = ({ children }) => {
     const [longitude, setLongitude]: any = useState('');
     const [userType, setUserType]: any = useState('');
     const [errorMsg, setErrorMsg]: any = useState(null);
-    const [restaurants, setRestaurants]: any = useState([]);
-    const [bars, setBars]: any = useState([]);
     let [places, setPlaces]: any = useState([]);
     const dispatch = useDispatch();
 
@@ -75,7 +73,8 @@ export const UserProvider: FC = ({ children }) => {
         try {
             const barResponse = await fetch(pub_search(lng, lat));
             const bars = await barResponse.json();
-            setPlaces(bars.results);
+            if (bars.status === 'REQUEST_DENIED') alert('Request denied');
+            else setPlaces(bars.results);
         } catch (error) {
             console.error('error 532 -->', error);
         }
@@ -87,7 +86,8 @@ export const UserProvider: FC = ({ children }) => {
         try {
             const restaurantResponse = await fetch(restaurant_search(lng, lat));
             const restaurant = await restaurantResponse.json();
-            setPlaces(restaurant.results);
+            if (restaurant.status === 'REQUEST_DENIED') alert('Request denied');
+            else setPlaces(restaurant.results);
         } catch (error) {
             console.error('error e62 -->', error);
         }

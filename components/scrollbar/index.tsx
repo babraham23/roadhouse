@@ -20,13 +20,13 @@ const data: any = [
     },
     {
         Id: 3,
-        title: 'Top Rated',
+        title: 'Market',
         icon: 'emoticon-happy-outline',
     },
     {
         Id: 4,
-        title: 'Price',
-        icon: 'emoticon-happy-outline',
+        title: 'Liked',
+        icon: 'heart',
     },
     {
         Id: 5,
@@ -34,18 +34,8 @@ const data: any = [
         icon: 'emoticon-happy-outline',
     },
     {
-        Id: 6,
-        title: 'Burgers',
-        icon: 'emoticon-happy-outline',
-    },
-    {
         Id: 7,
         title: 'Cafes',
-        icon: 'emoticon-happy-outline',
-    },
-    {
-        Id: 8,
-        title: 'Seating Availible',
         icon: 'emoticon-happy-outline',
     },
 ];
@@ -107,6 +97,7 @@ const ScrollBar = () => {
                             }}
                         >
                             <MaterialCommunityIcons name={item.icon} size={16} color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text} />
+                            {/* {/item.icon} */}
                             <Text
                                 bold={selectedMenuItem.Id == item.Id ? true : false}
                                 fontSize={14}

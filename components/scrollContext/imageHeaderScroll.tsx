@@ -55,7 +55,16 @@ const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }:
                 <View style={style}>{children}</View>
             </Animated.ScrollView>
             <Animated.View style={[styles.header, { backgroundColor: colors.backgroundColor, transform: [{ translateY: headerTranslateY }] }]}>
-                <ScrollView bounces={false} decelerationRate={'fast'} horizontal style={{ flex: 1 }} snapToInterval={width} showsHorizontalScrollIndicator={false}>
+                <ScrollView 
+                    bounces={false} 
+                    decelerationRate={'fast'} 
+                    horizontal 
+                    style={{ flex: 1 }} 
+                    snapToInterval={width}
+                    showsHorizontalScrollIndicator={false}  
+                    // onScroll={(e) => {console.log(e.)}}
+                    scrollEventThrottle={16}
+                >
                     {images.map((image: any, index: number) => {
                         return (
                             <Animated.Image
@@ -72,8 +81,8 @@ const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }:
                         );
                     })}
                 </ScrollView>
-                <Animated.View style={[styles.indexBox, { opacity: imageOpacity }]} >
-                    <ImageCounter />
+                <Animated.View style={[styles.indexBox, { opacity: imageOpacity }]}>
+                    <ImageCounter index={'index'} numOfImages={images.length} />
                 </Animated.View>
             </Animated.View>
         </View>
@@ -102,8 +111,8 @@ const styles = StyleSheet.create({
     indexBox: {
         position: 'absolute',
         bottom: 10,
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
 
 export default ImageHeaderScroll;

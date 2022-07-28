@@ -3,6 +3,7 @@ import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
 import { Text } from '../../style/typography';
+import ReviewStarRating from './reviewStarRating';
 
 type Props = {
     author_name?: string;
@@ -19,19 +20,20 @@ const ReviewCard = ({ author_name, author_url, profile_photo_url, rating, relati
         <View style={[styles.container, { borderRadius: borderRadius.card, backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={styles.header}>
                 <View style={styles.profileImageWrapper}>
-                    <Image source={{ uri: profile_photo_url }} style={styles.profileImage} />
-                    <View>
-                        <Text style={styles.name}>{author_name}</Text>
-                        <Text style={styles.name} fontSize={12}>
-                            {relative_time_description}
-                        </Text>
+                    <View style={{ flexDirection: 'row' }} >
+                        <Image source={{ uri: profile_photo_url }} style={styles.profileImage} />
+                        <View>
+                            <Text style={styles.name}>{author_name}</Text>
+                            <Text style={styles.name} fontSize={12}>
+                                {relative_time_description}
+                            </Text>
+                        </View>
                     </View>
+                    <ReviewStarRating rating={rating} />
                 </View>
             </View>
             <View style={styles.content}>
-                <Text style={styles.name} >
-                    {text}
-                </Text>
+                <Text style={styles.name}>{text}</Text>
             </View>
         </View>
     );
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     profileImageWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between'
     },
     profileImage: {
         width: 40,
