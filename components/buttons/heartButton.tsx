@@ -32,12 +32,13 @@ const HeartButton = ({ onClosePress, style }: Props) => {
             setLiked(true);
             // animation.current?.play();
         }
-    }
+    };
 
     return (
         <TouchableOpacity onPress={() => handleLike()} style={[style]}>
             {liked ? (
                 <MaterialCommunityIcons name="heart" size={20} color={'red'} />
+            ) : (
                 // <LottieView
                 //     // autoPlay
                 //     ref={animation}
@@ -49,8 +50,7 @@ const HeartButton = ({ onClosePress, style }: Props) => {
                 //     // Find more Lottie files at https://lottiefiles.com/featured
                 //     source={require('../../assets/animations/heart.json')}
                 // />
-            ) : (
-                    <MaterialCommunityIcons name="heart-outline" size={20} color={colors.text} />
+                <MaterialCommunityIcons name="heart-outline" size={20} color={colors.text} />
             )}
         </TouchableOpacity>
     );

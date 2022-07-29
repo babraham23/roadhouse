@@ -1,8 +1,17 @@
 export const Images = {
     LOGO: require('../assets/images/icon.png'),
+    LOGO_ROUND: require('../assets/images/androidIcon.png'),
     ANT_B: require('../assets/images/antb.jpeg'),
     MCDEEZ: require('../assets/mcdonalds/mcd_logo.png'),
     MARKER: require('../assets/images/marker.png'),
     LOCATION: require('../assets/parralax/mcds.jpeg'),
     OPEN_SIGN: require('../assets/images/open.png'),
+    BEER: require('../assets/images/beer.png'),
+    RESTAURANT: require('../assets/images/restaurant.png'),
+    MARKET: require('../assets/images/market.png'),
+    HEART: require('../assets/images/heart.png'),
+    BEER_NOT: require('../assets/images/beer-not.png'),
+    RESTAURANT_NOT: require('../assets/images/restaurant-not.png'),
+    MARKET_NOT: require('../assets/images/market-not.png'),
+    HEART_NOT: require('../assets/images/heart-not.png'),
 };

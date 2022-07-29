@@ -20,7 +20,6 @@ const ExploreScreen = ({}: Props) => {
     const [sheetOpen, setSheetOpen] = useState(false);
     const { places } = useUserContext();
 
-
     const handleSheetChange = useCallback((index) => {
         if (index === 0) {
             setSheetOpen(false);
@@ -75,7 +74,13 @@ const ExploreScreen = ({}: Props) => {
                 </BottomSheetView>
             </BottomSheet>
             {/* <Animated.View style={{ opacity: fadeAnimation }}> */}
-                <MapButton opacity={fadeAnimation} map={sheetOpen} title={sheetOpen ? "Map" : "List"} style={styles.mapButton} onPress={sheetOpen ? () =>handleSnapPress(0) : () => handleSnapPress(1)} />
+            <MapButton
+                opacity={fadeAnimation}
+                map={sheetOpen}
+                title={sheetOpen ? 'Map' : 'List'}
+                style={styles.mapButton}
+                onPress={sheetOpen ? () => handleSnapPress(0) : () => handleSnapPress(1)}
+            />
             {/* </Animated.View> */}
         </React.Fragment>
     );

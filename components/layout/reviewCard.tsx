@@ -20,7 +20,7 @@ const ReviewCard = ({ author_name, author_url, profile_photo_url, rating, relati
         <View style={[styles.container, { borderRadius: borderRadius.card, backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={styles.header}>
                 <View style={styles.profileImageWrapper}>
-                    <View style={{ flexDirection: 'row' }} >
+                    <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: profile_photo_url }} style={styles.profileImage} />
                         <View>
                             <Text style={styles.name}>{author_name}</Text>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     profileImageWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     profileImage: {
         width: 40,

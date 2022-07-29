@@ -21,6 +21,8 @@ type Context = {
     getUserLocation?: any;
     places?: any;
     getPlaces?: any;
+    place?: any;
+    setPlace?: any;
 };
 
 const UserContext = createContext<Context>({
@@ -43,6 +45,7 @@ export const UserProvider: FC = ({ children }) => {
     const [userType, setUserType]: any = useState('');
     const [errorMsg, setErrorMsg]: any = useState(null);
     let [places, setPlaces]: any = useState([]);
+    const [place, setPlace]: any = useState('');
     const dispatch = useDispatch();
 
     const getUserLocation = async () => {
@@ -74,7 +77,10 @@ export const UserProvider: FC = ({ children }) => {
             const barResponse = await fetch(pub_search(lng, lat));
             const bars = await barResponse.json();
             if (bars.status === 'REQUEST_DENIED') alert('Request denied');
-            else setPlaces(bars.results);
+            else {
+                setPlaces(bars.results)
+                setPlace('Bars');
+            };
         } catch (error) {
             console.error('error 532 -->', error);
         }
@@ -87,7 +93,10 @@ export const UserProvider: FC = ({ children }) => {
             const restaurantResponse = await fetch(restaurant_search(lng, lat));
             const restaurant = await restaurantResponse.json();
             if (restaurant.status === 'REQUEST_DENIED') alert('Request denied');
-            else setPlaces(restaurant.results);
+            else {
+                setPlaces(restaurant.results)
+                setPlace('Restaurants');
+            };
         } catch (error) {
             console.error('error e62 -->', error);
         }
@@ -99,7 +108,22 @@ export const UserProvider: FC = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ userType, setUserType, location, latitude, longitude, setLatitude, setLongitude, setLocation, getUserLocation, places, getPlaces }}>
+        <UserContext.Provider
+            value={{
+                userType,
+                setUserType,
+                location,
+                latitude,
+                longitude,
+                setLatitude,
+                setLongitude,
+                setLocation,
+                getUserLocation,
+                places,
+                getPlaces,
+                place, 
+            }}
+        >
             {children}
         </UserContext.Provider>
     );

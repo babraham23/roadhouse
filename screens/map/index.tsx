@@ -7,6 +7,7 @@ import { useUserContext } from '../../context/user.context';
 import { Images } from '../../style/images';
 import { mcdDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
+import MapMarkers from '../../components/map/mapMarkers';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;
@@ -18,11 +19,11 @@ const GOOGLE_MAPS_APIKEY = API_KEY;
 const Map = () => {
     const navigation: any = useNavigation();
     let mapView: any = useRef();
-    const { longitude, latitude, places } = useUserContext();
+    const { longitude, latitude, places, place } = useUserContext();
     const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
     const [directionActive, setDirectionActive] = useState(false);
-    const [ distance, setDistance ] = useState(0);
-    const [ duration, setDuration ] = useState(0);
+    const [distance, setDistance] = useState(0);
+    const [duration, setDuration] = useState(0);
     const [mapRegion, setmapRegion] = React.useState({
         latitude: 54.96958048441685,
         longitude: -1.6190185635742933,
@@ -31,7 +32,6 @@ const Map = () => {
     });
 
     const onIconPress = (item: any) => {
-        
         let { lat, lng } = item.geometry.location;
         // console.log('lat, lng -->', item);
         // longitude: number, latitude: number
@@ -52,7 +52,8 @@ const Map = () => {
                         key={`coordinate_${i}`}
                         coordinate={{ latitude, longitude }}
                     >
-                        <Image source={Images.MARKER} style={styles.icon} />
+                        
+                        <MapMarkers place={place} />
                     </Marker>
                 );
             })}

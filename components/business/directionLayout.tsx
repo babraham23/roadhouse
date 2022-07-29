@@ -3,13 +3,11 @@ import React from 'react';
 import WalkingSvg from '../../assets/svgs/walkingSvg';
 import VehicleSvg from '../../assets/svgs/vehicleSvg';
 
-
 const DirectionLayout = () => {
     return (
         <View style={styles.container}>
             <View style={styles.left}>
                 <WalkingSvg />
-                
             </View>
         </View>
     );

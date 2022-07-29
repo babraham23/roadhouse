@@ -21,13 +21,7 @@ export const MapButton = ({ onPress, title, clear, style, map }: any) => {
         <TouchableOpacity activeOpacity={0.8} style={[style]} onPress={onPress}>
             <LinearGradient colors={[`${colors.primary}70`, colors.primary]} style={styles.mapWrapper}>
                 <Text style={[styles.text, { color: colors.card }]}>{title}</Text>
-                <View style={{ marginLeft: 10 }}>
-                    {map ?
-                        <FontAwesome name="map-o" size={14} color={colors.card} />
-                        :
-                        <Feather name="list" size={14} color={colors.card} />
-                    }
-                </View>
+                <View style={{ marginLeft: 10 }}>{map ? <FontAwesome name="map-o" size={14} color={colors.card} /> : <Feather name="list" size={14} color={colors.card} />}</View>
             </LinearGradient>
         </TouchableOpacity>
     );

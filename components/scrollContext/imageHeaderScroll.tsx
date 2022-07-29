@@ -55,13 +55,13 @@ const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }:
                 <View style={style}>{children}</View>
             </Animated.ScrollView>
             <Animated.View style={[styles.header, { backgroundColor: colors.backgroundColor, transform: [{ translateY: headerTranslateY }] }]}>
-                <ScrollView 
-                    bounces={false} 
-                    decelerationRate={'fast'} 
-                    horizontal 
-                    style={{ flex: 1 }} 
+                <ScrollView
+                    bounces={false}
+                    decelerationRate={'fast'}
+                    horizontal
+                    style={{ flex: 1 }}
                     snapToInterval={width}
-                    showsHorizontalScrollIndicator={false}  
+                    showsHorizontalScrollIndicator={false}
                     // onScroll={(e) => {console.log(e.)}}
                     scrollEventThrottle={16}
                 >

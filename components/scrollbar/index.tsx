@@ -1,42 +1,51 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useUserContext } from '../../context/user.context';
+import MapMarkers from '../map/mapMarkers';
+import { Images } from '../../style/images';
+import Icons from './icons';
 
 const data: any = [
     {
         Id: 1,
         title: 'Restaurants',
         icon: 'food-outline',
+        image: Images.RESTAURANT,
     },
     {
         Id: 2,
         title: 'Bars',
         icon: 'beer-outline',
+        image: Images.BEER,
     },
     {
         Id: 3,
         title: 'Market',
         icon: 'emoticon-happy-outline',
+        image: Images.MARKET,
     },
     {
         Id: 4,
         title: 'Liked',
         icon: 'heart',
+        image: Images.HEART,
     },
     {
         Id: 5,
         title: 'Recommended',
         icon: 'emoticon-happy-outline',
+        image: Images.LOGO_ROUND,
     },
     {
         Id: 7,
         title: 'Cafes',
         icon: 'emoticon-happy-outline',
+        image: Images.LOGO_ROUND,
     },
 ];
 
@@ -47,7 +56,7 @@ const ScrollBar = () => {
     let [selectedMenuItem, setSelectedMenuItem]: any = React.useState(data[0]);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
-    const { getPlaces } = useUserContext();
+    const { getPlaces, place } = useUserContext();
 
     const handleChange = (item: any, key: any) => {
         setSelectedMenuItem(item);
@@ -96,8 +105,7 @@ const ScrollBar = () => {
                                 posArr[key] = layout.x;
                             }}
                         >
-                            <MaterialCommunityIcons name={item.icon} size={16} color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text} />
-                            {/* {/item.icon} */}
+                            <Icons title={item.title} active={place === item.title ? true : false} />
                             <Text
                                 bold={selectedMenuItem.Id == item.Id ? true : false}
                                 fontSize={14}

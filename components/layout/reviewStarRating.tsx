@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
-const Star = ({active}: any) => {
+const Star = ({ active }: any) => {
     return (
         <View style={styles.starWrapper}>
             <FontAwesome name={active ? 'star' : 'star-o'} size={18} color="gold" />
@@ -10,7 +10,7 @@ const Star = ({active}: any) => {
     );
 };
 
-const ReviewStarRating = ({rating}: any) => {
+const ReviewStarRating = ({ rating }: any) => {
     return (
         <View style={styles.container}>
             <Star active={rating >= 1} />
