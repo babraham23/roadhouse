@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { View, TouchableWithoutFeedback, StyleSheet, Animated, Platform, TouchableOpacity, Text } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
+import { exploreScrolldata } from '../../screens/explore/exploreScrolldata';
 import MenuHeader from '../headers/menuHeader';
 import MenuScroll from '../menu/menuScroll';
+import MenuScroll2 from '../menu/menuScroll2';
+import ScrollBar from '../scrollbar';
 
 const TabHeaderAccordion = ({ style, tabsVisible, icon, x, onPress }: any) => {
     const [open, setOpen] = useState(false);
@@ -40,7 +43,8 @@ const TabHeaderAccordion = ({ style, tabsVisible, icon, x, onPress }: any) => {
                     style={[styles.bodyContainer, { backgroundColor: colors.background, borderBottomColor: colors.border }]}
                     onLayout={(event) => setBodySectionHeight(event.nativeEvent.layout.height)}
                 >
-                    <MenuScroll />
+                    <MenuScroll2 />
+                    {/* <ScrollBar data={exploreScrolldata} /> */}
                 </View>
             </Animated.View>
         </View>
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     bodyContainer: {
-        height: 50,
+        height: 60,
         borderBottomWidth: 1,
         justifyContent: 'center',
     },

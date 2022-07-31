@@ -4,10 +4,8 @@ import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY } from '../../api/endpoints';
 import { useUserContext } from '../../context/user.context';
-import { Images } from '../../style/images';
-import { mcdDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
-import MapMarkers from '../../components/map/mapMarkers';
+import MapMarkers from './mapMarkers';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;

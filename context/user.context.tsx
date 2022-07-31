@@ -78,9 +78,9 @@ export const UserProvider: FC = ({ children }) => {
             const bars = await barResponse.json();
             if (bars.status === 'REQUEST_DENIED') alert('Request denied');
             else {
-                setPlaces(bars.results)
+                setPlaces(bars.results);
                 setPlace('Bars');
-            };
+            }
         } catch (error) {
             console.error('error 532 -->', error);
         }
@@ -94,9 +94,9 @@ export const UserProvider: FC = ({ children }) => {
             const restaurant = await restaurantResponse.json();
             if (restaurant.status === 'REQUEST_DENIED') alert('Request denied');
             else {
-                setPlaces(restaurant.results)
+                setPlaces(restaurant.results);
                 setPlace('Restaurants');
-            };
+            }
         } catch (error) {
             console.error('error e62 -->', error);
         }
@@ -121,7 +121,7 @@ export const UserProvider: FC = ({ children }) => {
                 getUserLocation,
                 places,
                 getPlaces,
-                place, 
+                place,
             }}
         >
             {children}

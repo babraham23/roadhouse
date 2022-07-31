@@ -7,8 +7,8 @@
         "terminal.background": "#222222",
         "terminal.foreground": "#fff",
         // "contrastBorder": "#ff225c",
-        "statusBar.background": "#333333",
-        "statusBar.foreground": "#ff225c"
+        "statusBar.background": "#ff225c",
+        "statusBar.foreground": "#333333"
     },
     "editor.fontFamily": "Input Mono, Monaco, 'Courier New', monospace",
     "editor.fontWeight": "400",

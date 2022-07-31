@@ -1,5 +1,14 @@
+import { Images } from "../style/images";
+
 export const generateID = () => {
     var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
     let id = randLetter + Date.now();
     return id;
 };
+
+export const MenuScrollIconConverter = (title: string) => {
+	if (title === 'Hamburgers') return Images.HAMBURGER
+	else if (title === 'Fries') return Images.FRIES
+	else if (title === 'Coffee') return Images.COFFEE
+	else if (title === 'Chicken') return Images.CHICKEN
+}

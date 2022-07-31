@@ -6,7 +6,7 @@ import { Text } from '../../style/typography';
 import ReviewStarRating from '../layout/reviewStarRating';
 import StarRating from '../starRating/starRating';
 
-const DisplayCard = ({ style, onPress, title, location, logo = Images.MCDEEZ, rating }: any) => {
+const ImageCard = ({ style, onPress, title, location, logo = Images.MCDEEZ, rating }: any) => {
     const { colors, dark, borderRadius }: any = useTheme();
     return (
         <View style={[styles.container]}>
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DisplayCard;
+export default ImageCard;

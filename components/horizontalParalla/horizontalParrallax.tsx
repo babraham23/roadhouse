@@ -23,16 +23,13 @@ const HorizontalParallax = ({ title, items }: any) => {
             dispatch({ type: SET_MENU_ITEM, payload: products[0] });
             dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
             navigation.navigate('MenuScreen');
-        } 
-        // else if (id === 'subway') {
-        //     let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id };
-        //     dispatch({ type: SET_MENU, payload: subwayProducts });
-        //     dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
-        //     navigation.navigate('MenuScreen');
-        // }
+        } else if (id === 'subway') {
+            let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id };
+            dispatch({ type: SET_MENU, payload: subwayProducts });
+            dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
+            navigation.navigate('MenuScreen');
+        }
     };
-
-    console.log('items -->', items[0].photos[0].photo_reference);
 
     return (
         <>
@@ -41,7 +38,6 @@ const HorizontalParallax = ({ title, items }: any) => {
             </Text>
             <View style={styles.container}>
                 {items.map((image: any, index: any) => {
-                    let googleImage = image.photos[0].photo_reference;
                     const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
                     const opacity = scrollX.interpolate({
                         inputRange,
@@ -50,7 +46,7 @@ const HorizontalParallax = ({ title, items }: any) => {
                     return (
                         <Animated.Image
                             key={`image-bg-${index}`}
-                            // source={{ uri: googleImage }}
+                            // source={{ uri: image }}
                             source={image.image}
                             style={[
                                 StyleSheet.absoluteFillObject,

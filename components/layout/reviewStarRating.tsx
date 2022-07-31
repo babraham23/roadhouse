@@ -10,9 +10,9 @@ const Star = ({ active }: any) => {
     );
 };
 
-const ReviewStarRating = ({ rating }: any) => {
+const ReviewStarRating = ({ rating, style }: any) => {
     return (
-        <View style={styles.container}>
+        <View style={[style, styles.container]}>
             <Star active={rating >= 1} />
             <Star active={rating >= 2} />
             <Star active={rating >= 3} />

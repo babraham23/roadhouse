@@ -2,13 +2,15 @@ import { StyleSheet, View, Animated } from 'react-native';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { MapButton } from '../../components/buttons/roundButtons';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import MapScreen from '../map';
 import MapHeader from '../../components/headers/mapHeader';
 import Content from '../../components/explore/content';
 import { useTheme } from '../../hooks/useTheme';
 import ScrollBar from '../../components/scrollbar';
 import { getMyLocation } from '../../functions/locationFunction';
 import { useUserContext } from '../../context/user.context';
+import Map from '../../components/map/map';
+import GoogleSearch from '../../components/inputs/googleSearch';
+import { exploreScrolldata } from './exploreScrolldata';
 
 type Props = {};
 
@@ -51,11 +53,12 @@ const ExploreScreen = ({}: Props) => {
     };
 
     return (
-        <React.Fragment>
+        <View style={{ flex: 1 }} >
             <MapHeader />
-            <ScrollBar />
+            {/* <GoogleSearch /> */}
+            <ScrollBar data={exploreScrolldata} />
             <View style={styles.container}>
-                <MapScreen />
+                <Map />
             </View>
             <View style={styles.mapButton}>
                 <MapButton title="Map" onPress={() => handleSnapPress(2)} />
@@ -73,7 +76,6 @@ const ExploreScreen = ({}: Props) => {
                     </Animated.View>
                 </BottomSheetView>
             </BottomSheet>
-            {/* <Animated.View style={{ opacity: fadeAnimation }}> */}
             <MapButton
                 opacity={fadeAnimation}
                 map={sheetOpen}
@@ -81,8 +83,7 @@ const ExploreScreen = ({}: Props) => {
                 style={styles.mapButton}
                 onPress={sheetOpen ? () => handleSnapPress(0) : () => handleSnapPress(1)}
             />
-            {/* </Animated.View> */}
-        </React.Fragment>
+        </View>
     );
 };
 

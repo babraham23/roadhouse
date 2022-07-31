@@ -4,37 +4,34 @@ import { useTheme } from '../../hooks/useTheme';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useUserContext } from '../../context/user.context';
-import MapMarkers from '../map/mapMarkers';
 import { Images } from '../../style/images';
-import Icons from './icons';
+import { MenuScrollIconConverter } from '../../functions/helpers';
 
-
-const ScrollBar = ({ data }: any) => {
+const MenuScroll2 = () => {
     const { colors, borderRadius }: any = useTheme();
     const dispatch = useDispatch();
     const scrollview_ref: any = React.useRef({});
-    let [selectedMenuItem, setSelectedMenuItem]: any = React.useState(data[0]);
+    let products: any = useSelector((state: any) => state.menuReducer.menu);
+    let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
-    const { getPlaces, place } = useUserContext();
 
     const handleChange = (item: any, key: any) => {
-        setSelectedMenuItem(item);
+        dispatch({ type: SET_MENU_ITEM, payload: item }); // this works
         setState({ dynamicIndex: key }), () => doScroll(null);
-        let place = item.title;
-        getPlaces(place);
     };
 
     const autoScroll = () => {
-        const selectedItem = data.find((item: any) => item.Id === selectedMenuItem.Id);
+        const selectedItem = products
+            // .map((item: any, index: any) => (console.log('item -->', item), { Id: item.Id, index: index }))
+            .find((item: any) => item.Id === selectedMenuItem.Id);
+        // setTimeout(() => doScroll(selectedItem.index), 150)
         doScroll(selectedItem.index);
     };
 
     const doScroll = (index: any) => {
         scrollview_ref.current?.scrollTo({
-            x: posArr[index || dynamicIndex] - 50,
+            x: posArr[index || dynamicIndex],
             animated: true,
         });
     };
@@ -49,9 +46,9 @@ const ScrollBar = ({ data }: any) => {
                 ref={scrollview_ref}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                style={[styles.scroll, { backgroundColor: colors.card, borderBottomColor: colors.separator }]}
+                style={[styles.scroll, { backgroundColor: colors.background, borderBottomColor: colors.separator }]}
             >
-                {data.map((item: any, key: any) => {
+                {products.map((item: any, key: any) => {
                     return (
                         <TouchableOpacity
                             key={key}
@@ -60,20 +57,18 @@ const ScrollBar = ({ data }: any) => {
                             // onPress={onPressTouch}
                             style={[
                                 selectedMenuItem.Id == item.Id ? styles.selectedButtonWrapper : styles.buttonWrapper,
-                                { borderRadius: borderRadius.button, borderBottomColor: selectedMenuItem.Id == item.Id ? colors.text : colors.dark_grey },
                             ]}
                             onLayout={(event: any) => {
                                 const layout = event.nativeEvent.layout;
                                 posArr[key] = layout.x;
                             }}
                         >
-                                <Icons title={item.title} active={place === item.title ? true : false} />
+                            <View style={styles.iconWrapper}>
+                                <Image source={MenuScrollIconConverter(item.title)} style={styles.icon} />
+                            </View>
                             <Text
-                                // bold={selectedMenuItem.Id == item.Id ? true : false}
-                                bold
-                                fontSize={14}
                                 color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text}
-                                style={[{ color: selectedMenuItem.Id == item.Id ? colors.primary : colors.background }]}
+                                bold
                             >
                                 {item.title}
                             </Text>
@@ -89,30 +84,47 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
-        zIndex: 99,
-        height: 50,
+        // borderBottomWidth: 0.5,
     },
     scroll: {
-        // width: '100%',
+        width: '100%',
+        // marginTop: 3,
         paddingLeft: 10,
     },
     buttonWrapper: {
-        // borderBottomWidth: 1,
-        justifyContent: 'center',
-        marginLeft: 5,
-        marginRight: 10,
-        paddingHorizontal: 5,
         alignItems: 'center',
-        marginHorizontal: 5,
+        justifyContent: 'center',
+        minWidth: 50,
+        // marginLeft: 5,
+        paddingHorizontal: 15,
+        marginVertical: 10,
+        alignContent: 'center',
     },
     selectedButtonWrapper: {
-        justifyContent: 'center',
-        marginLeft: 5,
-        marginRight: 10,
-        paddingHorizontal: 5,
         alignItems: 'center',
-        // borderBottomWidth: 1,
-        marginBottom: 5,
+        justifyContent: 'center',
+        minWidth: 50,
+        // marginLeft: 5,
+        paddingHorizontal: 15,
+        marginVertical: 10,
+        alignContent: 'center',
+        shadowOffset: {
+            width: 1,
+            height: 2,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.0,
+        elevation: 24,
     },
+    iconWrapper: { 
+        width: 18, 
+        height: 18, 
+        marginBottom: 3
+    },
+    icon: {
+        width: 20,
+        height: 20,
+        resizeMode: 'contain',
+    }
 });
-export default ScrollBar;
+export default MenuScroll2;

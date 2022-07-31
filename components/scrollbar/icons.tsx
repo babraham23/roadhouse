@@ -3,7 +3,7 @@ import React from 'react';
 import { Images } from '../../style/images';
 
 const Icons = ({ title }: any) => {
-    let active = true
+    let active = true;
     return (
         <View>
             {title == 'Bars' ? <Image source={active ? Images.BEER : Images.BEER_NOT} style={styles.icon} /> : null}
@@ -18,8 +18,8 @@ export default Icons;
 
 const styles = StyleSheet.create({
     icon: {
-        width: 18,
-        height: 18,
+        width: 20,
+        height: 20,
         resizeMode: 'contain',
     },
 });

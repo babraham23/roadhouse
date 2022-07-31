@@ -21,7 +21,6 @@ const ExploreScreen = ({ navigation }: Props) => {
     const [data, setData]: any = useState([]);
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    console.log('naviagiotn -->', typeof navigation);
     const getRestaurants = async () => {
         try {
             // const response = await fetch(url);

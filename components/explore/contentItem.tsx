@@ -34,7 +34,7 @@ const ContentItem = () => {
     const navigation: any = useNavigation();
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Google API</Text>
+            <Text style={styles.header} bold >Heading</Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                 {places.map((item: any, index: number) => {
                     return (
@@ -62,5 +62,6 @@ const styles = StyleSheet.create({
     },
     header: {
         paddingHorizontal: 20,
+        paddingTop: 10
     },
 });

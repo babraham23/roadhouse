@@ -1,33 +1,52 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { API_KEY } from '../../api/endpoints';
+import * as React from 'react';
+import { View, StyleSheet, TextInput, ScrollView, Dimensions, Image } from 'react-native';
+import Constants from 'expo-constants';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { API_KEY, getPlacesPhotos } from '../../api/endpoints';
+import GoogleSearch from '../../components/inputs/googleSearch';
+import { useUserContext } from '../../context/user.context';
 
-let photo_reference =
-    'AeJbb3eb_ZErxkLGaSMG0gaAnFU6dffCrBrl4GT_rAtpIZYvKu3d-dBt-NmcmBIHMnNQrJpgfZvkSD4eiaM3JW3AczALMyxklvW5MTTwwY1LSdnB9PmxiNePiS8vVtTzTqPRkduxHZxmyn0UhcSgc8I8PbqUk0Ot9AGRxPpSxZpoETsaVFoP';
-let maxheight = 2340;
-let maxwidth = 4160;
-const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxwidth}&maxheight=${maxheight}&photo_reference=${photo_reference}&key=${API_KEY}`;
+const GOOGLE_PLACES_API_KEY = API_KEY; // never save your real api key in a snack!
+
+// town_square
+const { width } = Dimensions.get('window');
 
 const TestScreen = () => {
+    const { places } = useUserContext()
+    // console.log(places)
+
+    function getKeyByValue(object: any, value: any) {
+        return Object.keys(object).find(key => object[key] === value);
+      }
+      
+      
+      const map = {"cunt" : "1", "fuck" : "2"};
+      console.log(getKeyByValue(map,"2"));
+
     return (
-        <View style={styles.container}>
-            <Image source={{ uri: imageUrl }} style={styles.image} />
-        </View>
+        <ScrollView horizontal bounces={false} style={styles.container}>
+            {/* <Image style={styles.image} source={{ uri: getPlacesPhotos('AeJbb3dFUp5tRuQUV5di8bAfFCFxT0k4NYTUh1BO85OrI5rvjQFfWBg1JLJeQxW5rBihQ5WtYPLY07qjJELGiPevPHQXHDVX38kvKcyxZNRIH2RzpneIK8_ilSwesJx4TWIaVDB2jDbjiP6SInfvfA-aZzMcxDlB_WqzYVGPuMWn8woSqkbs') }} />
+            <Image style={styles.image} source={{ uri: getPlacesPhotos('AeJbb3ehga8WUWYhLzl6i1pqYrrSw0LxTKbXWwpvDnkCZ8sNjrG193r_RVtoY1EqBf2UELgaz-ZBVjSSzgEkITN5GmLCKOGNP7gnviWGRk8p20D_fr9Myt-I7nsfrdmEMEuKp1S63db2UwP-gQx_3sv9dyieAWZFxKhNWAV4n6sqhOaK-FDc') }} /> */}
+            {places.map((place: any, index: number) => {
+                // console.log('place', place.photos)
+                return (
+                    <Image key={index} style={styles.image} source={{ uri: getPlacesPhotos(place.photo_reference) }} />
+                );
+            })}
+        </ScrollView>
     );
 };
 
-export default TestScreen;
-
-let { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        // justifyContent: 'center',
-        alignItems: 'center',
+        // flex: 1,
+        // padding: 10,
+        // paddingTop: Constants.statusBarHeight + 10,
     },
-    image: {
-        width,
-        height: 500,
-        resizeMode: 'center',
-    },
+    image: { 
+        width, 
+        height: 200, 
+    }
 });
+
+export default TestScreen;
