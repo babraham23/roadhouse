@@ -15,14 +15,14 @@ const MenuHeader = () => {
         <View style={[styles.container, { backgroundColor: colors.background, borderBottomColor: colors.seperator }]}>
             <BackButton style={styles.backbutton} />
             <TouchableOpacity style={styles.locationWrapper}>
-            {/* <Image source={Images.MARKER} style={styles.marker} /> */}
-                <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }} >
+                {/* <Image source={Images.MARKER} style={styles.marker} /> */}
+                <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
                     {restaurantDetails.address1}
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.collectWrapper]}>
-            {/* <Image source={Images.TABLE} style={styles.table} /> */}
-                <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }} >
+                {/* <Image source={Images.TABLE} style={styles.table} /> */}
+                <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
                     Table 23
                 </Text>
             </TouchableOpacity>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 44,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
         // width: '80%'
     },
     collectWrapper: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     logoWrapper: {
         position: 'absolute',

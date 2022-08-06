@@ -3,6 +3,7 @@ import * as Location from 'expo-location';
 import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
 import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
+import { marketDD } from '../screens/explore/dd';
 
 type User = {
     userType?: string;
@@ -54,19 +55,22 @@ export const UserProvider: FC = ({ children }) => {
             setErrorMsg('Permission to access location was denied');
             return;
         }
-        dispatch({ type: SET_LOADING, payload: true });
+        // dispatch({ type: SET_LOADING, payload: true });
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
         setLatitude(location.coords.latitude);
         setLongitude(location.coords.longitude);
-        dispatch({ type: SET_LOADING, payload: false });
+        // dispatch({ type: SET_LOADING, payload: false });
     };
 
     const getPlaces = async (type: any) => {
+        console.log(type)
         if (type === 'Bars') {
             getBars();
         } else if (type === 'Restaurants') {
             getRestaurants();
+        } else if (type === 'Markets') {
+            getMarket();
         } else setPlaces([]);
     };
 
@@ -100,6 +104,11 @@ export const UserProvider: FC = ({ children }) => {
         } catch (error) {
             console.error('error e62 -->', error);
         }
+    };
+
+    const getMarket = () => {
+        setPlace('Markets');
+        setPlaces(marketDD);
     };
 
     useEffect(() => {

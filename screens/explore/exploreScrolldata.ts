@@ -1,4 +1,4 @@
-import { Images } from "../../style/images";
+import { Images } from '../../style/images';
 
 export const exploreScrolldata: any = [
     {
@@ -15,7 +15,7 @@ export const exploreScrolldata: any = [
     },
     {
         Id: 3,
-        title: 'Market',
+        title: 'Markets',
         icon: 'emoticon-happy-outline',
         image: Images.MARKET,
     },

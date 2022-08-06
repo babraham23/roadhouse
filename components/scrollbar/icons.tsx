@@ -8,7 +8,7 @@ const Icons = ({ title }: any) => {
         <View>
             {title == 'Bars' ? <Image source={active ? Images.BEER : Images.BEER_NOT} style={styles.icon} /> : null}
             {title == 'Restaurants' ? <Image source={active ? Images.RESTAURANT : Images.RESTAURANT_NOT} style={styles.icon} /> : null}
-            {title == 'Market' ? <Image source={active ? Images.MARKET : Images.MARKET_NOT} style={styles.icon} /> : null}
+            {title == 'Markets' ? <Image source={active ? Images.MARKET : Images.MARKET_NOT} style={styles.icon} /> : null}
             {title == 'Liked' ? <Image source={active ? Images.HEART : Images.HEART_NOT} style={styles.icon} /> : null}
         </View>
     );

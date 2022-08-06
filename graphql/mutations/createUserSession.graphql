@@ -1,9 +1,0 @@
-mutation CreateUserSession($refreshToken: String!, $issuedAt: Float!, $idToken: String!, $expiresIn: Float!, $accessToken: String!) {
-    createUserSession(refreshToken: $refreshToken, issuedAt: $issuedAt, idToken: $idToken, expiresIn: $expiresIn, accessToken: $accessToken) {
-        accessToken
-        expiresIn
-        idToken
-        issuedAt
-        refreshToken
-    }
-}

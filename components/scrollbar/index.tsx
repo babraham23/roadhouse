@@ -10,7 +10,6 @@ import MapMarkers from '../map/mapMarkers';
 import { Images } from '../../style/images';
 import Icons from './icons';
 
-
 const ScrollBar = ({ data }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const dispatch = useDispatch();
@@ -21,9 +20,11 @@ const ScrollBar = ({ data }: any) => {
     const { getPlaces, place } = useUserContext();
 
     const handleChange = (item: any, key: any) => {
+
         setSelectedMenuItem(item);
         setState({ dynamicIndex: key }), () => doScroll(null);
         let place = item.title;
+        console.log('setting plave -->', place);
         getPlaces(place);
     };
 
@@ -67,7 +68,7 @@ const ScrollBar = ({ data }: any) => {
                                 posArr[key] = layout.x;
                             }}
                         >
-                                <Icons title={item.title} active={place === item.title ? true : false} />
+                            <Icons title={item.title} active={place === item.title ? true : false} />
                             <Text
                                 // bold={selectedMenuItem.Id == item.Id ? true : false}
                                 bold

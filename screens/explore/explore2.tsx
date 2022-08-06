@@ -22,6 +22,8 @@ const ExploreScreen = ({}: Props) => {
     const [sheetOpen, setSheetOpen] = useState(false);
     const { places } = useUserContext();
 
+    // console.log(places);
+
     const handleSheetChange = useCallback((index) => {
         if (index === 0) {
             setSheetOpen(false);
@@ -53,7 +55,7 @@ const ExploreScreen = ({}: Props) => {
     };
 
     return (
-        <View style={{ flex: 1 }} >
+        <View style={{ flex: 1 }}>
             <MapHeader />
             {/* <GoogleSearch /> */}
             <ScrollBar data={exploreScrolldata} />
@@ -64,7 +66,7 @@ const ExploreScreen = ({}: Props) => {
                 <MapButton title="Map" onPress={() => handleSnapPress(2)} />
             </View>
             <BottomSheet
-                handleStyle={[styles.handleStyle, { backgroundColor: colors.card }]}
+                handleStyle={[styles.handleStyle, { backgroundColor: colors.card, borderBottomColor: colors.border }]}
                 handleIndicatorStyle={{ backgroundColor: colors.text }}
                 ref={sheetRef}
                 snapPoints={snapPoints}
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 7,
         height: 36,
         justifyContent: 'center',
+        borderBottomWidth: 1,
     },
 });
 

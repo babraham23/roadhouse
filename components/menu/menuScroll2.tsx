@@ -55,9 +55,7 @@ const MenuScroll2 = () => {
                             activeOpacity={0.7}
                             onPress={() => handleChange(item, key)}
                             // onPress={onPressTouch}
-                            style={[
-                                selectedMenuItem.Id == item.Id ? styles.selectedButtonWrapper : styles.buttonWrapper,
-                            ]}
+                            style={[selectedMenuItem.Id == item.Id ? styles.selectedButtonWrapper : styles.buttonWrapper]}
                             onLayout={(event: any) => {
                                 const layout = event.nativeEvent.layout;
                                 posArr[key] = layout.x;
@@ -66,10 +64,7 @@ const MenuScroll2 = () => {
                             <View style={styles.iconWrapper}>
                                 <Image source={MenuScrollIconConverter(item.title)} style={styles.icon} />
                             </View>
-                            <Text
-                                color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text}
-                                bold
-                            >
+                            <Text color={selectedMenuItem.Id == item.Id ? colors.primary : colors.text} bold>
                                 {item.title}
                             </Text>
                         </TouchableOpacity>
@@ -116,15 +111,15 @@ const styles = StyleSheet.create({
         shadowRadius: 16.0,
         elevation: 24,
     },
-    iconWrapper: { 
-        width: 18, 
-        height: 18, 
-        marginBottom: 3
+    iconWrapper: {
+        width: 18,
+        height: 18,
+        marginBottom: 3,
     },
     icon: {
         width: 20,
         height: 20,
         resizeMode: 'contain',
-    }
+    },
 });
 export default MenuScroll2;

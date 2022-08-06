@@ -8,31 +8,29 @@ import { SET_MENU } from '../../state/reducers/menuReducer';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { useDispatch } from 'react-redux';
 import { products, restaurantDetails } from '../../_models/mcdonalds.model';
-import { subwayProducts } from '../../_models/subway.model';
 import { SET_RESTAURANT } from '../../state/reducers/restaurantReducer';
+import { useUserContext } from '../../context/user.context';
+import { getPlacesPhotos } from '../../api/endpoints';
+import { useTheme } from '../../hooks/useTheme';
 
-const HorizontalParallax = ({ title, items }: any) => {
+
+const HorizontalParallax = () => {
     const { width } = useWindowDimensions();
     const navigation: any = useNavigation();
     const dispatch = useDispatch();
     const scrollX = useRef(new Animated.Value(0)).current;
+    const { places } = useUserContext();
+    const { colors } = useTheme();
 
-    const handleNav = (id: any) => {
-        if (id === 'mcdonalds') {
-            dispatch({ type: SET_MENU, payload: products });
-            dispatch({ type: SET_MENU_ITEM, payload: products[0] });
-            dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
-            navigation.navigate('MenuScreen');
-        } 
-        // else if (id === 'subway') {
-        //     let selectedItem = { title: subwayProducts[0].title, Id: subwayProducts[0].Id };
-        //     dispatch({ type: SET_MENU, payload: subwayProducts });
-        //     dispatch({ type: SET_MENU_ITEM, payload: selectedItem });
-        //     navigation.navigate('MenuScreen');
-        // }
+    const handleNav = (item: any) => {
+            // dispatch({ type: SET_MENU, payload: products });
+            // dispatch({ type: SET_MENU_ITEM, payload: products[0] });
+            // dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
+            // navigation.navigate('MenuScreen');
+        navigation.navigate('BusinessScreen', { item })
     };
 
-    console.log('items -->', items[0].photos[0].photo_reference);
+    // console.log('items -->', places[0].photos[0].photo_reference);
 
     return (
         <>
@@ -40,18 +38,21 @@ const HorizontalParallax = ({ title, items }: any) => {
                 Heading
             </Text>
             <View style={styles.container}>
-                {items.map((image: any, index: any) => {
-                    let googleImage = image.photos[0].photo_reference;
+                {/* {places.map((image: any, index: any) => {
+                    // console.log('1st -->', image.photos[0])
+                    let googleImage =  image.photos !== undefined ? image.photos[0].photo_reference : '';
                     const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
                     const opacity = scrollX.interpolate({
                         inputRange,
                         outputRange: [0, 1, 0],
                     });
+                    // console.log('1st -->', googleImage);
                     return (
                         <Animated.Image
-                            key={`image-bg-${index}`}
-                            // source={{ uri: googleImage }}
-                            source={image.image}
+                            // key={`image-bg-${index}`}
+                            key={index}
+                            source={{ uri: getPlacesPhotos(googleImage) }}
+                            // source={image.image}
                             style={[
                                 StyleSheet.absoluteFillObject,
                                 styles.bigCard,
@@ -62,7 +63,7 @@ const HorizontalParallax = ({ title, items }: any) => {
                             blurRadius={2}
                         />
                     );
-                })}
+                })} */}
 
                 <Animated.FlatList
                     onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
@@ -71,9 +72,11 @@ const HorizontalParallax = ({ title, items }: any) => {
                     decelerationRate="fast"
                     pagingEnabled
                     snapToInterval={width}
-                    data={items}
+                    data={places}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => {
+                        // console.log('2nd -->', item.photos[0])
+                        let googleImage = item.photos !== undefined ? item.photos[0].photo_reference : '';
                         const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
                         const scale = scrollX.interpolate({
                             inputRange,
@@ -88,8 +91,8 @@ const HorizontalParallax = ({ title, items }: any) => {
                             outputRange: [-width * 0.4, 0, width * 0.4],
                         });
                         return (
-                            <TouchableOpacity onPress={() => handleNav(item.id)} activeOpacity={0.9} style={styles.cardContainer}>
-                                <Animated.View style={[styles.cardInner, { transform: [{ scale }] }]}>
+                            <TouchableOpacity onPress={() => handleNav(item)} activeOpacity={0.9} style={styles.cardContainer}>
+                                <Animated.View style={[styles.cardInner, { transform: [{ scale }], borderColor: colors.seperator }]}>
                                     <Animated.Image
                                         style={[
                                             styles.cardImage,
@@ -98,11 +101,12 @@ const HorizontalParallax = ({ title, items }: any) => {
                                             },
                                             { position: 'absolute' },
                                         ]}
-                                        source={item.image}
+                                        // source={item.image}
+                                        source={{ uri: getPlacesPhotos(googleImage) }}
                                     />
                                     <View style={styles.nameWrapper}>
                                         <Text color={'white'} bold fontSize={23} style={styles.title}>
-                                            name
+                                            {item.name}
                                         </Text>
                                     </View>
                                     <View style={[styles.descriptionWrapper]}>
@@ -135,7 +139,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         // height,
-        marginVertical: 20,
+        // marginVertical: 20,
         width,
         justifyContent: 'center',
         alignItems: 'center',
@@ -153,8 +157,7 @@ const styles = StyleSheet.create({
         // justifyContent: 'flex-end',
         overflow: 'hidden',
         borderRadius: 10,
-        borderWidth: 2,
-        borderColor: 'white',
+        borderWidth: 1,
         shadowColor: '#000',
         shadowOpacity: 1,
         shadowOffset: {
@@ -163,7 +166,9 @@ const styles = StyleSheet.create({
         },
     },
     cardImage: {
-        // resizeMode: 'contain',
+        width: '100%',
+        height: CARD_HEIGHT,
+        resizeMode: 'cover',
     },
     descriptionWrapper: {
         position: 'absolute',

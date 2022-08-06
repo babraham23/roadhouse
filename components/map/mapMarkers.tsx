@@ -5,12 +5,12 @@ import { Images } from '../../style/images';
 
 const MapMarkers = ({ place }: any) => {
     // const { place } = useUserContext();
-    // console.log('place -->', place);
+    console.log('place -->', place);
     return (
         <View>
             {place == 'Bars' ? <Image source={Images.BEER} style={styles.icon} /> : null}
             {place == 'Restaurants' ? <Image source={Images.RESTAURANT} style={styles.icon} /> : null}
-            {place == 'Market' ? <Image source={Images.MARKET} style={styles.icon} /> : null}
+            {place == 'Markets' ? <Image source={Images.MARKET} style={styles.icon} /> : null}
             {place == 'Liked' ? <Image source={Images.HEART} style={styles.icon} /> : null}
         </View>
     );

@@ -1,52 +1,47 @@
-import * as React from 'react';
-import { View, StyleSheet, TextInput, ScrollView, Dimensions, Image } from 'react-native';
-import Constants from 'expo-constants';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { API_KEY, getPlacesPhotos } from '../../api/endpoints';
-import GoogleSearch from '../../components/inputs/googleSearch';
-import { useUserContext } from '../../context/user.context';
-
-const GOOGLE_PLACES_API_KEY = API_KEY; // never save your real api key in a snack!
-
-// town_square
-const { width } = Dimensions.get('window');
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { useCreateUserMutation, useGetUsersQuery } from '../../graphql/generated/output';
 
 const TestScreen = () => {
-    const { places } = useUserContext()
-    // console.log(places)
+    const [createUser] = useCreateUserMutation();
+    const users = useGetUsersQuery()
 
-    function getKeyByValue(object: any, value: any) {
-        return Object.keys(object).find(key => object[key] === value);
-      }
-      
-      
-      const map = {"cunt" : "1", "fuck" : "2"};
-      console.log(getKeyByValue(map,"2"));
+    const createUserHandler = async () => {
+        // const user = await createUser({
+        //     variables: {
+        //         email: 'brettabraham23@gmail.com',
+        //         firstName: 'Brett',
+        //         lastName: '',
+        //     },
+        // });
+        // if (user.data?.createUser) console.log(user)
+        // else console.log('failure')
+
+        // const users = await allUsers()
+    };
+
+    console.log(users.data?.allUsers)
 
     return (
-        <ScrollView horizontal bounces={false} style={styles.container}>
-            {/* <Image style={styles.image} source={{ uri: getPlacesPhotos('AeJbb3dFUp5tRuQUV5di8bAfFCFxT0k4NYTUh1BO85OrI5rvjQFfWBg1JLJeQxW5rBihQ5WtYPLY07qjJELGiPevPHQXHDVX38kvKcyxZNRIH2RzpneIK8_ilSwesJx4TWIaVDB2jDbjiP6SInfvfA-aZzMcxDlB_WqzYVGPuMWn8woSqkbs') }} />
-            <Image style={styles.image} source={{ uri: getPlacesPhotos('AeJbb3ehga8WUWYhLzl6i1pqYrrSw0LxTKbXWwpvDnkCZ8sNjrG193r_RVtoY1EqBf2UELgaz-ZBVjSSzgEkITN5GmLCKOGNP7gnviWGRk8p20D_fr9Myt-I7nsfrdmEMEuKp1S63db2UwP-gQx_3sv9dyieAWZFxKhNWAV4n6sqhOaK-FDc') }} /> */}
-            {places.map((place: any, index: number) => {
-                // console.log('place', place.photos)
-                return (
-                    <Image key={index} style={styles.image} source={{ uri: getPlacesPhotos(place.photo_reference) }} />
-                );
-            })}
-        </ScrollView>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => createUserHandler()} style={styles.button}>
+                <Text>Test</Text>
+            </TouchableOpacity>
+        </View>
     );
 };
 
+export default TestScreen;
+
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // padding: 10,
-        // paddingTop: Constants.statusBarHeight + 10,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    image: { 
-        width, 
-        height: 200, 
-    }
+    button: {
+        backgroundColor: 'green',
+        height: 50,
+        width: '100%',
+    },
 });
-
-export default TestScreen;

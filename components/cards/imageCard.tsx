@@ -1,28 +1,28 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { getPlacesPhotos } from '../../api/endpoints';
 import { useTheme } from '../../hooks/useTheme';
-import { Images } from '../../style/images';
 import { Text } from '../../style/typography';
 import ReviewStarRating from '../layout/reviewStarRating';
-import StarRating from '../starRating/starRating';
 
-const ImageCard = ({ style, onPress, title, location, logo = Images.MCDEEZ, rating }: any) => {
+const ImageCard = ({ style, onPress, title, location, image, rating }: any) => {
     const { colors, dark, borderRadius }: any = useTheme();
     return (
         <View style={[styles.container]}>
             <TouchableOpacity activeOpacity={1} onPress={onPress} style={[style, styles.wrapper]}>
                 <View style={[styles.card, { backgroundColor: dark ? colors.card : colors.card, borderColor: colors.border, borderRadius: borderRadius.card }]}>
-                    <View style={styles.top}>
-                        <View style={styles.titleWrapper}>
-                            <Text fontSize={18}>{title}</Text>
-                            <Text style={{ marginTop: 20 }} numberOfLines={2} fontSize={14} color={colors.greyText}>
-                                {location}
-                            </Text>
+                    <Image source={{ uri: getPlacesPhotos(image) }} style={[styles.image, { borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card }]} />
+                    <View style={{ padding: 15 }}>
+                        <View style={styles.top}>
+                            <View style={styles.titleWrapper}>
+                                <Text fontSize={18}>{title}</Text>
+                                <Text style={{ marginTop: 20 }} numberOfLines={2} fontSize={14} color={colors.greyText}>
+                                    {location}
+                                </Text>
+                            </View>
                         </View>
-                        <Image source={logo} style={styles.logo} />
                     </View>
                 </View>
-                {/* <StarRating style={styles.rating} rating={rating} /> */}
                 <ReviewStarRating style={styles.rating} rating={rating} />
             </TouchableOpacity>
         </View>
@@ -31,14 +31,19 @@ const ImageCard = ({ style, onPress, title, location, logo = Images.MCDEEZ, rati
 
 const styles = StyleSheet.create({
     container: {},
+    image: {
+        width: '100%',
+        height: 150,
+        resizeMode: 'cover',
+    },
     wrapper: {
         paddingLeft: 20,
     },
     card: {
-        height: 150,
+        height: 300,
         width: 300,
         borderWidth: 0.5,
-        padding: 15,
+        // padding: 15,
         zIndex: 9,
         marginVertical: 20,
     },

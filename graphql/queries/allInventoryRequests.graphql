@@ -1,8 +1,0 @@
-query AllInventoryRequests {
-    allInventoryRequests {
-        title
-        description
-        userId
-        status
-    }
-}

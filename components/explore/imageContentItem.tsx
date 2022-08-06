@@ -7,25 +7,9 @@ import { restDD } from '../../screens/explore/dd';
 import { useUserContext } from '../../context/user.context';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import ImageCard from '../cards/imageCard';
 
-// TODO
-/**
-    create api and google url files n shit
-    get images
-
-    sort by:
-        price_level
-        rating
-        type
-            meal_delivery
-            restuarant
-            food
-            point_of_interest
-            establishment
-        user_ratings_total
- */
-
-const ContentItem = () => {
+const ImageContentItem = () => {
     const { colors } = useTheme();
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
@@ -39,14 +23,16 @@ const ContentItem = () => {
             </Text>
             <ScrollView horizontal style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                 {places.map((item: any, index: number) => {
+                    let image = item.photos !== undefined ? item.photos[0].photo_reference : '';
                     return (
-                        <DisplayCard
+                        <ImageCard
                             onPress={() => navigation.navigate('BusinessScreen', { item })}
                             key={index}
                             item={item}
                             title={item.name}
                             location={item.formatted_address}
                             rating={item.rating}
+                            image={image}
                         />
                     );
                 })}
@@ -55,7 +41,7 @@ const ContentItem = () => {
     );
 };
 
-export default ContentItem;
+export default ImageContentItem;
 
 const styles = StyleSheet.create({
     container: {

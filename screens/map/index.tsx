@@ -8,6 +8,7 @@ import { Images } from '../../style/images';
 import { mcdDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
 import MapMarkers from '../../components/map/mapMarkers';
+import { ScrollBarConverter } from '../../functions/helpers';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;
@@ -52,7 +53,9 @@ const Map = () => {
                         key={`coordinate_${i}`}
                         coordinate={{ latitude, longitude }}
                     >
-                        <MapMarkers place={place} />
+                        {/* ScrollBarConverter */}
+                        <Image source={ScrollBarConverter(place)} style={styles.icon} />
+                        {/* <MapMarkers place={place} /> */}
                     </Marker>
                 );
             })}

@@ -1,5 +1,0 @@
-mutation DeleteUserSession($accessToken: String!) {
-    deleteUserSession(accessToken: $accessToken) {
-        accessToken
-    }
-}
