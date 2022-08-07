@@ -20,7 +20,6 @@ const ScrollBar = ({ data }: any) => {
     const { getPlaces, place } = useUserContext();
 
     const handleChange = (item: any, key: any) => {
-
         setSelectedMenuItem(item);
         setState({ dynamicIndex: key }), () => doScroll(null);
         let place = item.title;

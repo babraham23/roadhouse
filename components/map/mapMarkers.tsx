@@ -5,7 +5,6 @@ import { Images } from '../../style/images';
 
 const MapMarkers = ({ place }: any) => {
     // const { place } = useUserContext();
-    console.log('place -->', place);
     return (
         <View>
             {place == 'Bars' ? <Image source={Images.BEER} style={styles.icon} /> : null}

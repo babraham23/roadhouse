@@ -17,7 +17,23 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createPlace: PlacesClass;
   createUser: UserClass;
+};
+
+
+export type MutationCreatePlaceArgs = {
+  description: Scalars['String'];
+  formattedAddress: Scalars['String'];
+  isClient: Scalars['Boolean'];
+  keywords: Scalars['String'];
+  lat: Scalars['Float'];
+  lng: Scalars['Float'];
+  placeName: Scalars['String'];
+  priceLevel: Scalars['Float'];
+  rating: Scalars['Float'];
+  types: Scalars['String'];
+  userRatingsTotal: Scalars['Float'];
 };
 
 
@@ -27,17 +43,50 @@ export type MutationCreateUserArgs = {
   lastName: Scalars['String'];
 };
 
+export type PlacesClass = {
+  __typename?: 'PlacesClass';
+  description?: Maybe<Scalars['String']>;
+  formattedAddress?: Maybe<Scalars['String']>;
+  isClient?: Maybe<Scalars['Boolean']>;
+  keywords?: Maybe<Scalars['String']>;
+  lat?: Maybe<Scalars['Float']>;
+  lng?: Maybe<Scalars['Float']>;
+  placeName?: Maybe<Scalars['String']>;
+  priceLevel?: Maybe<Scalars['Float']>;
+  rating?: Maybe<Scalars['Float']>;
+  types?: Maybe<Scalars['String']>;
+  userRatingsTotal?: Maybe<Scalars['Float']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   allUsers: Array<UserClass>;
+  getHamburgerPlaces: Array<PlacesClass>;
 };
 
 export type UserClass = {
   __typename?: 'UserClass';
-  email: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
 };
+
+export type CreatePlaceMutationVariables = Exact<{
+  keywords: Scalars['String'];
+  placeName: Scalars['String'];
+  types: Scalars['String'];
+  userRatingsTotal: Scalars['Float'];
+  rating: Scalars['Float'];
+  priceLevel: Scalars['Float'];
+  isClient: Scalars['Boolean'];
+  lng: Scalars['Float'];
+  lat: Scalars['Float'];
+  description: Scalars['String'];
+  formattedAddress: Scalars['String'];
+}>;
+
+
+export type CreatePlaceMutation = { __typename?: 'Mutation', createPlace: { __typename?: 'PlacesClass', formattedAddress?: string | null | undefined, description?: string | null | undefined, lat?: number | null | undefined, lng?: number | null | undefined, isClient?: boolean | null | undefined, priceLevel?: number | null | undefined, rating?: number | null | undefined, userRatingsTotal?: number | null | undefined, types?: string | null | undefined, placeName?: string | null | undefined, keywords?: string | null | undefined } };
 
 export type CreateUserMutationVariables = Exact<{
   email: Scalars['String'];
@@ -46,14 +95,84 @@ export type CreateUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserClass', firstName: string, lastName: string, email: string } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserClass', firstName?: string | null | undefined, lastName?: string | null | undefined, email?: string | null | undefined } };
+
+export type GetHamburgerPlacesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHamburgerPlacesQuery = { __typename?: 'Query', getHamburgerPlaces: Array<{ __typename?: 'PlacesClass', formattedAddress?: string | null | undefined, description?: string | null | undefined, lat?: number | null | undefined, lng?: number | null | undefined, isClient?: boolean | null | undefined, priceLevel?: number | null | undefined, rating?: number | null | undefined, userRatingsTotal?: number | null | undefined, types?: string | null | undefined, placeName?: string | null | undefined, keywords?: string | null | undefined }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', allUsers: Array<{ __typename?: 'UserClass', firstName: string, lastName: string, email: string }> };
+export type GetUsersQuery = { __typename?: 'Query', allUsers: Array<{ __typename?: 'UserClass', firstName?: string | null | undefined, lastName?: string | null | undefined, email?: string | null | undefined }> };
 
 
+export const CreatePlaceDocument = gql`
+    mutation CreatePlace($keywords: String!, $placeName: String!, $types: String!, $userRatingsTotal: Float!, $rating: Float!, $priceLevel: Float!, $isClient: Boolean!, $lng: Float!, $lat: Float!, $description: String!, $formattedAddress: String!) {
+  createPlace(
+    keywords: $keywords
+    placeName: $placeName
+    types: $types
+    userRatingsTotal: $userRatingsTotal
+    rating: $rating
+    priceLevel: $priceLevel
+    isClient: $isClient
+    lng: $lng
+    lat: $lat
+    description: $description
+    formattedAddress: $formattedAddress
+  ) {
+    formattedAddress
+    description
+    lat
+    lng
+    isClient
+    priceLevel
+    rating
+    userRatingsTotal
+    types
+    placeName
+    keywords
+  }
+}
+    `;
+export type CreatePlaceMutationFn = Apollo.MutationFunction<CreatePlaceMutation, CreatePlaceMutationVariables>;
+
+/**
+ * __useCreatePlaceMutation__
+ *
+ * To run a mutation, you first call `useCreatePlaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePlaceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPlaceMutation, { data, loading, error }] = useCreatePlaceMutation({
+ *   variables: {
+ *      keywords: // value for 'keywords'
+ *      placeName: // value for 'placeName'
+ *      types: // value for 'types'
+ *      userRatingsTotal: // value for 'userRatingsTotal'
+ *      rating: // value for 'rating'
+ *      priceLevel: // value for 'priceLevel'
+ *      isClient: // value for 'isClient'
+ *      lng: // value for 'lng'
+ *      lat: // value for 'lat'
+ *      description: // value for 'description'
+ *      formattedAddress: // value for 'formattedAddress'
+ *   },
+ * });
+ */
+export function useCreatePlaceMutation(baseOptions?: Apollo.MutationHookOptions<CreatePlaceMutation, CreatePlaceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePlaceMutation, CreatePlaceMutationVariables>(CreatePlaceDocument, options);
+      }
+export type CreatePlaceMutationHookResult = ReturnType<typeof useCreatePlaceMutation>;
+export type CreatePlaceMutationResult = Apollo.MutationResult<CreatePlaceMutation>;
+export type CreatePlaceMutationOptions = Apollo.BaseMutationOptions<CreatePlaceMutation, CreatePlaceMutationVariables>;
 export const CreateUserDocument = gql`
     mutation createUser($email: String!, $lastName: String!, $firstName: String!) {
   createUser(email: $email, lastName: $lastName, firstName: $firstName) {
@@ -91,6 +210,50 @@ export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
 export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
 export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
+export const GetHamburgerPlacesDocument = gql`
+    query GetHamburgerPlaces {
+  getHamburgerPlaces {
+    formattedAddress
+    description
+    lat
+    lng
+    isClient
+    priceLevel
+    rating
+    userRatingsTotal
+    types
+    placeName
+    keywords
+  }
+}
+    `;
+
+/**
+ * __useGetHamburgerPlacesQuery__
+ *
+ * To run a query within a React component, call `useGetHamburgerPlacesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetHamburgerPlacesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetHamburgerPlacesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetHamburgerPlacesQuery(baseOptions?: Apollo.QueryHookOptions<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
+      }
+export function useGetHamburgerPlacesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
+        }
+export type GetHamburgerPlacesQueryHookResult = ReturnType<typeof useGetHamburgerPlacesQuery>;
+export type GetHamburgerPlacesLazyQueryHookResult = ReturnType<typeof useGetHamburgerPlacesLazyQuery>;
+export type GetHamburgerPlacesQueryResult = Apollo.QueryResult<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>;
 export const GetUsersDocument = gql`
     query GetUsers {
   allUsers {

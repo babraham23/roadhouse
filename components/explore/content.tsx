@@ -27,9 +27,9 @@ const Content = () => {
 
     return (
         <React.Fragment>
-            <BottomSheetScrollView bounces={false} contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background}]}>
+            <BottomSheetScrollView bounces={false} contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background }]}>
                 <ImageContentItem />
-                <HorizontalParallax  />
+                <HorizontalParallax />
                 <ContentItem />
                 {/* <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} /> */}
                 {/* <ContentItem /> */}

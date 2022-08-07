@@ -1,0 +1,15 @@
+query GetHamburgerPlaces {
+  getHamburgerPlaces {
+    formattedAddress
+    description
+    lat
+    lng
+    isClient
+    priceLevel
+    rating
+    userRatingsTotal
+    types
+    placeName
+    keywords
+  }
+}

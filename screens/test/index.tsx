@@ -4,23 +4,22 @@ import { useCreateUserMutation, useGetUsersQuery } from '../../graphql/generated
 
 const TestScreen = () => {
     const [createUser] = useCreateUserMutation();
-    const users = useGetUsersQuery()
+    const users = useGetUsersQuery();
 
     const createUserHandler = async () => {
-        // const user = await createUser({
-        //     variables: {
-        //         email: 'brettabraham23@gmail.com',
-        //         firstName: 'Brett',
-        //         lastName: '',
-        //     },
-        // });
-        // if (user.data?.createUser) console.log(user)
-        // else console.log('failure')
-
+        const user = await createUser({
+            variables: {
+                email: 'brettabraham23@gmail.com',
+                firstName: 'Brett',
+                lastName: '',
+            },
+        });
+        if (user.data?.createUser) console.log(user)
+        else console.log('failure')
         // const users = await allUsers()
     };
 
-    console.log(users.data?.allUsers)
+    // console.log(users.data?.allUsers);
 
     return (
         <View style={styles.container}>

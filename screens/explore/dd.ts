@@ -140,8 +140,6 @@ export const mcdDD = {
     user_ratings_total: 211,
 };
 
-
-
 export const marketDD = [
     {
         business_status: 'OPERATIONAL',
@@ -161,7 +159,6 @@ export const marketDD = [
                     lng: -0.3617799298927222,
                 },
             },
-        
         },
         icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png',
         icon_background_color: '#FF9E67',
@@ -190,4 +187,58 @@ export const marketDD = [
         types: ['restaurant', 'food', 'point_of_interest', 'establishment'],
         user_ratings_total: 211,
     },
-]
+];
+
+
+
+// const a = {
+//     "business_status": "OPERATIONAL",
+//     "formatted_address": "59 Westgate Rd, Newcastle upon Tyne NE1 1SG, United Kingdom",
+//     "geometry": Object {
+//       "location": Object {
+//         "lat": 54.9699727,
+//         "lng": -1.6172248,
+//       },
+//       "viewport": Object {
+//         "northeast": Object {
+//           "lat": 54.97135987989272,
+//           "lng": -1.615859070107278,
+//         },
+//         "southwest": Object {
+//           "lat": 54.96866022010727,
+//           "lng": -1.618558729892722,
+//         },
+//       },
+//     },
+//     "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+//     "icon_background_color": "#FF9E67",
+//     "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+//     "name": "Insieme Newcastle",
+//     "opening_hours": Object {
+//       "open_now": true,
+//     },
+//     "photos": Array [
+//       Object {
+//         "height": 4032,
+//         "html_attributions": Array [
+//           "<a href=\"https://maps.google.com/maps/contrib/101977347300512403202\">A Google User</a>",
+//         ],
+//         "photo_reference": "AeJbb3fr2bwL0AaejaqWGIutyr1TGKaS0Fhrla3MCC4mqL43kuevLcftuTr0xgvP0ifFX4PhdNfuNAIVouTwMVfe7zZmRyzgJ6xDHT_-YoGGvIUwKAzeCtJ5WrXRkz0NbrJV4B9wGqhmslz9fujsUstII5pPwgiZISgk_aS8nlj4GZRSpwN5",
+//         "width": 3024,
+//       },
+//     ],
+//     "place_id": "ChIJbQWnlRJxfkgRUzlF2Gt8ays",
+//     "plus_code": Object {
+//       "compound_code": "X99M+X4 Newcastle upon Tyne",
+//       "global_code": "9C6WX99M+X4",
+//     },
+//     "rating": 4.5,
+//     "reference": "ChIJbQWnlRJxfkgRUzlF2Gt8ays",
+//     "types": Array [
+//       "restaurant",
+//       "food",
+//       "point_of_interest",
+//       "establishment",
+//     ],
+//     "user_ratings_total": 169,
+// }
