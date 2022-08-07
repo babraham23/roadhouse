@@ -9,8 +9,9 @@ import { useUserContext } from '../../context/user.context';
 import MapMarkers from '../map/mapMarkers';
 import { Images } from '../../style/images';
 import Icons from './icons';
+import { exploreScrolldata } from '../../screens/explore/exploreScrolldata';
 
-const ScrollBar = ({ data }: any) => {
+const ScrollBar = ({ data = exploreScrolldata }: any) => {
     const { colors, borderRadius }: any = useTheme();
     const dispatch = useDispatch();
     const scrollview_ref: any = React.useRef({});

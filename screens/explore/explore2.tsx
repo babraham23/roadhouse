@@ -10,7 +10,6 @@ import { getMyLocation } from '../../functions/locationFunction';
 import { useUserContext } from '../../context/user.context';
 import Map from '../../components/map/map';
 import GoogleSearch from '../../components/inputs/googleSearch';
-import { exploreScrolldata } from './exploreScrolldata';
 
 type Props = {};
 
@@ -58,7 +57,7 @@ const ExploreScreen = ({}: Props) => {
         <View style={{ flex: 1 }}>
             <MapHeader />
             {/* <GoogleSearch /> */}
-            <ScrollBar data={exploreScrolldata} />
+            <ScrollBar />
             <View style={styles.container}>
                 <Map />
             </View>

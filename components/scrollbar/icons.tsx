@@ -10,6 +10,7 @@ const Icons = ({ title }: any) => {
             {title == 'Restaurants' ? <Image source={active ? Images.RESTAURANT : Images.RESTAURANT_NOT} style={styles.icon} /> : null}
             {title == 'Markets' ? <Image source={active ? Images.MARKET : Images.MARKET_NOT} style={styles.icon} /> : null}
             {title == 'Liked' ? <Image source={active ? Images.HEART : Images.HEART_NOT} style={styles.icon} /> : null}
+            {title == 'Hamburgers' ? <Image source={active ? Images.HAMBURGER : Images.HEART_NOT} style={styles.icon} /> : null}
         </View>
     );
 };

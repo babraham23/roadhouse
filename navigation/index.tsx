@@ -68,14 +68,14 @@ function RootNavigator() {
     return (
         <Stack.Navigator>
             {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} /> */}
-            {/* <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CreatePlace" component={CreatePlace} options={{ headerShown: false }} />
-            {/* <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
-            </Stack.Group> */}
+            </Stack.Group>
         </Stack.Navigator>
     );
 }

@@ -27,14 +27,14 @@ export const exploreScrolldata: any = [
     },
     {
         Id: 5,
-        title: 'Recommended',
+        title: 'Hamburgers',
         icon: 'emoticon-happy-outline',
-        image: Images.LOGO_ROUND,
+        image: Images.HAMBURGER,
     },
-    {
-        Id: 7,
-        title: 'Cafes',
-        icon: 'emoticon-happy-outline',
-        image: Images.LOGO_ROUND,
-    },
+    // {
+    //     Id: 7,
+    //     title: 'Cafes',
+    //     icon: 'emoticon-happy-outline',
+    //     image: Images.LOGO_ROUND,
+    // },
 ];

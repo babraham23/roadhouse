@@ -32,6 +32,7 @@ const ContentItem = () => {
     const { loading } = useSelector((state: any) => state.loadingReducer);
     const { longitude, latitude, places } = useUserContext();
     const navigation: any = useNavigation();
+    
     return (
         <View style={styles.container}>
             <Text style={styles.header} bold>

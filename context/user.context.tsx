@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
 import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
 import { marketDD } from '../screens/explore/dd';
+import { useGetHamburgerPlacesQuery } from '../graphql/generated/output';
 
 type User = {
     userType?: string;
@@ -48,6 +49,7 @@ export const UserProvider: FC = ({ children }) => {
     let [places, setPlaces]: any = useState([]);
     const [place, setPlace]: any = useState('');
     const dispatch = useDispatch();
+    const burgers = useGetHamburgerPlacesQuery()
 
     const getUserLocation = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -70,6 +72,8 @@ export const UserProvider: FC = ({ children }) => {
             getRestaurants();
         } else if (type === 'Markets') {
             getMarket();
+        } else if (type === 'Hamburgers') {
+            getHamburgers();
         } else setPlaces([]);
     };
 
@@ -108,6 +112,11 @@ export const UserProvider: FC = ({ children }) => {
     const getMarket = () => {
         setPlace('Markets');
         setPlaces(marketDD);
+    };
+
+    const getHamburgers = () => {
+        setPlace('Hamburgers');
+        setPlaces(burgers.data?.getHamburgerPlaces);
     };
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 mutation createUser($email: String!, $lastName: String!, $firstName: String!) {
-  createUser(email: $email, lastName: $lastName, firstName: $firstName) {
-    firstName
-    lastName
-    email
-  }
+    createUser(email: $email, lastName: $lastName, firstName: $firstName) {
+        firstName
+        lastName
+        email
+    }
 }

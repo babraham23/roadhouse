@@ -41,8 +41,9 @@ const Map = () => {
     return (
         <MapView showsPointsOfInterest={false} region={mapRegion} style={[StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
             {places.map((item: any, i: number) => {
-                let latitude = item.geometry.location.lat;
-                let longitude = item.geometry.location.lng;
+                let latitude = item.geometry !== undefined ? item.geometry.location.lat : item.lat
+                let longitude = item.geometry !== undefined ? item.geometry.location.lng : item.lng
+                console.log('latitude, longitude -->', latitude, longitude);
                 return (
                     <Marker
                         // onPress={() => onIconPress(longitude, latitude)}

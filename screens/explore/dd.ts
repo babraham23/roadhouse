@@ -189,8 +189,6 @@ export const marketDD = [
     },
 ];
 
-
-
 // const a = {
 //     "business_status": "OPERATIONAL",
 //     "formatted_address": "59 Westgate Rd, Newcastle upon Tyne NE1 1SG, United Kingdom",

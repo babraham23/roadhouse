@@ -14,8 +14,8 @@ const TestScreen = () => {
                 lastName: '',
             },
         });
-        if (user.data?.createUser) console.log(user)
-        else console.log('failure')
+        if (user.data?.createUser) console.log(user);
+        else console.log('failure');
         // const users = await allUsers()
     };
 

@@ -1,15 +1,39 @@
-mutation CreatePlace($keywords: String!, $placeName: String!, $types: String!, $userRatingsTotal: Float!, $rating: Float!, $priceLevel: Float!, $isClient: Boolean!, $lng: Float!, $lat: Float!, $description: String!, $formattedAddress: String!) {
-  createPlace(keywords: $keywords, placeName: $placeName, types: $types, userRatingsTotal: $userRatingsTotal, rating: $rating, priceLevel: $priceLevel, isClient: $isClient, lng: $lng, lat: $lat, description: $description, formattedAddress: $formattedAddress) {
-    formattedAddress
-    description
-    lat
-    lng
-    isClient
-    priceLevel
-    rating
-    userRatingsTotal
-    types
-    placeName
-    keywords
-  }
+mutation CreatePlace(
+    $keywords: String!
+    $placeName: String!
+    $types: String!
+    $userRatingsTotal: Float!
+    $rating: Float!
+    $priceLevel: Float!
+    $isClient: Boolean!
+    $lng: Float!
+    $lat: Float!
+    $description: String!
+    $formattedAddress: String!
+) {
+    createPlace(
+        keywords: $keywords
+        placeName: $placeName
+        types: $types
+        userRatingsTotal: $userRatingsTotal
+        rating: $rating
+        priceLevel: $priceLevel
+        isClient: $isClient
+        lng: $lng
+        lat: $lat
+        description: $description
+        formattedAddress: $formattedAddress
+    ) {
+        formattedAddress
+        description
+        lat
+        lng
+        isClient
+        priceLevel
+        rating
+        userRatingsTotal
+        types
+        placeName
+        keywords
+    }
 }
