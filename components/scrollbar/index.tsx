@@ -24,7 +24,6 @@ const ScrollBar = ({ data = exploreScrolldata }: any) => {
         setSelectedMenuItem(item);
         setState({ dynamicIndex: key }), () => doScroll(null);
         let place = item.title;
-        console.log('setting plave -->', place);
         getPlaces(place);
     };
 

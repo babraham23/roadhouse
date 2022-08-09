@@ -10,6 +10,8 @@ import { getMyLocation } from '../../functions/locationFunction';
 import { useUserContext } from '../../context/user.context';
 import Map from '../../components/map/map';
 import GoogleSearch from '../../components/inputs/googleSearch';
+import PrimaryButton from '../../components/buttons/primaryButton';
+import { GetData, StoreData } from '../../functions/asyncStorage';
 
 type Props = {};
 
@@ -53,10 +55,21 @@ const ExploreScreen = ({}: Props) => {
         }).start();
     };
 
+    const getData = async () => {
+        const deviceId = await GetData('@deviceId');
+        console.log(deviceId);
+    }
+
+    const setData = async () => {
+        await StoreData('@deviceId', 'removed');
+        console.log('complete');
+    }
+
     return (
-        <View style={{ flex: 1 }}>
-            <MapHeader />
-            {/* <GoogleSearch /> */}
+        <View style={{ flex: 1, marginTop: 100 }}>
+            <PrimaryButton title={'Check data'} onPress={() => getData()} />
+            <PrimaryButton title={'Set data'}  onPress={() => setData()}  />
+            {/* <MapHeader />
             <ScrollBar />
             <View style={styles.container}>
                 <Map />
@@ -83,7 +96,7 @@ const ExploreScreen = ({}: Props) => {
                 title={sheetOpen ? 'Map' : 'List'}
                 style={styles.mapButton}
                 onPress={sheetOpen ? () => handleSnapPress(0) : () => handleSnapPress(1)}
-            />
+            /> */}
         </View>
     );
 };

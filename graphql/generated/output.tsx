@@ -8,178 +8,146 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-    ID: string;
-    String: string;
-    Boolean: boolean;
-    Int: number;
-    Float: number;
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
 };
 
 export type Mutation = {
-    __typename?: 'Mutation';
-    createPlace: PlacesClass;
-    createUser: UserClass;
+  __typename?: 'Mutation';
+  createBasicUser: UserClass;
+  createPlace: PlacesClass;
+  createUser: UserClass;
 };
+
+
+export type MutationCreateBasicUserArgs = {
+  deviceId: Scalars['String'];
+};
+
 
 export type MutationCreatePlaceArgs = {
-    description: Scalars['String'];
-    formattedAddress: Scalars['String'];
-    isClient: Scalars['Boolean'];
-    keywords: Scalars['String'];
-    lat: Scalars['Float'];
-    lng: Scalars['Float'];
-    placeName: Scalars['String'];
-    priceLevel: Scalars['Float'];
-    rating: Scalars['Float'];
-    types: Scalars['String'];
-    userRatingsTotal: Scalars['Float'];
+  description: Scalars['String'];
+  formattedAddress: Scalars['String'];
+  isClient: Scalars['Boolean'];
+  keywords: Scalars['String'];
+  lat: Scalars['Float'];
+  lng: Scalars['Float'];
+  placeName: Scalars['String'];
+  priceLevel: Scalars['Float'];
+  rating: Scalars['Float'];
+  types: Scalars['String'];
+  userRatingsTotal: Scalars['Float'];
 };
 
+
 export type MutationCreateUserArgs = {
-    email: Scalars['String'];
-    firstName: Scalars['String'];
-    lastName: Scalars['String'];
+  deviceId: Scalars['Float'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  isCustomer: Scalars['Boolean'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type PlacesClass = {
-    __typename?: 'PlacesClass';
-    description?: Maybe<Scalars['String']>;
-    formattedAddress?: Maybe<Scalars['String']>;
-    isClient?: Maybe<Scalars['Boolean']>;
-    keywords?: Maybe<Scalars['String']>;
-    lat?: Maybe<Scalars['Float']>;
-    lng?: Maybe<Scalars['Float']>;
-    placeName?: Maybe<Scalars['String']>;
-    priceLevel?: Maybe<Scalars['Float']>;
-    rating?: Maybe<Scalars['Float']>;
-    types?: Maybe<Scalars['String']>;
-    userRatingsTotal?: Maybe<Scalars['Float']>;
+  __typename?: 'PlacesClass';
+  description?: Maybe<Scalars['String']>;
+  formattedAddress?: Maybe<Scalars['String']>;
+  isClient?: Maybe<Scalars['Boolean']>;
+  keywords?: Maybe<Scalars['String']>;
+  lat?: Maybe<Scalars['Float']>;
+  lng?: Maybe<Scalars['Float']>;
+  placeName?: Maybe<Scalars['String']>;
+  priceLevel?: Maybe<Scalars['Float']>;
+  rating?: Maybe<Scalars['Float']>;
+  types?: Maybe<Scalars['String']>;
+  userRatingsTotal?: Maybe<Scalars['Float']>;
 };
 
 export type Query = {
-    __typename?: 'Query';
-    allUsers: Array<UserClass>;
-    getHamburgerPlaces: Array<PlacesClass>;
+  __typename?: 'Query';
+  allUsers: Array<UserClass>;
+  getHamburgerPlaces: Array<PlacesClass>;
+  getUser: UserClass;
 };
 
 export type UserClass = {
-    __typename?: 'UserClass';
-    email?: Maybe<Scalars['String']>;
-    firstName?: Maybe<Scalars['String']>;
-    lastName?: Maybe<Scalars['String']>;
+  __typename?: 'UserClass';
+  deviceId?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  isCustomer?: Maybe<Scalars['Boolean']>;
+  lastName?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
 };
 
 export type CreatePlaceMutationVariables = Exact<{
-    keywords: Scalars['String'];
-    placeName: Scalars['String'];
-    types: Scalars['String'];
-    userRatingsTotal: Scalars['Float'];
-    rating: Scalars['Float'];
-    priceLevel: Scalars['Float'];
-    isClient: Scalars['Boolean'];
-    lng: Scalars['Float'];
-    lat: Scalars['Float'];
-    description: Scalars['String'];
-    formattedAddress: Scalars['String'];
+  keywords: Scalars['String'];
+  placeName: Scalars['String'];
+  types: Scalars['String'];
+  userRatingsTotal: Scalars['Float'];
+  rating: Scalars['Float'];
+  priceLevel: Scalars['Float'];
+  isClient: Scalars['Boolean'];
+  lng: Scalars['Float'];
+  lat: Scalars['Float'];
+  description: Scalars['String'];
+  formattedAddress: Scalars['String'];
 }>;
 
-export type CreatePlaceMutation = {
-    __typename?: 'Mutation';
-    createPlace: {
-        __typename?: 'PlacesClass';
-        formattedAddress?: string | null | undefined;
-        description?: string | null | undefined;
-        lat?: number | null | undefined;
-        lng?: number | null | undefined;
-        isClient?: boolean | null | undefined;
-        priceLevel?: number | null | undefined;
-        rating?: number | null | undefined;
-        userRatingsTotal?: number | null | undefined;
-        types?: string | null | undefined;
-        placeName?: string | null | undefined;
-        keywords?: string | null | undefined;
-    };
-};
 
-export type CreateUserMutationVariables = Exact<{
-    email: Scalars['String'];
-    lastName: Scalars['String'];
-    firstName: Scalars['String'];
+export type CreatePlaceMutation = { __typename?: 'Mutation', createPlace: { __typename?: 'PlacesClass', formattedAddress?: string | null | undefined, description?: string | null | undefined, lat?: number | null | undefined, lng?: number | null | undefined, isClient?: boolean | null | undefined, priceLevel?: number | null | undefined, rating?: number | null | undefined, userRatingsTotal?: number | null | undefined, types?: string | null | undefined, placeName?: string | null | undefined, keywords?: string | null | undefined } };
+
+export type CreateBasicUserMutationVariables = Exact<{
+  deviceId: Scalars['String'];
 }>;
 
-export type CreateUserMutation = {
-    __typename?: 'Mutation';
-    createUser: { __typename?: 'UserClass'; firstName?: string | null | undefined; lastName?: string | null | undefined; email?: string | null | undefined };
-};
 
-export type GetHamburgerPlacesQueryVariables = Exact<{ [key: string]: never }>;
+export type CreateBasicUserMutation = { __typename?: 'Mutation', createBasicUser: { __typename?: 'UserClass', deviceId?: string | null | undefined } };
 
-export type GetHamburgerPlacesQuery = {
-    __typename?: 'Query';
-    getHamburgerPlaces: Array<{
-        __typename?: 'PlacesClass';
-        formattedAddress?: string | null | undefined;
-        description?: string | null | undefined;
-        lat?: number | null | undefined;
-        lng?: number | null | undefined;
-        isClient?: boolean | null | undefined;
-        priceLevel?: number | null | undefined;
-        rating?: number | null | undefined;
-        userRatingsTotal?: number | null | undefined;
-        types?: string | null | undefined;
-        placeName?: string | null | undefined;
-        keywords?: string | null | undefined;
-    }>;
-};
+export type GetHamburgerPlacesQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetUsersQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetUsersQuery = {
-    __typename?: 'Query';
-    allUsers: Array<{ __typename?: 'UserClass'; firstName?: string | null | undefined; lastName?: string | null | undefined; email?: string | null | undefined }>;
-};
+export type GetHamburgerPlacesQuery = { __typename?: 'Query', getHamburgerPlaces: Array<{ __typename?: 'PlacesClass', formattedAddress?: string | null | undefined, description?: string | null | undefined, lat?: number | null | undefined, lng?: number | null | undefined, isClient?: boolean | null | undefined, priceLevel?: number | null | undefined, rating?: number | null | undefined, userRatingsTotal?: number | null | undefined, types?: string | null | undefined, placeName?: string | null | undefined, keywords?: string | null | undefined }> };
+
+export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserQuery = { __typename?: 'Query', getUser: { __typename?: 'UserClass', deviceId?: string | null | undefined } };
+
 
 export const CreatePlaceDocument = gql`
-    mutation CreatePlace(
-        $keywords: String!
-        $placeName: String!
-        $types: String!
-        $userRatingsTotal: Float!
-        $rating: Float!
-        $priceLevel: Float!
-        $isClient: Boolean!
-        $lng: Float!
-        $lat: Float!
-        $description: String!
-        $formattedAddress: String!
-    ) {
-        createPlace(
-            keywords: $keywords
-            placeName: $placeName
-            types: $types
-            userRatingsTotal: $userRatingsTotal
-            rating: $rating
-            priceLevel: $priceLevel
-            isClient: $isClient
-            lng: $lng
-            lat: $lat
-            description: $description
-            formattedAddress: $formattedAddress
-        ) {
-            formattedAddress
-            description
-            lat
-            lng
-            isClient
-            priceLevel
-            rating
-            userRatingsTotal
-            types
-            placeName
-            keywords
-        }
-    }
-`;
+    mutation CreatePlace($keywords: String!, $placeName: String!, $types: String!, $userRatingsTotal: Float!, $rating: Float!, $priceLevel: Float!, $isClient: Boolean!, $lng: Float!, $lat: Float!, $description: String!, $formattedAddress: String!) {
+  createPlace(
+    keywords: $keywords
+    placeName: $placeName
+    types: $types
+    userRatingsTotal: $userRatingsTotal
+    rating: $rating
+    priceLevel: $priceLevel
+    isClient: $isClient
+    lng: $lng
+    lat: $lat
+    description: $description
+    formattedAddress: $formattedAddress
+  ) {
+    formattedAddress
+    description
+    lat
+    lng
+    isClient
+    priceLevel
+    rating
+    userRatingsTotal
+    types
+    placeName
+    keywords
+  }
+}
+    `;
 export type CreatePlaceMutationFn = Apollo.MutationFunction<CreatePlaceMutation, CreatePlaceMutationVariables>;
 
 /**
@@ -210,66 +178,62 @@ export type CreatePlaceMutationFn = Apollo.MutationFunction<CreatePlaceMutation,
  * });
  */
 export function useCreatePlaceMutation(baseOptions?: Apollo.MutationHookOptions<CreatePlaceMutation, CreatePlaceMutationVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useMutation<CreatePlaceMutation, CreatePlaceMutationVariables>(CreatePlaceDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePlaceMutation, CreatePlaceMutationVariables>(CreatePlaceDocument, options);
+      }
 export type CreatePlaceMutationHookResult = ReturnType<typeof useCreatePlaceMutation>;
 export type CreatePlaceMutationResult = Apollo.MutationResult<CreatePlaceMutation>;
 export type CreatePlaceMutationOptions = Apollo.BaseMutationOptions<CreatePlaceMutation, CreatePlaceMutationVariables>;
-export const CreateUserDocument = gql`
-    mutation createUser($email: String!, $lastName: String!, $firstName: String!) {
-        createUser(email: $email, lastName: $lastName, firstName: $firstName) {
-            firstName
-            lastName
-            email
-        }
-    }
-`;
-export type CreateUserMutationFn = Apollo.MutationFunction<CreateUserMutation, CreateUserMutationVariables>;
+export const CreateBasicUserDocument = gql`
+    mutation CreateBasicUser($deviceId: String!) {
+  createBasicUser(deviceId: $deviceId) {
+    deviceId
+  }
+}
+    `;
+export type CreateBasicUserMutationFn = Apollo.MutationFunction<CreateBasicUserMutation, CreateBasicUserMutationVariables>;
 
 /**
- * __useCreateUserMutation__
+ * __useCreateBasicUserMutation__
  *
- * To run a mutation, you first call `useCreateUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateUserMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateBasicUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBasicUserMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createUserMutation, { data, loading, error }] = useCreateUserMutation({
+ * const [createBasicUserMutation, { data, loading, error }] = useCreateBasicUserMutation({
  *   variables: {
- *      email: // value for 'email'
- *      lastName: // value for 'lastName'
- *      firstName: // value for 'firstName'
+ *      deviceId: // value for 'deviceId'
  *   },
  * });
  */
-export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<CreateUserMutation, CreateUserMutationVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, options);
-}
-export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
-export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
-export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
+export function useCreateBasicUserMutation(baseOptions?: Apollo.MutationHookOptions<CreateBasicUserMutation, CreateBasicUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateBasicUserMutation, CreateBasicUserMutationVariables>(CreateBasicUserDocument, options);
+      }
+export type CreateBasicUserMutationHookResult = ReturnType<typeof useCreateBasicUserMutation>;
+export type CreateBasicUserMutationResult = Apollo.MutationResult<CreateBasicUserMutation>;
+export type CreateBasicUserMutationOptions = Apollo.BaseMutationOptions<CreateBasicUserMutation, CreateBasicUserMutationVariables>;
 export const GetHamburgerPlacesDocument = gql`
     query GetHamburgerPlaces {
-        getHamburgerPlaces {
-            formattedAddress
-            description
-            lat
-            lng
-            isClient
-            priceLevel
-            rating
-            userRatingsTotal
-            types
-            placeName
-            keywords
-        }
-    }
-`;
+  getHamburgerPlaces {
+    formattedAddress
+    description
+    lat
+    lng
+    isClient
+    priceLevel
+    rating
+    userRatingsTotal
+    types
+    placeName
+    keywords
+  }
+}
+    `;
 
 /**
  * __useGetHamburgerPlacesQuery__
@@ -287,49 +251,47 @@ export const GetHamburgerPlacesDocument = gql`
  * });
  */
 export function useGetHamburgerPlacesQuery(baseOptions?: Apollo.QueryHookOptions<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
+      }
 export function useGetHamburgerPlacesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useLazyQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>(GetHamburgerPlacesDocument, options);
+        }
 export type GetHamburgerPlacesQueryHookResult = ReturnType<typeof useGetHamburgerPlacesQuery>;
 export type GetHamburgerPlacesLazyQueryHookResult = ReturnType<typeof useGetHamburgerPlacesLazyQuery>;
 export type GetHamburgerPlacesQueryResult = Apollo.QueryResult<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>;
-export const GetUsersDocument = gql`
-    query GetUsers {
-        allUsers {
-            firstName
-            lastName
-            email
-        }
-    }
-`;
+export const GetUserDocument = gql`
+    query GetUser {
+  getUser {
+    deviceId
+  }
+}
+    `;
 
 /**
- * __useGetUsersQuery__
+ * __useGetUserQuery__
  *
- * To run a query within a React component, call `useGetUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetUsersQuery({
+ * const { data, loading, error } = useGetUserQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
-}
-export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-    const options = { ...defaultOptions, ...baseOptions };
-    return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
-}
-export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
-export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
-export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
+export function useGetUserQuery(baseOptions?: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+      }
+export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+        }
+export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
+export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
+export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
