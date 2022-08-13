@@ -1,5 +1,5 @@
 mutation CreateBasicUser($deviceId: String!) {
-  createBasicUser(deviceId: $deviceId) {
-    deviceId
-  }
+    createBasicUser(deviceId: $deviceId) {
+        deviceId
+    }
 }

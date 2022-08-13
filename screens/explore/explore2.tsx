@@ -58,18 +58,24 @@ const ExploreScreen = ({}: Props) => {
     const getData = async () => {
         const deviceId = await GetData('@deviceId');
         console.log(deviceId);
-    }
+    };
 
     const setData = async () => {
         await StoreData('@deviceId', 'removed');
         console.log('complete');
+    };
+
+    const likePlace = async () => {
+        console.log('like');
+        const deviceId = await GetData('@deviceId');
     }
 
     return (
-        <View style={{ flex: 1, marginTop: 100 }}>
-            <PrimaryButton title={'Check data'} onPress={() => getData()} />
-            <PrimaryButton title={'Set data'}  onPress={() => setData()}  />
-            {/* <MapHeader />
+        <View style={{ flex: 1 }}>
+            {/* <PrimaryButton title={'Check data'} onPress={() => getData()} />
+            <PrimaryButton title={'Set data'} onPress={() => setData()} />
+            <PrimaryButton title={'like place'} onPress={() => likePlace()} /> */}
+            <MapHeader />
             <ScrollBar />
             <View style={styles.container}>
                 <Map />
@@ -96,7 +102,7 @@ const ExploreScreen = ({}: Props) => {
                 title={sheetOpen ? 'Map' : 'List'}
                 style={styles.mapButton}
                 onPress={sheetOpen ? () => handleSnapPress(0) : () => handleSnapPress(1)}
-            /> */}
+            />
         </View>
     );
 };

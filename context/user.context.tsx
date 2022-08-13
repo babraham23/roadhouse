@@ -8,7 +8,6 @@ import { useCreateBasicUserMutation, useGetHamburgerPlacesQuery, useGetUserQuery
 import { GetData, StoreData } from '../functions/asyncStorage';
 import { generateID } from '../functions/helpers';
 
-
 type Context = {
     userType?: any;
     setUserType?: any;
@@ -38,7 +37,6 @@ const UserContext = createContext<Context>({
     getPlaces: undefined,
 });
 
-
 export const UserProvider: FC = ({ children }) => {
     const [location, setLocation]: any = useState(null);
     const [latitude, setLatitude]: any = useState('');
@@ -51,7 +49,6 @@ export const UserProvider: FC = ({ children }) => {
     const burgers = useGetHamburgerPlacesQuery();
     const [createBasicUser] = useCreateBasicUserMutation();
     // const users = useGetUserQuery();
-    
 
     const getUserLocation = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -59,7 +56,7 @@ export const UserProvider: FC = ({ children }) => {
             setErrorMsg('Permission to access location was denied');
             return;
         }
-        getUser()
+        getUser();
         // dispatch({ type: SET_LOADING, payload: true });
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
@@ -69,32 +66,30 @@ export const UserProvider: FC = ({ children }) => {
     };
 
     const getUser = async () => {
-        const deviceId = await GetData('@deviceId')
-        console.log('deviceId', deviceId)
+        const deviceId = await GetData('@deviceId');
+        console.log('deviceId', deviceId);
         if (!deviceId || deviceId === 'removed' || deviceId === 'undefined') {
-            console.log('creating -->')
+            console.log('creating -->');
             const deviceId = generateID();
             await StoreData('@deviceId', deviceId);
             const user = await createBasicUser({
                 variables: {
                     deviceId: deviceId,
-                }
-            })
+                },
+            });
             if (user) console.log(user);
             else console.log('failure storing basic user');
         } else {
-            console.log('returning -->')
+            console.log('returning -->');
             const user = await createBasicUser({
                 variables: {
                     deviceId: deviceId,
-                }
-            })
+                },
+            });
             if (user) console.log(user);
             else console.log('failure storing basic user');
         }
-    }
-
-
+    };
 
     const getPlaces = async (type: any) => {
         if (type === 'Bars') {

@@ -81,6 +81,7 @@ export type UserClass = {
   firstName?: Maybe<Scalars['String']>;
   isCustomer?: Maybe<Scalars['Boolean']>;
   lastName?: Maybe<Scalars['String']>;
+  likedPlaces: Array<Scalars['String']>;
   password?: Maybe<Scalars['String']>;
 };
 
@@ -116,7 +117,7 @@ export type GetHamburgerPlacesQuery = { __typename?: 'Query', getHamburgerPlaces
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', getUser: { __typename?: 'UserClass', deviceId?: string | null | undefined } };
+export type GetUserQuery = { __typename?: 'Query', getUser: { __typename?: 'UserClass', deviceId?: string | null | undefined, likedPlaces: Array<string> } };
 
 
 export const CreatePlaceDocument = gql`
@@ -265,6 +266,7 @@ export const GetUserDocument = gql`
     query GetUser {
   getUser {
     deviceId
+    likedPlaces
   }
 }
     `;
