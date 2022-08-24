@@ -90,7 +90,6 @@ const BusinessScreen = ({ route }: any) => {
         getInformationAboutBusiness();
     }, []);
 
-
     return (
         <>
             <ImageHeaderScroll hideClose images={images} title={name} style={styles.container}>
