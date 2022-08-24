@@ -20,6 +20,7 @@ export type Mutation = {
   createBasicUser: UserClass;
   createPlace: PlacesClass;
   createUser: UserClass;
+  likePlace: UserClass;
 };
 
 
@@ -52,6 +53,12 @@ export type MutationCreateUserArgs = {
   password: Scalars['String'];
 };
 
+
+export type MutationLikePlaceArgs = {
+  _id: Scalars['String'];
+  likedPlace: Scalars['String'];
+};
+
 export type PlacesClass = {
   __typename?: 'PlacesClass';
   description?: Maybe<Scalars['String']>;
@@ -76,6 +83,7 @@ export type Query = {
 
 export type UserClass = {
   __typename?: 'UserClass';
+  _id: Scalars['String'];
   deviceId?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
@@ -107,12 +115,20 @@ export type CreateBasicUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateBasicUserMutation = { __typename?: 'Mutation', createBasicUser: { __typename?: 'UserClass', deviceId?: string | null | undefined } };
+export type CreateBasicUserMutation = { __typename?: 'Mutation', createBasicUser: { __typename?: 'UserClass', _id: string, deviceId?: string | null | undefined } };
 
 export type GetHamburgerPlacesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetHamburgerPlacesQuery = { __typename?: 'Query', getHamburgerPlaces: Array<{ __typename?: 'PlacesClass', formattedAddress?: string | null | undefined, description?: string | null | undefined, lat?: number | null | undefined, lng?: number | null | undefined, isClient?: boolean | null | undefined, priceLevel?: number | null | undefined, rating?: number | null | undefined, userRatingsTotal?: number | null | undefined, types?: string | null | undefined, placeName?: string | null | undefined, keywords?: string | null | undefined }> };
+
+export type LikePlaceMutationVariables = Exact<{
+  id: Scalars['String'];
+  likedPlace: Scalars['String'];
+}>;
+
+
+export type LikePlaceMutation = { __typename?: 'Mutation', likePlace: { __typename?: 'UserClass', _id: string, likedPlaces: Array<string> } };
 
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -188,6 +204,7 @@ export type CreatePlaceMutationOptions = Apollo.BaseMutationOptions<CreatePlaceM
 export const CreateBasicUserDocument = gql`
     mutation CreateBasicUser($deviceId: String!) {
   createBasicUser(deviceId: $deviceId) {
+    _id
     deviceId
   }
 }
@@ -262,6 +279,41 @@ export function useGetHamburgerPlacesLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetHamburgerPlacesQueryHookResult = ReturnType<typeof useGetHamburgerPlacesQuery>;
 export type GetHamburgerPlacesLazyQueryHookResult = ReturnType<typeof useGetHamburgerPlacesLazyQuery>;
 export type GetHamburgerPlacesQueryResult = Apollo.QueryResult<GetHamburgerPlacesQuery, GetHamburgerPlacesQueryVariables>;
+export const LikePlaceDocument = gql`
+    mutation LikePlace($id: String!, $likedPlace: String!) {
+  likePlace(_id: $id, likedPlace: $likedPlace) {
+    _id
+    likedPlaces
+  }
+}
+    `;
+export type LikePlaceMutationFn = Apollo.MutationFunction<LikePlaceMutation, LikePlaceMutationVariables>;
+
+/**
+ * __useLikePlaceMutation__
+ *
+ * To run a mutation, you first call `useLikePlaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLikePlaceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [likePlaceMutation, { data, loading, error }] = useLikePlaceMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      likedPlace: // value for 'likedPlace'
+ *   },
+ * });
+ */
+export function useLikePlaceMutation(baseOptions?: Apollo.MutationHookOptions<LikePlaceMutation, LikePlaceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LikePlaceMutation, LikePlaceMutationVariables>(LikePlaceDocument, options);
+      }
+export type LikePlaceMutationHookResult = ReturnType<typeof useLikePlaceMutation>;
+export type LikePlaceMutationResult = Apollo.MutationResult<LikePlaceMutation>;
+export type LikePlaceMutationOptions = Apollo.BaseMutationOptions<LikePlaceMutation, LikePlaceMutationVariables>;
 export const GetUserDocument = gql`
     query GetUser {
   getUser {

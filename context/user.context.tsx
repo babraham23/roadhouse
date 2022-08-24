@@ -22,6 +22,8 @@ type Context = {
     getPlaces?: any;
     place?: any;
     setPlace?: any;
+    userId?: any;
+    setUserId?: any;
 };
 
 const UserContext = createContext<Context>({
@@ -35,6 +37,8 @@ const UserContext = createContext<Context>({
     setLocation: undefined,
     getUserLocation: undefined,
     getPlaces: undefined,
+    userId: undefined,
+    setUserId: undefined,
 });
 
 export const UserProvider: FC = ({ children }) => {
@@ -48,6 +52,7 @@ export const UserProvider: FC = ({ children }) => {
     const dispatch = useDispatch();
     const burgers = useGetHamburgerPlacesQuery();
     const [createBasicUser] = useCreateBasicUserMutation();
+    const [userId, setUserId]: any = useState('');
     // const users = useGetUserQuery();
 
     const getUserLocation = async () => {
@@ -67,9 +72,7 @@ export const UserProvider: FC = ({ children }) => {
 
     const getUser = async () => {
         const deviceId = await GetData('@deviceId');
-        console.log('deviceId', deviceId);
-        if (!deviceId || deviceId === 'removed' || deviceId === 'undefined') {
-            console.log('creating -->');
+        if (!deviceId || deviceId === 'removed' || deviceId === undefined) {
             const deviceId = generateID();
             await StoreData('@deviceId', deviceId);
             const user = await createBasicUser({
@@ -80,14 +83,15 @@ export const UserProvider: FC = ({ children }) => {
             if (user) console.log(user);
             else console.log('failure storing basic user');
         } else {
-            console.log('returning -->');
             const user = await createBasicUser({
                 variables: {
                     deviceId: deviceId,
                 },
             });
-            if (user) console.log(user);
-            else console.log('failure storing basic user');
+            if (user) {
+                let userId = user.data?.createBasicUser._id;
+                setUserId(userId);
+            } else console.log('failure storing basic user');
         }
     };
 
@@ -165,6 +169,7 @@ export const UserProvider: FC = ({ children }) => {
                 places,
                 getPlaces,
                 place,
+                userId,
             }}
         >
             {children}

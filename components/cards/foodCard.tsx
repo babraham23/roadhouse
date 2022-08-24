@@ -184,7 +184,6 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     bold: {
-        fontFamily: 'HELVETICA_BOLD',
         fontSize: 18,
         paddingLeft: 10,
         textDecorationLine: 'underline',

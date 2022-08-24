@@ -30,7 +30,9 @@ const Map = () => {
     });
 
     const onIconPress = (item: any) => {
+        console.log('item -->', item);
         let { lat, lng } = item.geometry.location;
+        
         // console.log('lat, lng -->', item);
         // longitude: number, latitude: number
         // setDestination({ latitude: lat, longitude: lng });

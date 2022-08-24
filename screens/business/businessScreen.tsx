@@ -13,6 +13,8 @@ import WalkingSvg from '../../assets/svgs/walkingSvg';
 import VehicleSvg from '../../assets/svgs/vehicleSvg';
 import DirectionLayout from '../../components/business/directionLayout';
 import BottomButtonLayout from '../../components/business/bottomButtonLayout';
+import { useLikePlaceMutation } from '../../graphql/generated/output';
+import { useUserContext } from '../../context/user.context';
 
 /*
 ***** PARAMS *****
@@ -58,7 +60,10 @@ const BusinessScreen = ({ route }: any) => {
     const { colors } = useTheme();
     const [images, setImages] = useState(photos);
     const [reviews, setReiews] = useState([]);
+    const { userId } = useUserContext();
     // console.log('params in business screen -->', route.params.item);
+
+    const [likePlaceMutation, { data, loading, error }] = useLikePlaceMutation();
 
     const getInformationAboutBusiness = async () => {
         try {
@@ -73,9 +78,18 @@ const BusinessScreen = ({ route }: any) => {
         }
     };
 
+    const setlikedPlace = async () => {
+        let variables = {
+            id: userId,
+            likedPlace: 'Mcdonalds',
+        };
+        let res = await likePlaceMutation({ variables });
+    };
+
     useEffect(() => {
         getInformationAboutBusiness();
     }, []);
+
 
     return (
         <>

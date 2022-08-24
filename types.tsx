@@ -20,6 +20,7 @@ export type RootStackParamList = {
     MapScreen: undefined;
     BusinessScreen: undefined;
     CreatePlace: undefined;
+    ProBusinessScreen: undefined;
 
     TestScreen: undefined;
 };

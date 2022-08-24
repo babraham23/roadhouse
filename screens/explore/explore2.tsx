@@ -68,7 +68,7 @@ const ExploreScreen = ({}: Props) => {
     const likePlace = async () => {
         console.log('like');
         const deviceId = await GetData('@deviceId');
-    }
+    };
 
     return (
         <View style={{ flex: 1 }}>

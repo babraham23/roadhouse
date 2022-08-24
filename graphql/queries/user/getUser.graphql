@@ -1,6 +1,6 @@
 query GetUser {
-  getUser {
-    deviceId
-    likedPlaces
-  }
+    getUser {
+        deviceId
+        likedPlaces
+    }
 }

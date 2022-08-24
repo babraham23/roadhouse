@@ -21,6 +21,7 @@ import ExploreScreen from '../screens/explore/explore2';
 import TestScreen from '../screens/test';
 import BusinessScreen from '../screens/business/businessScreen';
 import CreatePlace from '../screens/client/createPlace';
+import ProBusinessScreen from '../screens/business/proBusinessScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -74,6 +75,7 @@ function RootNavigator() {
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="ProBusinessScreen" component={ProBusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
             </Stack.Group>
         </Stack.Navigator>
