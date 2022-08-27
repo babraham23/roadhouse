@@ -19,3 +19,11 @@ export const ScrollBarConverter = (title: string) => {
     else if (title === 'Market') return Images.MARKET;
     else if (title === 'Liked') return Images.HEART;
 };
+
+export const MenuMarkerConverter = (place: string) => {
+    if (place === 'Restaurants') return Images.RESTAURANT;
+    else if (place === 'Bars') return Images.BEER;
+    else if (place === 'Market') return Images.MARKET;
+    else if (place === 'Liked') return Images.HEART;
+    else if (place === 'Hamburgers') return Images.HAMBURGER;
+};

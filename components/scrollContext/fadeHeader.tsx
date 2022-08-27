@@ -3,15 +3,18 @@ import { View, Animated, Easing, StyleSheet, TouchableOpacity } from 'react-nati
 import { useScroller } from './/scrollContextProvider';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { Text } from '../../style/typography';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import HeartButton from '../buttons/heartButton';
 
 interface Props {
     title?: string;
     hideBack?: boolean;
     onBackPress?: any;
+    hideClose?: boolean;
+    onClosePress?: any;
 }
 
-const FadeHeader = ({ title, hideBack, onBackPress }: Props) => {
+const FadeHeader = ({ title, hideBack, onBackPress, hideClose, onClosePress }: Props) => {
     const { colors } = useTheme();
     const navigation = useNavigation();
     const { titleShowing } = useScroller();
@@ -56,6 +59,13 @@ const FadeHeader = ({ title, hideBack, onBackPress }: Props) => {
                     {title}
                 </Text>
             </Animated.View>
+
+            {hideClose ? null : (
+                <HeartButton style={[styles.closeWrapper]} />
+                // <TouchableOpacity onPress={onClosePress ? onClosePress : () => navigation.goBack()} style={[styles.closeWrapper, { backgroundColor: colors.card }]}>
+                //     <MaterialCommunityIcons name="window-close" size={20} color={colors.text} />
+                // </TouchableOpacity>
+            )}
         </>
     );
 };
@@ -63,8 +73,8 @@ const FadeHeader = ({ title, hideBack, onBackPress }: Props) => {
 const styles = StyleSheet.create({
     backWrapper: {
         position: 'absolute',
-        top: 40,
-        left: 20,
+        top: 10,
+        left: 15,
         zIndex: 10,
         elevation: 10,
         width: 30,
@@ -73,21 +83,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    container: {
-        width: '100%',
-        height: 50,
-        flexDirection: 'row',
-    },
     headerTitle: {
         width: '100%',
-        height: 80,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 30,
+        // paddingTop: 3    0,
         position: 'absolute',
         top: 0,
         zIndex: 9,
         elevation: 9,
+    },
+    closeWrapper: {
+        position: 'absolute',
+        top: 10,
+        right: 15,
+        zIndex: 10,
+        elevation: 10,
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

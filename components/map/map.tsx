@@ -5,7 +5,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY } from '../../api/endpoints';
 import { useUserContext } from '../../context/user.context';
 import { useNavigation } from '@react-navigation/native';
-import MapMarkers from './mapMarkers';
+import { MenuMarkerConverter } from '../../functions/helpers';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;
@@ -30,14 +30,14 @@ const Map = () => {
     });
 
     const onIconPress = (item: any) => {
-        console.log('item -->', item);
         let { lat, lng } = item.geometry.location;
 
         // console.log('lat, lng -->', item);
         // longitude: number, latitude: number
         // setDestination({ latitude: lat, longitude: lng });
         // setDirectionActive(true);
-        navigation.navigate('BusinessScreen', { item, distance, duration });
+        // navigation.navigate('BusinessScreen', { item, distance, duration });
+        navigation.navigate('StorefrontScreen', { item, distance, duration });
     };
 
     return (
@@ -53,7 +53,7 @@ const Map = () => {
                         key={`coordinate_${i}`}
                         coordinate={{ latitude, longitude }}
                     >
-                        <MapMarkers place={place} />
+                        <Image source={MenuMarkerConverter(place)} style={styles.icon} />
                     </Marker>
                 );
             })}
@@ -95,8 +95,8 @@ export default Map;
 
 const styles = StyleSheet.create({
     icon: {
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         resizeMode: 'contain',
     },
 });

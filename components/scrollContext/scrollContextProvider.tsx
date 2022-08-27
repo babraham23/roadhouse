@@ -12,14 +12,27 @@ interface ScrollContextInterface {
     updateScroll(val: number): void;
 }
 
+interface HeaderProps {
+    title?: string;
+    hideBack?: boolean;
+    onBackPress?: any;
+    hideClose?: boolean;
+    onClosePress?: any;
+}
+
 interface ChildProps {
     children: JSX.Element[] | JSX.Element;
-    title?: string;
-    onBackPress?: any;
     bounces?: boolean;
     headerLeft?: any;
     ref?: any;
     hideBasket?: boolean;
+
+    title?: string;
+    onBackPress?: any;
+    hideBack?: boolean;
+    hideClose?: boolean;
+    onClosePress?: any;
+    style?: any
 }
 
 const withinLimits = (val: number, min: number, max: number): number => (val > max ? max : val < min ? min : val);
@@ -66,8 +79,8 @@ export const ScrollContextProvider = (props: ChildProps) => {
                 }}
             >
                 <>
-                    <FadeHeader title={props.title} />
-                    <ScrollView bounces={props.bounces} ref={ScrollRef}>
+                    <FadeHeader title={props.title} onBackPress={props.onBackPress} onClosePress={props.onClosePress} hideBack={props.hideBack} hideClose={props.hideClose} />
+                    <ScrollView style={props.style} bounces={props.bounces} ref={ScrollRef}>
                         {props.children}
                     </ScrollView>
                 </>

@@ -20,4 +20,6 @@ export const Images = {
     CHICKEN: require('../assets/icons/fried-chicken.png'),
     FRIES: require('../assets/icons/french-fries.png'),
     COFFEE: require('../assets/icons/coffee-cup.png'),
+
+    PLACEHOLDER2: require('../assets/images/placeholder2.jpeg'),
 };

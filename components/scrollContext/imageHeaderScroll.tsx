@@ -19,7 +19,7 @@ const imageUrl = (photo_reference: any) =>
 
 let { width } = Dimensions.get('window');
 
-const ImageHeaderScroll = ({ image, children, title, hideClose, style, images }: any) => {
+const ImageHeaderScroll = ({ children, title, hideClose, style, images }: any) => {
     const { colors }: any = useTheme();
     const scrollY = useRef(new Animated.Value(0)).current;
 
