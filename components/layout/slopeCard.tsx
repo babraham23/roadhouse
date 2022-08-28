@@ -8,19 +8,25 @@ const { width } = Dimensions.get('window');
 
 type Props = {
     title?: string;
-}
+};
 
 const SlopeCard: React.FC<Props> = ({ title }) => {
     const { colors } = useTheme();
     return (
         <>
-        <View style={[styles.triangleCorner1, { borderLeftColor: colors.card }]} />
-        <View style={[styles.card, { backgroundColor: colors.card }]}>
-            <Image source={Images.MCDEEZ} style={styles.logo} />
-            <Text fontSize={23} bold style={styles.title} >{title}</Text>
-            <Text color={colors.primary}  style={styles.subtitle} >Grainger Street NE45BY</Text>
-            <Text color={colors.dark_grey}  style={styles.subtitle} >1.0m</Text>
-        </View>
+            <View style={[styles.triangleCorner1, { borderLeftColor: colors.card }]} />
+            <View style={[styles.card, { backgroundColor: colors.card }]}>
+                <Image source={Images.MCDEEZ} style={styles.logo} />
+                <Text fontSize={23} bold style={styles.title}>
+                    {title}
+                </Text>
+                <Text color={colors.primary} style={styles.subtitle}>
+                    Grainger Street NE45BY
+                </Text>
+                <Text color={colors.dark_grey} style={styles.subtitle}>
+                    1.0m
+                </Text>
+            </View>
         </>
     );
 };
@@ -51,13 +57,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderRadius: 8,
         top: -70,
-        left: 15
+        left: 15,
     },
     title: {
-        paddingHorizontal: 20,        
-        paddingBottom: 5
+        paddingHorizontal: 20,
+        paddingBottom: 5,
     },
     subtitle: {
         paddingHorizontal: 20,
-    }
+    },
 });

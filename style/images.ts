@@ -22,4 +22,17 @@ export const Images = {
     COFFEE: require('../assets/icons/coffee-cup.png'),
 
     PLACEHOLDER2: require('../assets/images/placeholder2.jpeg'),
+
+
+
+    // McDOnalds Placholders
+    BIG_MAC: require('../assets/mcdonalds/bigMac.png'),
+    CHICKEN2: require('../assets/mcdonalds/chicken.png'),
+    FRIES2: require('../assets/mcdonalds/fries.png'),
+    COFFEE2: require('../assets/mcdonalds/coldbrew.png'),
+    NUGGETS: require('../assets/mcdonalds/nuggets.png'),
+    
+    
+
+
 };

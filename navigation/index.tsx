@@ -23,7 +23,6 @@ import BusinessScreen from '../screens/business/businessScreen';
 import CreatePlace from '../screens/client/createPlace';
 import StorefrontScreen from '../screens/storefront';
 
-
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
     // const routeNameRef: any = React.useRef();
@@ -69,6 +68,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
+            {/* <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }} /> */}
             {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} /> */}
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />

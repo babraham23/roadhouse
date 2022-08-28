@@ -1,8 +1,7 @@
-import React from 'react'
-import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window')
-
+const { width, height } = Dimensions.get('window');
 
 const RepeatCarouselItem = ({ item }: any) => {
     return (
@@ -13,8 +12,8 @@ const RepeatCarouselItem = ({ item }: any) => {
                 <Text style={styles.itemDescription}>{item.description}</Text>
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     cardView: {
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     image: {
         width: width - 20,
         height: height / 3,
-        borderRadius: 10
+        borderRadius: 10,
     },
     itemTitle: {
         color: 'white',
@@ -50,8 +49,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 3,
         marginBottom: 5,
-        fontWeight: "bold",
-        elevation: 5
+        fontWeight: 'bold',
+        elevation: 5,
     },
     itemDescription: {
         color: 'white',
@@ -60,8 +59,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0.8, height: 0.8 },
         shadowOpacity: 1,
         shadowRadius: 3,
-        elevation: 5
-    }
-})
+        elevation: 5,
+    },
+});
 
-export default RepeatCarouselItem
+export default RepeatCarouselItem;

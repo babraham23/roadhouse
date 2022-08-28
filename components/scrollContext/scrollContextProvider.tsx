@@ -32,7 +32,7 @@ interface ChildProps {
     hideBack?: boolean;
     hideClose?: boolean;
     onClosePress?: any;
-    style?: any
+    style?: any;
 }
 
 const withinLimits = (val: number, min: number, max: number): number => (val > max ? max : val < min ? min : val);

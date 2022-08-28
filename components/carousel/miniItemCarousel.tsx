@@ -5,7 +5,15 @@ import RepeatCarouselItem from './repeatCarouselItem';
 
 const { width } = Dimensions.get('window');
 
-const RepeatCarousel = ({ data }: any) => {
+let MiniItem = () => {
+    return (
+        <View style={styles.itemWrapper}>
+            <Text>Item</Text>
+        </View>
+    );
+};
+
+const MiniItemCarousel = ({ data }: any) => {
     const scrollX = new Animated.Value(0);
     let position = Animated.divide(scrollX, width);
     const [dataList, setDataList] = useState(data);
@@ -41,7 +49,7 @@ const RepeatCarousel = ({ data }: any) => {
         return (
             <View>
                 <Text bold style={styles.header}>
-                    New
+                    Favourites
                 </Text>
                 <FlatList
                     data={data}
@@ -55,7 +63,7 @@ const RepeatCarousel = ({ data }: any) => {
                     decelerationRate={'fast'}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        return <RepeatCarouselItem item={item} />;
+                        return <MiniItem />;
                     }}
                     onScroll={(e) => onScroll(e)}
                 />
@@ -86,10 +94,16 @@ const styles = StyleSheet.create({
         bottom: 20,
         backgroundColor: 'grey',
         borderRadius: 8,
+        opacity: 0.9,
     },
     header: {
         marginHorizontal: 20,
     },
+
+    itemWrapper: {
+        height: 50,
+        width: 50,
+    },
 });
 
-export default RepeatCarousel;
+export default MiniItemCarousel;

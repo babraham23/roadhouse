@@ -11,7 +11,7 @@ const BottomButtonLayout = ({ pro }: any) => {
                 <View style={[styles.container, { borderTopColor: colors.border, backgroundColor: colors.card }]}>
                     <View style={styles.buttonTopWrapper}>
                         <View style={{ width: '50%', paddingRight: 5 }}>
-                            <PrimaryButton title="Open Map" />
+                            <PrimaryButton title="Get Directions" />
                         </View>
                         <View style={{ width: '50%', paddingLeft: 5 }}>
                             <PrimaryButton title="Book Table" />
