@@ -9,48 +9,52 @@ const CreatePlace = () => {
 
     const places = useGetHamburgerPlacesQuery();
 
-    const createPlaceCall = async () => {
-        let variables = {
-            keywords: 'Bar',
-            placeName: 'The Forth Hotel',
-            types: 'Bar',
-            userRatingsTotal: 5,
-            rating: 5,
-            priceLevel: 3,
-            isClient: true,
-            lat: 54.9707219822929,
-            lng: -1.6184184206980181,
-            description: 'Greatest pub in the world',
-            formattedAddress: 'Pink Ln, Newcastle upon Tyne NE1 5DW',
-        };
-        console.log('VARIABLES: ', variables);
-        const data = await createPlace({
-            variables,
-        });
-        if (data.data?.createPlace) console.log('success', data.data);
-        else console.log('failure');
+    // const createPlaceCall = async () => {
+    //     let variables = {
+    //         keywords: 'Bar',
+    //         placeName: 'The Forth Hotel',
+    //         types: 'Bar',
+    //         userRatingsTotal: 5,
+    //         rating: 5,
+    //         priceLevel: 3,
+    //         isClient: true,
+    //         lat: 54.9707219822929,
+    //         lng: -1.6184184206980181,
+    //         description: 'Greatest pub in the world',
+    //         formattedAddress: 'Pink Ln, Newcastle upon Tyne NE1 5DW',
+    //         geometry: {
+    //             lat: 1,
+    //             lng: 1,
+    //         }
+    //     };
+    //     console.log('VARIABLES: ', variables);
+    //     const data = await createPlace({
+    //         variables,
+    //     });
+    //     if (data.data?.createPlace) console.log('success', data.data);
+    //     else console.log('failure');
 
-        // const place = await createPlaces({
-        //     variables: {
-        // description: 'Best Hamburgers!',
-        // formattedAddress: '2-6 Shakespeare St, Newcastle upon Tyne NE1 6AQ',
-        // lat: 54.97291955981489,
-        // lng: -1.6119712145956389,
-        // isClient: true,
-        // rating: 4,
-        // priceLevel: 4,
-        // userRatingsTotal: 25,
-        // types: 'Franchise',
-        // place_name: 'Fat Hippo',
-        // keywords: 'Hamburgers',
-        //     },
-        // });
-        // if (place.data?.createPlace) console.log('success -->', place)
-        // else console.log('failure')
-    };
+    //     // const place = await createPlaces({
+    //     //     variables: {
+    //     // description: 'Best Hamburgers!',
+    //     // formattedAddress: '2-6 Shakespeare St, Newcastle upon Tyne NE1 6AQ',
+    //     // lat: 54.97291955981489,
+    //     // lng: -1.6119712145956389,
+    //     // isClient: true,
+    //     // rating: 4,
+    //     // priceLevel: 4,
+    //     // userRatingsTotal: 25,
+    //     // types: 'Franchise',
+    //     // place_name: 'Fat Hippo',
+    //     // keywords: 'Hamburgers',
+    //     //     },
+    //     // });
+    //     // if (place.data?.createPlace) console.log('success -->', place)
+    //     // else console.log('failure')
+    // };
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => createPlaceCall()}>
+            <TouchableOpacity onPress={() => {}}>
                 <Text>CreatePlace</Text>
             </TouchableOpacity>
         </View>

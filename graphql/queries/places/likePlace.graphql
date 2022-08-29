@@ -1,6 +1,0 @@
-mutation LikePlace($id: String!, $likedPlace: String!) {
-    likePlace(_id: $id, likedPlace: $likedPlace) {
-        _id
-        likedPlaces
-    }
-}

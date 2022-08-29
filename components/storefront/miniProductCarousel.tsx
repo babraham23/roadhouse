@@ -10,43 +10,43 @@ let dd2 = [
         id: 1,
         color: 'green',
         image: Images.BIG_MAC,
-        title: 'Hamburgers'
+        title: 'Hamburgers',
     },
     {
         id: 2,
         color: 'red',
         image: Images.NUGGETS,
-        title: 'Nuggets'
+        title: 'Nuggets',
     },
     {
         id: 3,
         color: 'blue',
         image: Images.CHICKEN2,
-        title: 'Chicken'
+        title: 'Chicken',
     },
     {
         id: 4,
         color: 'green',
         image: Images.COFFEE2,
-        title: 'Coffee'
+        title: 'Coffee',
     },
     {
         id: 5,
         color: 'green',
         image: Images.BIG_MAC,
-        title: 'Hamburgers'
+        title: 'Hamburgers',
     },
     {
         id: 6,
         color: 'red',
         image: Images.NUGGETS,
-        title: 'Nuggets'
+        title: 'Nuggets',
     },
 ];
 
 type Props = {
     big?: boolean;
-}
+};
 
 const MiniProductCarousel: React.FC<Props> = ({ big }) => {
     return (
@@ -98,7 +98,5 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 20,
     },
-    productTitle: {
-        
-    }
+    productTitle: {},
 });

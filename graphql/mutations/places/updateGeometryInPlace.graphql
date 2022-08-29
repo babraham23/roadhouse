@@ -1,0 +1,6 @@
+mutation UpdateGeometryInPlace($id: String!, $lng: Float!, $lat: Float!) {
+    updateGeometryInPlace(_id: $id, lng: $lng, lat: $lat) {
+        lat
+        lng
+    }
+}

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
 import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
 import { marketDD } from '../screens/explore/dd';
-import { useCreateBasicUserMutation, useGetHamburgerPlacesQuery, useGetUserQuery } from '../graphql/generated/output';
+import { useCreateBasicUserMutation, useGetUserQuery } from '../graphql/generated/output';
 import { GetData, StoreData } from '../functions/asyncStorage';
 import { generateID } from '../functions/helpers';
 
@@ -50,7 +50,6 @@ export const UserProvider: FC = ({ children }) => {
     let [places, setPlaces]: any = useState([]);
     const [place, setPlace]: any = useState('');
     const dispatch = useDispatch();
-    const burgers = useGetHamburgerPlacesQuery();
     const [createBasicUser] = useCreateBasicUserMutation();
     const [userId, setUserId]: any = useState('');
     // const users = useGetUserQuery();
@@ -72,6 +71,7 @@ export const UserProvider: FC = ({ children }) => {
 
     const getUser = async () => {
         const deviceId = await GetData('@deviceId');
+        console.log(deviceId)
         if (!deviceId || deviceId === 'removed' || deviceId === undefined) {
             const deviceId = generateID();
             await StoreData('@deviceId', deviceId);
@@ -146,7 +146,8 @@ export const UserProvider: FC = ({ children }) => {
 
     const getHamburgers = () => {
         setPlace('Hamburgers');
-        setPlaces(burgers.data?.getHamburgerPlaces);
+        // setPlaces(burgers.data?.getHamburgerPlaces);
+        setPlaces([]);
     };
 
     useEffect(() => {
