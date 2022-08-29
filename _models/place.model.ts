@@ -1,4 +1,4 @@
-import { PlacesInterface } from "../_interfaces/places.interface";
+import { PlacesInterface } from '../_interfaces/places.interface';
 
 export class PlaceModel {
     placeName: string;

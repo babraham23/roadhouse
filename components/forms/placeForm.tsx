@@ -41,9 +41,9 @@ const PlaceForm = () => {
     return (
         <FormTemplate onPress={() => console.log(placeName, description)}>
             <Text style={styles.heading}>Name of Place</Text>
-            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, placeName: value }))} style={styles.input} />
+            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
             <Text style={styles.heading}>Description</Text>
-            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, description: value }))} style={styles.input} />
+            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
             <Text style={styles.heading}>Address Line 1</Text>
             <Input onChangeText={(value: string) => console.log(value)} style={styles.input} />
             <Text style={styles.heading}>Address Line 2</Text>

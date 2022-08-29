@@ -71,7 +71,7 @@ export const UserProvider: FC = ({ children }) => {
 
     const getUser = async () => {
         const deviceId = await GetData('@deviceId');
-        console.log(deviceId)
+        console.log(deviceId);
         if (!deviceId || deviceId === 'removed' || deviceId === undefined) {
             const deviceId = generateID();
             await StoreData('@deviceId', deviceId);
