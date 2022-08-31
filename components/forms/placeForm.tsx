@@ -5,6 +5,7 @@ import { useUpdateGeometryInPlaceMutation, useCreatePlaceMutation } from '../../
 import FormTemplate from './formTemplate';
 import Input from '../inputs/textInput';
 import { PlaceModel } from '../../_models/place.model';
+import TextArea from '../inputs/textArea';
 
 const PlaceForm = () => {
     const [{ placeName, description, address1, address2, city, country, postcode, lat, lng, keywords }, setState] = React.useState<PlaceModel>({} as PlaceModel);
@@ -41,13 +42,15 @@ const PlaceForm = () => {
     return (
         <FormTemplate onPress={() => console.log(placeName, description)}>
             <Text style={styles.heading}>Name of Place</Text>
-            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
+            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, placeName: value }))} style={styles.input} />
             <Text style={styles.heading}>Description</Text>
-            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
+            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, description: value }))} style={styles.input} />
             <Text style={styles.heading}>Address Line 1</Text>
             <Input onChangeText={(value: string) => console.log(value)} style={styles.input} />
-            <Text style={styles.heading}>Address Line 2</Text>
+            <Text style={styles.heading}>Address Line 2 </Text>
             <Input onChangeText={(value: string) => console.log(value)} style={styles.input} />
+            <Text style={styles.heading}>Description </Text>
+            <TextArea onChangeText={(value: string) => console.log(value)} style={styles.input} />
         </FormTemplate>
     );
 };
