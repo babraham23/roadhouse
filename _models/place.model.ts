@@ -12,7 +12,7 @@ export class PlaceModel {
     lng: number;
     keywords: [string];
 
-    constructor(data: PlacesInterface) {
+    constructor(data: PlacesInterface | any = {}) {
         this.placeName = data.placeName || '';
         this.description = data.description || '';
         this.address1 = data.address1 || '';

@@ -39,10 +39,10 @@ const RepeatCarousel = ({ data }: any) => {
 
     if (data && data.length) {
         return (
-            <View>
-                <Text bold style={styles.header}>
+            <View style={styles.container} >
+                {/* <Text bold style={styles.header}>
                     New
-                </Text>
+                </Text> */}
                 <FlatList
                     data={data}
                     ref={flatListRef}
@@ -79,6 +79,9 @@ const RepeatCarousel = ({ data }: any) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        paddingVertical: 10
+    },
     dotView: {
         position: 'absolute',
         flexDirection: 'row',

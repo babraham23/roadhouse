@@ -22,3 +22,4 @@ User opens app
 
 
 
+## document run type-gen

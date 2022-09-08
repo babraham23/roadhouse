@@ -16,7 +16,7 @@ const FormButton: React.FC<Props> = ({ onPress, title }) => {
         <Animatable.View
             style={[
                 styles.buttonContainer,
-                { backgroundColor: colors.background, borderTopColor: colors.border, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card },
+                { backgroundColor: colors.card, borderTopColor: colors.border, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card },
             ]}
             animation="fadeInUpBig"
         >

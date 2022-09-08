@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,27 +10,28 @@ type Props = {
     onPress?: any;
     description?: string;
     onBackPress?: any;
+    canContinue?: boolean;
 };
 
-const FormTemplate: React.FC<Props> = ({ children, description, onBackPress, onPress }) => {
-    const { colors, borderRadius } = useTheme();
+const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onPress, description }) => {
+    const { colors } = useTheme();
     const navigation = useNavigation();
     return (
         <>
-            <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={[styles.arrowWrapper, { backgroundColor: colors.background }]}>
+            <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}>
                 <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
             </TouchableOpacity>
             <ScrollView bounces={true}>
                 <View style={styles.container}>
                     <View style={styles.descriptionWrapper}>
                         <Text bold fontSize={18}>
-                            Description
+                            {description}
                         </Text>
                     </View>
                     {children}
                 </View>
             </ScrollView>
-            <FormButton title="Continue" onPress={onPress} />
+            {canContinue ? <FormButton title="Continue" onPress={onPress} /> : null}
         </>
     );
 };
@@ -40,7 +41,7 @@ export default FormTemplate;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 90,
+        paddingTop: 100,
         paddingHorizontal: 20,
     },
     arrowWrapper: {
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 0.5
     },
     descriptionWrapper: {
         paddingBottom: 30,
@@ -68,5 +70,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         justifyContent: 'center',
+        
     },
 });

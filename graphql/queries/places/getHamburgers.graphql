@@ -1,0 +1,18 @@
+query GetHamburgerPlaces {
+    getHamburgerPlaces {
+        _id
+        placeName
+        description
+        Address1
+        Address2
+        postcode
+        city
+        country
+        formattedAddress
+        geometry {
+            lat
+            lng
+        }
+        keywords
+    }
+}

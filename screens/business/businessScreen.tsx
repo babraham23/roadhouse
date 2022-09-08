@@ -13,7 +13,7 @@ import WalkingSvg from '../../assets/svgs/walkingSvg';
 import VehicleSvg from '../../assets/svgs/vehicleSvg';
 import DirectionLayout from '../../components/business/directionLayout';
 import BottomButtonLayout from '../../components/business/bottomButtonLayout';
-import { useLikePlaceMutation } from '../../graphql/generated/output';
+// import { useLikePlaceMutation } from '../../graphql/generated/output';
 import { useUserContext } from '../../context/user.context';
 
 /*
@@ -63,13 +63,13 @@ const BusinessScreen = ({ route }: any) => {
     const { userId } = useUserContext();
     // console.log('params in business screen -->', route.params.item);
 
-    const [likePlaceMutation, { data, loading, error }] = useLikePlaceMutation();
+    // const [likePlaceMutation, { data, loading, error }] = useLikePlaceMutation();
 
     const getInformationAboutBusiness = async () => {
         try {
             const response = await fetch(detailed_search(place_id));
             const json = await response.json();
-            // console.log('json -->', json.result);
+            console.log('json -->', json.result);
             setImages(json.result.photos ? json.result.photos : []);
             setReiews(json.result.reviews ? json.result.reviews : []);
         } catch (error) {
@@ -78,13 +78,13 @@ const BusinessScreen = ({ route }: any) => {
         }
     };
 
-    const setlikedPlace = async () => {
-        let variables = {
-            id: userId,
-            likedPlace: 'Mcdonalds',
-        };
-        let res = await likePlaceMutation({ variables });
-    };
+    // const setlikedPlace = async () => {
+    //     let variables = {
+    //         id: userId,
+    //         likedPlace: 'Mcdonalds',
+    //     };
+    //     let res = await likePlaceMutation({ variables });
+    // };
 
     useEffect(() => {
         getInformationAboutBusiness();

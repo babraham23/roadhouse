@@ -6,6 +6,8 @@ import { API_KEY } from '../../api/endpoints';
 import { useUserContext } from '../../context/user.context';
 import { useNavigation } from '@react-navigation/native';
 import { MenuMarkerConverter } from '../../functions/helpers';
+import { Images } from '../../style/images';
+import { createIconSetFromFontello } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;
@@ -29,31 +31,36 @@ const Map = () => {
         longitudeDelta: 0.005,
     });
 
-    const onIconPress = (item: any) => {
-        let { lat, lng } = item.geometry.location;
-
-        // console.log('lat, lng -->', item);
-        // longitude: number, latitude: number
-        // setDestination({ latitude: lat, longitude: lng });
-        // setDirectionActive(true);
-        // navigation.navigate('BusinessScreen', { item, distance, duration });
-        navigation.navigate('StorefrontScreen', { item, distance, duration });
+    const onIconPress = (item: any, client: boolean) => {
+        if (client) {
+            navigation.navigate('StorefrontScreen', { item, distance, duration });
+        } else {
+            let { lat, lng } = item.geometry.location;
+            setDestination({ latitude: lat, longitude: lng });
+            setDirectionActive(true);
+            navigation.navigate('BusinessScreen', { item, distance, duration });
+        }
     };
 
     return (
         <MapView showsPointsOfInterest={false} region={mapRegion} style={[StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
             {places.map((item: any, i: number) => {
                 // CONDITIONAL CHECK TO CATER FOR CLIENT AND GOOGLE API
-                let latitude = item.geometry !== undefined ? item.geometry.location.lat : item.lat;
-                let longitude = item.geometry !== undefined ? item.geometry.location.lng : item.lng;
+                let client = item.geometry.lat ? true : false;
+                let latitude = item.geometry.lat ? item.geometry.lat : item.geometry.location.lat;
+                let longitude = item.geometry.lng ? item.geometry.lng : item.geometry.location.lng;
                 return (
                     <Marker
                         // onPress={() => onIconPress(longitude, latitude)}
-                        onPress={() => onIconPress(item)}
+                        onPress={() => onIconPress(item, client)}
                         key={`coordinate_${i}`}
                         coordinate={{ latitude, longitude }}
                     >
-                        <Image source={MenuMarkerConverter(place)} style={styles.icon} />
+                        {client && item.placeName === 'McDonalds' ? (
+                            <Image source={Images.MCDEEZ} style={styles.icon2} />
+                        ) : (
+                            <Image source={MenuMarkerConverter(place)} style={styles.icon} />
+                        )}
                     </Marker>
                 );
             })}
@@ -95,8 +102,14 @@ export default Map;
 
 const styles = StyleSheet.create({
     icon: {
-        width: 30,
-        height: 30,
+        width: 26,
+        height: 27,
         resizeMode: 'contain',
+    },
+    icon2: {
+        width: 40,
+        height: 40,
+        resizeMode: 'contain',
+        borderRadius: 4,
     },
 });

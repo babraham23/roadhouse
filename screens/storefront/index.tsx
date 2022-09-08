@@ -7,6 +7,7 @@ import { useTheme } from '../../hooks/useTheme';
 import MiniProductCarousel from '../../components/storefront/miniProductCarousel';
 import RepeatCarousel from '../../components/carousel/repeatCarousel';
 import BottomButtonLayout from '../../components/business/bottomButtonLayout';
+import StoreSearch from '../../components/inputs/storeSearch';
 
 const dummyData = [
     {
@@ -57,6 +58,7 @@ const StorefrontScreen = () => {
                     <Image source={Images.LOCATION} style={styles.image} />
                 </View>
                 <SlopeCard title={'McDonalds'} />
+                <StoreSearch style={{ paddingHorizontal: 10 }} placeholder={'Search McDonalds'} />
                 <MiniProductCarousel big />
                 <RepeatCarousel data={dummyData} />
                 <MiniProductCarousel />

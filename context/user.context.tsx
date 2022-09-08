@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
 import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
 import { marketDD } from '../screens/explore/dd';
-import { useCreateBasicUserMutation, useGetUserQuery } from '../graphql/generated/output';
+import { useCreateBasicUserMutation, useGetHamburgerPlacesQuery, useGetUserQuery } from '../graphql/generated/output';
 import { GetData, StoreData } from '../functions/asyncStorage';
 import { generateID } from '../functions/helpers';
 
@@ -52,6 +52,7 @@ export const UserProvider: FC = ({ children }) => {
     const dispatch = useDispatch();
     const [createBasicUser] = useCreateBasicUserMutation();
     const [userId, setUserId]: any = useState('');
+    const { data, loading, error } = useGetHamburgerPlacesQuery();
     // const users = useGetUserQuery();
 
     const getUserLocation = async () => {
@@ -146,8 +147,10 @@ export const UserProvider: FC = ({ children }) => {
 
     const getHamburgers = () => {
         setPlace('Hamburgers');
-        // setPlaces(burgers.data?.getHamburgerPlaces);
-        setPlaces([]);
+        const response = data?.getHamburgerPlaces;
+        // console.log('response -->', response)
+        setPlaces(response);
+        // setPlaces([]);
     };
 
     useEffect(() => {

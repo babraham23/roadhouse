@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Text } from '../../style/typography';
 import { useUpdateGeometryInPlaceMutation, useCreatePlaceMutation } from '../../graphql/generated/output';
 import FormTemplate from './formTemplate';
@@ -7,16 +7,18 @@ import Input from '../inputs/textInput';
 import { PlaceModel } from '../../_models/place.model';
 import TextArea from '../inputs/textArea';
 
+let pageDisc = 'Please add details about your establishment.';
+
 const PlaceForm = () => {
-    const [{ placeName, description, address1, address2, city, country, postcode, lat, lng, keywords }, setState] = React.useState<PlaceModel>({} as PlaceModel);
+    const [{ placeName, description, address1, address2, city, country, postcode, lat, lng, keywords }, setState] = React.useState(new PlaceModel());
     const [addGeometryToPlaceMutation] = useUpdateGeometryInPlaceMutation();
     const [createPlaceMutation] = useCreatePlaceMutation({});
 
     async function updateGeometryData() {
         let variables = {
-            id: '62f045cbfe2b2fc3aef8dee7', // value for 'id'
-            lng: -1.6184184206980181, // value for 'lng'
-            lat: 54.9707219822929, // value for 'lat'
+            id: '62f045cbfe2b2fc3aef8dee7', //'id'
+            lng: -1.6184184206980181, //'lng'
+            lat: 54.9707219822929, //'lat'
         };
         let res = await addGeometryToPlaceMutation({ variables });
         console.log(res);
@@ -24,33 +26,42 @@ const PlaceForm = () => {
 
     async function createPlace() {
         const variables = {
-            placeName: 'RoadhouseHQ🍕', // value for 'placeName'
-            description: 'Send Food!!', // value for 'description'
-            address1: 'Clayton Street', // value for 'address1'
-            address2: '', // value for 'address2'
-            city: 'Newcastle', // value for 'city'
-            postcode: 'NE15BY', // value for 'postcode'
-            country: 'United Kingdom', // value for 'country'
-            lat: 54.96952124011178, // value for 'lat'
-            lng: -1.619495778338448, // value for 'lng'
-            keywords: ['hamburgers', 'pizza', 'beer'], // value for 'keywords'
+            ...new PlaceModel(),
+            placeName, //'placeName'
+            description, //'description'
+            address1, //'address1'
+            address2, //'address2'
+            city, //'city'
+            postcode, //'postcode'
+            country, //'country'
+            // lat: 54.96952124011178, //'lat'
+            // lng: -1.619495778338448, //'lng'
+            lat,
+            lng,
+            keywords: ['hamburgers', 'pizza', 'beer'], //'keywords'
         };
-        let res = await createPlaceMutation({ variables });
-        console.log('place res -->', res.data?.createPlace);
+        console.log('variables -->', variables);
+        // let res = await createPlaceMutation({ variables });
     }
 
     return (
-        <FormTemplate onPress={() => console.log(placeName, description)}>
-            <Text style={styles.heading}>Name of Place</Text>
-            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, placeName: value }))} style={styles.input} />
-            <Text style={styles.heading}>Description</Text>
-            <Input onChangeText={(value: string) => setState(prevState => ({ ...prevState, description: value }))} style={styles.input} />
-            <Text style={styles.heading}>Address Line 1</Text>
-            <Input onChangeText={(value: string) => console.log(value)} style={styles.input} />
-            <Text style={styles.heading}>Address Line 2 </Text>
-            <Input onChangeText={(value: string) => console.log(value)} style={styles.input} />
+        <FormTemplate description={pageDisc} canContinue onPress={() => createPlace()}>
+            <Text style={styles.heading}>Name of Establishment</Text>
+            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
             <Text style={styles.heading}>Description </Text>
-            <TextArea onChangeText={(value: string) => console.log(value)} style={styles.input} />
+            <TextArea onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
+            <Text style={styles.heading}>Address Line 1</Text>
+            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
+            <Text style={styles.heading}>Address Line 2 </Text>
+            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} />
+            <View style={{ width: '50%' }}>
+                <Text style={styles.heading}>Postcode</Text>
+                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, postcode: value }))} style={styles.input} />
+            </View>
+            <Text style={styles.heading}>Longitude</Text>
+            <Input onChangeText={(value: number) => setState((prevState) => ({ ...prevState, lng: value }))} style={styles.input} />
+            <Text style={styles.heading}>Latitude</Text>
+            <Input onChangeText={(value: number) => setState((prevState) => ({ ...prevState, lat: value }))} style={styles.input} />
         </FormTemplate>
     );
 };
