@@ -39,7 +39,7 @@ const RepeatCarousel = ({ data }: any) => {
 
     if (data && data.length) {
         return (
-            <View style={styles.container} >
+            <View style={styles.container}>
                 {/* <Text bold style={styles.header}>
                     New
                 </Text> */}
@@ -80,7 +80,7 @@ const RepeatCarousel = ({ data }: any) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 10
+        paddingVertical: 10,
     },
     dotView: {
         position: 'absolute',

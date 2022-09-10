@@ -7,29 +7,29 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 const StoreSearch = ({ style, placeholder, autoCapitalize, onChangeText, onEndEditing, autoCorrect, keyboardType, spellCheck }: any) => {
     const { colors, borderRadius }: any = useTheme();
     return (
-        <View style={style} >
-        <View style={[styles.wrapper, { backgroundColor: '#EAEAEA', borderRadius: borderRadius.input, borderColor: colors.border }]}>
-            <View style={[styles.iconWrapper, { borderColor: colors.text }]}>
-                <FontAwesome name={'search'} color={colors.text} size={16} style={styles.icon} />
-            </View>
+        <View style={style}>
+            <View style={[styles.wrapper, { backgroundColor: colors.border, borderRadius: borderRadius.input, borderColor: colors.border }]}>
+                <View style={[styles.iconWrapper, { borderColor: colors.text }]}>
+                    <FontAwesome name={'search'} color={colors.text} size={16} style={styles.icon} />
+                </View>
 
-            <TextInput
-                placeholder={placeholder}
-                placeholderTextColor="#666666"
-                style={[styles.textInput, { color: colors.text }]}
-                autoCapitalize={autoCapitalize}
-                onChangeText={onChangeText}
-                onEndEditing={onEndEditing}
-                autoCorrect={autoCorrect}
-                keyboardType={keyboardType}
-                spellCheck={spellCheck}
-                underlineColorAndroid="transparent"
-            />
+                <TextInput
+                    placeholder={placeholder}
+                    placeholderTextColor="#666666"
+                    style={[styles.textInput, { color: colors.text }]}
+                    autoCapitalize={autoCapitalize}
+                    onChangeText={onChangeText}
+                    onEndEditing={onEndEditing}
+                    autoCorrect={autoCorrect}
+                    keyboardType={keyboardType}
+                    spellCheck={spellCheck}
+                    underlineColorAndroid="transparent"
+                />
 
-            {/* <TouchableOpacity style={[styles.iconWrapper, { borderColor: colors.text }]}>
+                {/* <TouchableOpacity style={[styles.iconWrapper, { borderColor: colors.text }]}>
 				<Ionicons name={'close'} color={colors.text} size={25}  />
 			</TouchableOpacity> */}
-        </View>
+            </View>
         </View>
     );
 };
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         elevation: 8,
-        
     },
     iconWrapper: {
         // borderRightWidth: 1,

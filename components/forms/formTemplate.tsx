@@ -18,7 +18,10 @@ const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onP
     const navigation = useNavigation();
     return (
         <>
-            <TouchableOpacity onPress={onBackPress ? onBackPress : () => navigation.goBack()} style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}>
+            <TouchableOpacity
+                onPress={onBackPress ? onBackPress : () => navigation.goBack()}
+                style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}
+            >
                 <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
             </TouchableOpacity>
             <ScrollView bounces={true}>
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 0.5
+        borderWidth: 0.5,
     },
     descriptionWrapper: {
         paddingBottom: 30,
@@ -70,6 +73,5 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         justifyContent: 'center',
-        
     },
 });
