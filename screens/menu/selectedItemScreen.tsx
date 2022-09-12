@@ -19,7 +19,6 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
     const [selectedAddOns] = React.useState([]);
     const { ProductOptions } = useSelector((state: any) => state.addOnReducer);
 
-
     const addToBasket = () => {
         let data = {
             title: title,
