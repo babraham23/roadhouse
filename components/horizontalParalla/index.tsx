@@ -22,11 +22,11 @@ const HorizontalParallax = () => {
     const { colors } = useTheme();
 
     const handleNav = (item: any) => {
-        // dispatch({ type: SET_MENU, payload: products });
-        // dispatch({ type: SET_MENU_ITEM, payload: products[0] });
-        // dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
-        // navigation.navigate('MenuScreen');
-        navigation.navigate('BusinessScreen', { item });
+        dispatch({ type: SET_MENU, payload: products });
+        dispatch({ type: SET_MENU_ITEM, payload: products[0] });
+        dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
+        navigation.navigate('MenuScreen');
+        // navigation.navigate('BusinessScreen', { item });
     };
 
     // console.log('items -->', places[0].photos[0].photo_reference);
