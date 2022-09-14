@@ -22,6 +22,7 @@ export type RootStackParamList = {
     CreatePlace: undefined;
     StorefrontScreen: undefined;
     SignUpScreen: undefined;
+    CheckoutScreen: undefined;
 
     TestScreen: undefined;
 };

@@ -23,6 +23,7 @@ import BusinessScreen from '../screens/business/businessScreen';
 import CreatePlace from '../screens/client/createPlace';
 import StorefrontScreen from '../screens/storefront';
 import SignUpScreen from '../screens/signUp';
+import CheckoutScreen from '../screens/checkout/checkoutScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -69,9 +70,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
+            <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} options={{ headerShown: false }} />
             {/* <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} /> */}
             {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} /> */}
-            <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CreatePlace" component={CreatePlace} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -79,7 +81,7 @@ function RootNavigator() {
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
-            </Stack.Group>
+            </Stack.Group> */}
         </Stack.Navigator>
     );
 }

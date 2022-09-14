@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { ScrollView as ScrollViewNative, ScrollViewProps, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import FadeHeader from './fadeHeader';
+import FadeHeaderBig from './fadeHeaderBig';
 
 interface ScrollContextInterface {
     opacity: number;
@@ -33,6 +34,7 @@ interface ChildProps {
     hideClose?: boolean;
     onClosePress?: any;
     style?: any;
+    bigHeader?: boolean;
 }
 
 const withinLimits = (val: number, min: number, max: number): number => (val > max ? max : val < min ? min : val);
@@ -79,7 +81,17 @@ export const ScrollContextProvider = (props: ChildProps) => {
                 }}
             >
                 <>
-                    <FadeHeader title={props.title} onBackPress={props.onBackPress} onClosePress={props.onClosePress} hideBack={props.hideBack} hideClose={props.hideClose} />
+                    {props.bigHeader ? (
+                        <FadeHeaderBig
+                            title={props.title}
+                            onBackPress={props.onBackPress}
+                            onClosePress={props.onClosePress}
+                            hideBack={props.hideBack}
+                            hideClose={props.hideClose}
+                        />
+                    ) : (
+                        <FadeHeader title={props.title} onBackPress={props.onBackPress} onClosePress={props.onClosePress} hideBack={props.hideBack} hideClose={props.hideClose} />
+                    )}
                     <ScrollView style={props.style} bounces={props.bounces} ref={ScrollRef}>
                         {props.children}
                     </ScrollView>
