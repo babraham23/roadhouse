@@ -9,29 +9,23 @@ import { Images } from '../../style/images';
 
 const MenuHeader = () => {
     const { colors, borderRadius } = useTheme();
-    let restaurantDetails: any = useSelector((state: any) => state.restaurantReducer);
-    // console.log('restaurantDetails -->', restaurantDetails)
     return (
         <View style={[styles.container, { backgroundColor: colors.background, borderBottomColor: colors.seperator }]}>
             <BackButton style={styles.backbutton} />
             <TouchableOpacity style={styles.locationWrapper}>
                 {/* <Image source={Images.MARKER} style={styles.marker} /> */}
                 <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
-                    {restaurantDetails.address1}
+                    Formatted address
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.collectWrapper]}>
                 {/* <Image source={Images.TABLE} style={styles.table} /> */}
                 <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
-                    Table 23
+                    Table #
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.logoWrapper, { borderRadius: borderRadius.card }]}>
-                {restaurantDetails.logo == 24 ? (
-                    <Image style={[styles.logo, { borderRadius: borderRadius.card }]} source={require('../../assets/mcdonalds/mcd_logo.png')} />
-                ) : (
-                    <Image style={[styles.logo, { borderRadius: borderRadius.card }]} source={require('../../assets/mcdonalds/mcd_logo.png')} />
-                )}
+                <Image style={[styles.logo, { borderRadius: borderRadius.card }]} source={require('../../assets/mcdonalds/mcd_logo.png')} />
             </TouchableOpacity>
         </View>
     );

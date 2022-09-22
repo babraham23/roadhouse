@@ -17,7 +17,7 @@ const ViewBasketButton = ({ style }: any) => {
                     <Animatable.View
                         style={[
                             styles.container,
-                            { backgroundColor: colors.background, borderTopColor: colors.border, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card },
+                            { backgroundColor: colors.card, borderTopColor: colors.border, borderTopLeftRadius: borderRadius.card, borderTopRightRadius: borderRadius.card },
                         ]}
                         animation="fadeInUpBig"
                     >

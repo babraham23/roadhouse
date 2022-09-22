@@ -8,56 +8,36 @@ import Products from '../../components/menu/products';
 import TabHeaderAccordion from '../../components/headers/tabHeaderAccordion';
 import Content from '../../components/menu/content';
 import ViewBasketButton from '../../components/buttons/viewBasketButton';
+import { usePlacesContext } from '../../context/place.context';
+import { createIconSetFromFontello } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
 const snapToOffsets = [0, Platform.OS === 'android' ? 400 : 380];
 
 const MenuScreen = () => {
-    let products: any = useSelector((state: any) => state.menuReducer.menu);
     const scrollRef: any = React.useRef();
     const yRef: any = React.useRef();
     const [tabsVisible, setTabsVisible] = React.useState(false);
     const translateX = useSharedValue(0);
     let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
     let [posArr]: any = React.useState([]);
-    const [sliderState, setSliderState] = React.useState({ currentPage: 0 });
 
-    const setSliderPage = (event: any) => {
-        const { currentPage } = sliderState;
-        const { x } = event.nativeEvent.contentOffset;
-        const indexOfNextScreen = Math.floor(x / width);
-        if (indexOfNextScreen !== currentPage) {
-            setSliderState({
-                ...sliderState,
-                currentPage: indexOfNextScreen,
-            });
-        }
-        //   onScroll({event})
-    };
+    const { products } = usePlacesContext();
 
     const onScroll = useAnimatedScrollHandler({
-        onScroll: (event) => {
-            translateX.value = event.contentOffset.x;
-            // console.log(event.contentSize.width / event.contentOffset.x);
-            // console.log(event)
-            // setSliderPage(event);
-        },
-        //   onEndDrag: (event) => {
-        //     // console.log('onEndDrag -->', e)
-        //     setSliderPage(event);
-        //   },
+        onScroll: (event) => (translateX.value = event.contentOffset.x),
     });
 
-    const { currentPage } = sliderState;
-    // console.log("current page -->", currentPage);
-
     const backgroundColorInter = useAnimatedStyle((): any => {
-        const backgroundColor = interpolateColor(
-            translateX.value,
-            products.map((_: any, i: any) => width * i),
-            products.map((product: any) => product.color2)
-        );
+        let backgroundColor;
+        if (products.length >= 2) {
+            backgroundColor = interpolateColor(
+                translateX.value,
+                products.map((_: any, i: any) => width * i),
+                products.map((product: any) => product.cardBackgroundColor)
+            );
+        } else backgroundColor = products[0].cardBackgroundColor;
         return { backgroundColor };
     });
 
@@ -106,19 +86,15 @@ const MenuScreen = () => {
                     <View style={styles.slider}>
                         <Animated.ScrollView
                             onScroll={onScroll}
-                            // onScroll={(nativeEvent : any) =>{onScroll(nativeEvent), console.log(nativeEvent)}}
                             scrollEventThrottle={16}
                             decelerationRate="fast"
                             snapToInterval={width}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             ref={scrollRef}
-                            // onScroll={(event: any) => {
-                            //     setSliderPage(event);
-                            //   }}
+                            bounces={products.length >= 2 ? true : false}
                         >
                             {products.map((product: any, index: any) => {
-                                // const isFocused = product.index === index;
                                 return (
                                     <View
                                         key={index}

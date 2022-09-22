@@ -61,7 +61,6 @@ const SelectedItemScreen = ({ route, allergins }: any) => {
                         </View>
                     );
                 })}
-
                 <CustomActionButton title={'Add to Basket'} style={styles.button} onPress={() => addToBasket()} />
             </ImageScrollContext>
         </>

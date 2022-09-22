@@ -6,15 +6,18 @@ import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
 import { Images } from '../../style/images';
 import { MenuScrollIconConverter } from '../../functions/helpers';
+import { usePlacesContext } from '../../context/place.context';
 
 const MenuScroll2 = () => {
     const { colors, borderRadius }: any = useTheme();
     const dispatch = useDispatch();
     const scrollview_ref: any = React.useRef({});
-    let products: any = useSelector((state: any) => state.menuReducer.menu);
+    // let products: any = useSelector((state: any) => state.menuReducer.menu);
     let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
+
+    const { products } = usePlacesContext();
 
     const handleChange = (item: any, key: any) => {
         dispatch({ type: SET_MENU_ITEM, payload: item }); // this works

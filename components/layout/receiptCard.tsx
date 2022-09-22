@@ -8,9 +8,14 @@ const ReceiptCard = () => {
     const { colors, borderRadius } = useTheme();
     return (
         <View style={[styles.container, { backgroundColor: colors.card, borderRadius: borderRadius.card }]}>
-            <Text style={styles.header} bold fontSize={18}>
-                Checkout
-            </Text>
+            <View style={styles.titleWrapper}>
+                <Text style={styles.header} bold fontSize={18}>
+                    {`${'Checkout'}`}
+                </Text>
+                <Text bold fontSize={15}>
+                    McDonalds Grainger Street
+                </Text>
+            </View>
             <RecieptFoodItem />
             <RecieptFoodItem last />
         </View>
@@ -31,6 +36,10 @@ const styles = StyleSheet.create({
         shadowRadius: 16.0,
         elevation: 24,
         paddingHorizontal: 10,
+    },
+    titleWrapper: {
+        // flexDirection: 'row',
+        // alignItems: 'flex-end'
     },
     header: {
         paddingTop: 20,

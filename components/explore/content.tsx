@@ -13,18 +13,6 @@ const Content = () => {
     const { places } = useUserContext();
     const [photos, setPhotos] = React.useState([]);
 
-    // const getPhotos = (places: any) => {
-    //     places.map((result: any) => {
-    //         result.photos !== undefined ?
-    //         result.photos.filter((item: any) => console.log('items -->', item))
-    //         : null;
-    //     });
-    // };
-
-    // React.useEffect(() => {
-    //     getPhotos(places);
-    // }, [getPhotos]);
-
     return (
         <React.Fragment>
             <BottomSheetScrollView bounces={false} contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background }]}>

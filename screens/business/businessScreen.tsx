@@ -69,7 +69,6 @@ const BusinessScreen = ({ route }: any) => {
         try {
             const response = await fetch(detailed_search(place_id));
             const json = await response.json();
-            console.log('json -->', json.result);
             setImages(json.result.photos ? json.result.photos : []);
             setReiews(json.result.reviews ? json.result.reviews : []);
         } catch (error) {

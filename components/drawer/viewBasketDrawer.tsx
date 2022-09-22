@@ -23,6 +23,10 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
         dispatch({ type: REMOVE_FROM_BASKET, payload: id });
     };
 
+    const handleNavigation = () => {
+        navigation.navigate('CheckoutScreen');
+    };
+
     return (
         <>
             <View style={[styles.closeWrapper, { backgroundColor: colors.card }]}>
@@ -43,7 +47,7 @@ const ViewBasketDrawer = ({ navigation }: Props) => {
                     <Text bold>£15.98</Text>
                 </View>
                 <View style={styles.checkoutWrapper}>
-                    <ShadowButton title={'Checkout'} />
+                    <ShadowButton title={'Checkout'} onPress={() => handleNavigation()} />
                 </View>
             </ScrollView>
         </>

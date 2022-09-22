@@ -16,7 +16,6 @@ const { height } = Dimensions.get('window');
 const Content = ({ onPress }: any) => {
     const { colors, borderRadius, dark } = useTheme();
     const navigation: any = useNavigation();
-    let products: any = useSelector((state: any) => state.menuReducer.menu);
     let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
 
     const handleNav = (route: any, items: any) => {

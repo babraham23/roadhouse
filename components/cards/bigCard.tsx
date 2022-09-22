@@ -1,20 +1,20 @@
 import React from 'react';
-import { Dimensions, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Dimensions, View, StyleSheet } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
-import { useDispatch, useSelector } from 'react-redux';
 import { Text } from '../../style/typography';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const BigCard = ({ product, onPress, index }: any) => {
+const BigCard = ({ product, onPress }: any) => {
     const { borderRadius }: any = useTheme();
+    let { title, cardColor, textColor, description } = product;
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={1} style={styles.container}>
-            <View style={[styles.card, { backgroundColor: product.color1, borderRadius: borderRadius.card }]}>
-                <Text bold style={styles.title} fontSize={20} color={product.textColor} center>
-                    {product.title}
+            <View style={[styles.card, { backgroundColor: cardColor, borderRadius: borderRadius.card }]}>
+                <Text bold style={styles.title} fontSize={20} color={textColor} center>
+                    {title}
                 </Text>
-                <Text numberOfLines={3} style={styles.subtitle} color={product.textColor}>
-                    {product.description}
+                <Text numberOfLines={3} style={styles.subtitle} color={textColor}>
+                    {description}
                 </Text>
             </View>
         </TouchableOpacity>

@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { View, StyleSheet, Animated, Dimensions, TouchableOpacity } from 'react-native';
-// import { items } from './assets';
 import { useNavigation } from '@react-navigation/core';
 import { Text } from '../../style/typography';
 import { SET_MENU } from '../../state/reducers/menuReducer';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { useDispatch } from 'react-redux';
-import { products, restaurantDetails } from '../../_models/mcdonalds.model';
+import { products, restaurantDetails } from '../../_dummydata_/placedd';
 import { SET_RESTAURANT } from '../../state/reducers/restaurantReducer';
 import { useUserContext } from '../../context/user.context';
 import { getPlacesPhotos } from '../../api/endpoints';
@@ -24,7 +23,7 @@ const HorizontalParallax = () => {
     const handleNav = (item: any) => {
         dispatch({ type: SET_MENU, payload: products });
         dispatch({ type: SET_MENU_ITEM, payload: products[0] });
-        dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
+        // dispatch({ type: SET_RESTAURANT, payload: restaurantDetails });
         navigation.navigate('MenuScreen');
         // navigation.navigate('BusinessScreen', { item });
     };
