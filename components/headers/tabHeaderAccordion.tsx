@@ -3,9 +3,7 @@ import { View, TouchableWithoutFeedback, StyleSheet, Animated, Platform, Touchab
 import { useTheme } from '../../hooks/useTheme';
 import { exploreScrolldata } from '../../screens/explore/exploreScrolldata';
 import MenuHeader from '../headers/menuHeader';
-import MenuScroll from '../menu/menuScroll';
 import MenuScroll2 from '../menu/menuScroll2';
-import ScrollBar from '../scrollbar';
 
 const TabHeaderAccordion = ({ style, tabsVisible, icon, x, onPress }: any) => {
     const [open, setOpen] = useState(false);
@@ -36,7 +34,7 @@ const TabHeaderAccordion = ({ style, tabsVisible, icon, x, onPress }: any) => {
     });
 
     return (
-        <View style={[Platform.OS === 'android' ? styles.containerAndroid : styles.containerIos, { backgroundColor: colors.background }]}>
+        <View style={[Platform.OS === 'android' ? styles.containerAndroid : styles.containerIos]}>
             <MenuHeader />
             <Animated.View style={[styles.bodyBackground, { height: bodyHeight }]}>
                 <View
@@ -44,7 +42,6 @@ const TabHeaderAccordion = ({ style, tabsVisible, icon, x, onPress }: any) => {
                     onLayout={(event) => setBodySectionHeight(event.nativeEvent.layout.height)}
                 >
                     <MenuScroll2 />
-                    {/* <ScrollBar data={exploreScrolldata} /> */}
                 </View>
             </Animated.View>
         </View>

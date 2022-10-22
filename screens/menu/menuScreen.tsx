@@ -9,7 +9,7 @@ import TabHeaderAccordion from '../../components/headers/tabHeaderAccordion';
 import Content from '../../components/menu/content';
 import ViewBasketButton from '../../components/buttons/viewBasketButton';
 import { usePlacesContext } from '../../context/place.context';
-import { createIconSetFromFontello } from '@expo/vector-icons';
+
 
 const { width } = Dimensions.get('window');
 

@@ -10,16 +10,14 @@ import { Images } from '../../style/images';
 const MenuHeader = () => {
     const { colors, borderRadius } = useTheme();
     return (
-        <View style={[styles.container, { backgroundColor: colors.background, borderBottomColor: colors.seperator }]}>
+        <View style={[styles.container, { backgroundColor: colors.card, borderBottomColor: colors.border }]}>
             <BackButton style={styles.backbutton} />
             <TouchableOpacity style={styles.locationWrapper}>
-                {/* <Image source={Images.MARKER} style={styles.marker} /> */}
                 <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
                     Formatted address
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.collectWrapper]}>
-                {/* <Image source={Images.TABLE} style={styles.table} /> */}
                 <Text center bold numberOfLines={1} style={{ paddingLeft: 10 }}>
                     Table #
                 </Text>
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         paddingTop: 50,
         paddingLeft: 20,
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 1,
     },
     backbutton: {
         position: 'absolute',

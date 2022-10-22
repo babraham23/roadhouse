@@ -41,7 +41,7 @@ const productItems = [
         addOns: addOns,
     },
     {
-        title: 'Chicken Burger',
+        title: 'The Big Tasty',
         description: 'Portion, vegan',
         price: '5.00',
         image: false,
@@ -51,16 +51,16 @@ const productItems = [
 ];
 
 export const products = [
-    // {
-    //     title: 'Hamburgers',
-    //     description: 'Two 100% beef patties, a slice of cheese, lettuce, onion and pickles. And the sauce. That unbeatable, tasty Big Mac® sauce. You know you want to.',
-    //     cardColor: '#FFC72C',
-    //     cardBackgroundColor: '#ffbd05',
-    //     picture: require('../assets/mcdonalds/bigMac.png'),
-    //     aspectRatio: 1,
-    //     Id: 0,
-    //     textColor: '#432406',
-    //     items: productItems,
-    //     index: 0,
-    // },
+    {
+        title: 'Hamburgers',
+        description: 'Two 100% beef patties, a slice of cheese, lettuce, onion and pickles. And the sauce. That unbeatable, tasty Big Mac® sauce. You know you want to.',
+        cardColor: '#FFC72C',
+        cardBackgroundColor: '#ffbd05',
+        picture: require('../assets/mcdonalds/bigMac.png'),
+        aspectRatio: 1,
+        Id: 0,
+        textColor: '#000000',
+        items: productItems,
+        index: 0,
+    },
 ];

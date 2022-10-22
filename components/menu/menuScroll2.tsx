@@ -49,7 +49,7 @@ const MenuScroll2 = () => {
                 ref={scrollview_ref}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                style={[styles.scroll, { backgroundColor: colors.background, borderBottomColor: colors.separator }]}
+                style={[styles.scroll, { backgroundColor: colors.card, borderBottomColor: colors.separator }]}
             >
                 {products.map((item: any, key: any) => {
                     return (
@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         marginVertical: 10,
         alignContent: 'center',
-        shadowOffset: {
-            width: 1,
-            height: 2,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 16.0,
         elevation: 24,
-        shadowColor: '#2B1BB2',
+        // shadowOffset: {
+        //     width: 1,
+        //     height: 2,
+        // },
+        // shadowOpacity: 0.58,
+        // shadowRadius: 16.0,
+        // shadowColor: '#2B1BB2',
     },
     iconWrapper: {
         width: 18,
