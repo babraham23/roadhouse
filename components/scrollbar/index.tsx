@@ -6,7 +6,6 @@ import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useUserContext } from '../../context/user.context';
-import MapMarkers from '../map/mapMarkers';
 import { Images } from '../../style/images';
 import Icons from './icons';
 import { exploreScrolldata } from '../../screens/explore/exploreScrolldata';

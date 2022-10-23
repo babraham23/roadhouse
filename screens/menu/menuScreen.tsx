@@ -10,7 +10,6 @@ import Content from '../../components/menu/content';
 import ViewBasketButton from '../../components/buttons/viewBasketButton';
 import { usePlacesContext } from '../../context/place.context';
 
-
 const { width } = Dimensions.get('window');
 
 const snapToOffsets = [0, Platform.OS === 'android' ? 400 : 380];

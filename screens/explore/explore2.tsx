@@ -90,9 +90,9 @@ const ExploreScreen = ({}: Props) => {
                 snapPoints={snapPoints}
                 onChange={handleSheetChange}
             >
-                    <Animated.View style={{ flex: 1, opacity: fadeAnimation }}>
-                        <Content />
-                    </Animated.View>
+                <Animated.View style={{ flex: 1, opacity: fadeAnimation }}>
+                    <Content />
+                </Animated.View>
             </BottomSheet>
             <MapButton
                 opacity={fadeAnimation}

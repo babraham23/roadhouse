@@ -1,40 +1,57 @@
 mutation CreatePlace(
+    $userRatingsTotal: Float!
+    $rating: Float!
+    $icon: String!
+    $formattedAddress: String!
     $city: String!
     $postcode: String!
     $address1: String!
-    $placeName: String!
-    $description: String
-    $address2: String
-    $country: String
-    $lat: Float
+    $isClient: Boolean!
+    $name: String!
+    $types: [String!]
     $lng: Float
+    $lat: Float
+    $country: String
+    $address2: String
     $keywords: [String!]
+    $description: String
 ) {
     createPlace(
+        user_ratings_total: $userRatingsTotal
+        rating: $rating
+        icon: $icon
+        formattedAddress: $formattedAddress
         city: $city
         postcode: $postcode
         Address1: $address1
-        placeName: $placeName
-        description: $description
-        Address2: $address2
-        country: $country
-        lat: $lat
+        isClient: $isClient
+        name: $name
+        types: $types
         lng: $lng
+        lat: $lat
+        country: $country
+        Address2: $address2
         keywords: $keywords
+        description: $description
     ) {
         _id
-        placeName
+        name
         description
+        isClient
+        keywords
         Address1
         Address2
         postcode
         city
         country
-        formattedAddress
         geometry {
             lat
             lng
         }
-        keywords
+        formattedAddress
+        icon
+        rating
+        types
+        user_ratings_total
     }
 }
