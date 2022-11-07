@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import React, { useRef, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
@@ -7,20 +7,24 @@ import { useUserContext } from '../../context/user.context';
 import { useNavigation } from '@react-navigation/native';
 import { MenuMarkerConverter } from '../../functions/helpers';
 import { Images } from '../../style/images';
-import { createIconSetFromFontello } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
-// const ASPECT_RATIO = width / height;
-// const LATITUDE_DELTA = 0.1;
-// const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const GOOGLE_MAPS_APIKEY = API_KEY;
 
-const Map = () => {
+// we need to set origin
+let origin = { latitude: 54.968567, longitude: -1.62054 };
+
+// we need to set destination
+let destination = { latitude: 54.97186025826307, longitude: -1.6168295272666193 };
+
+// creata a function in user context that sets origin and destination
+
+const Map: React.FC<any> = ({ style }) => {
     const navigation: any = useNavigation();
     let mapView: any = useRef();
     const { longitude, latitude, places, place } = useUserContext();
-    const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
+    // const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
     const [directionActive, setDirectionActive] = useState(false);
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -36,26 +40,21 @@ const Map = () => {
             navigation.navigate('StorefrontScreen', { item, distance, duration });
         } else {
             let { lat, lng } = item.geometry.location;
-            setDestination({ latitude: lat, longitude: lng });
+            // setDestination({ latitude: lat, longitude: lng });
             setDirectionActive(true);
             navigation.navigate('BusinessScreen', { item, distance, duration });
         }
     };
 
     return (
-        <MapView showsPointsOfInterest={false} region={mapRegion} style={[StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
+        <MapView showsPointsOfInterest={false} region={mapRegion} style={[style, StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
             {places.map((item: any, i: number) => {
                 // CONDITIONAL CHECK TO CATER FOR CLIENT AND GOOGLE API
                 let client = item.geometry.lat ? true : false;
                 let latitude = item.geometry.lat ? item.geometry.lat : item.geometry.location.lat;
                 let longitude = item.geometry.lng ? item.geometry.lng : item.geometry.location.lng;
                 return (
-                    <Marker
-                        // onPress={() => onIconPress(longitude, latitude)}
-                        onPress={() => onIconPress(item, client)}
-                        key={`coordinate_${i}`}
-                        coordinate={{ latitude, longitude }}
-                    >
+                    <Marker onPress={() => onIconPress(item, client)} key={`coordinate_${i}`} coordinate={{ latitude, longitude }}>
                         {client && item.placeName === 'McDonalds' ? (
                             <Image source={Images.MCDEEZ} style={styles.icon2} />
                         ) : (
@@ -67,7 +66,8 @@ const Map = () => {
             {directionActive && (
                 <MapViewDirections
                     mode="WALKING"
-                    origin={{ latitude, longitude }}
+                    // origin={{ latitude, longitude }}
+                    origin={origin}
                     destination={destination}
                     apikey={GOOGLE_MAPS_APIKEY}
                     strokeWidth={3}

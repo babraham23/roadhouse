@@ -16,7 +16,7 @@ import MenuScreen from '../screens/menu/menuScreen';
 import SelectedItemScreen from '../screens/menu/selectedItemScreen';
 import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
 import MapScreen from '../screens/map';
-import ExploreScreen from '../screens/explore/explore2';
+import ExploreScreen from '../screens/explore/exploreScreen';
 
 import TestScreen from '../screens/test';
 import BusinessScreen from '../screens/business/businessScreen';

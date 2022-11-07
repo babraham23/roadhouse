@@ -31,9 +31,9 @@ const HorizontalParallax = () => {
 
     return (
         <>
-            <Text style={styles.header} bold>
+            {/* <Text style={styles.header} bold>
                 Heading
-            </Text>
+            </Text> */}
             <View style={styles.container}>
                 {/* {places.map((image: any, index: any) => {
                     // console.log('1st -->', image.photos[0])
@@ -106,11 +106,11 @@ const HorizontalParallax = () => {
                                             {item.name}
                                         </Text>
                                     </View>
-                                    <View style={[styles.descriptionWrapper]}>
+                                    {/* <View style={[styles.descriptionWrapper]}>
                                         <Text bold fontSize={23} color={'white'} style={styles.description}>
                                             This is a description about the place if there is one!
                                         </Text>
-                                    </View>
+                                    </View> */}
                                 </Animated.View>
                             </TouchableOpacity>
                         );

@@ -1,18 +1,18 @@
 query GetPlacesByKeywords($keywords: String) {
-  getPlacesByKeywords(keywords: $keywords) {
-    _id
-    name
-    description
-    Address1
-    Address2
-    postcode
-    city
-    country
-    formattedAddress
-    geometry {
-      lat
-      lng
+    getPlacesByKeywords(keywords: $keywords) {
+        _id
+        name
+        description
+        Address1
+        Address2
+        postcode
+        city
+        country
+        formattedAddress
+        geometry {
+            lat
+            lng
+        }
+        keywords
     }
-    keywords
-  }
 }

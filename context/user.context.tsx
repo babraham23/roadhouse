@@ -147,10 +147,12 @@ export const UserProvider: FC = ({ children }) => {
     };
 
     const getPlacesByKeyword = async (keyword: string) => {
-        let { data: { getPlacesByKeywords } } = await getPlacesCall.refetch({
+        let {
+            data: { getPlacesByKeywords },
+        } = await getPlacesCall.refetch({
             keywords: keyword,
         });
-        console.log('getPlacesByKeywords -->', getPlacesByKeywords)
+        console.log('getPlacesByKeywords -->', getPlacesByKeywords);
         setPlaces(getPlacesByKeywords);
         setPlace(keyword);
     };

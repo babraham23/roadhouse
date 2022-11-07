@@ -5,6 +5,10 @@ import ModalHeader from '../headers/modalHeader';
 
 const withinLimits = (val: number, min: number, max: number): number => (val > max ? max : val < min ? min : val);
 
+// figure out how scroll context works and apply is flatlist in the elastic search
+
+// pass the scroll reference bewteen the two components
+
 export const ScrollContext = React.createContext({
     opacity: 0,
     maxOffset: 0,

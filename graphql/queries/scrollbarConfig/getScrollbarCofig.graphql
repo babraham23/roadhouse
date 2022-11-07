@@ -1,8 +1,8 @@
 query GetScrollbarConfig {
-  getScrollbarConfig {
-    _id
-    index
-    title
-    image
-  }
+    getScrollbarConfig {
+        _id
+        index
+        title
+        image
+    }
 }

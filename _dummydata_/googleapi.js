@@ -9,7 +9,7 @@
  * - Postcode
  * - Country
  */
-let roadhouseAPI = {
+export let roadhouseAPI = {
     // Roadhouse schema -----------
     isClient: true,
     keywords: ['Hamburgers', 'Hotdogs', 'Pizza', 'Bar'], // save text convention and rules ***
@@ -19,19 +19,19 @@ let roadhouseAPI = {
     Postcode: 'NE1 1AA',
     Country: 'UK',
     // Change to Schema  -----------
-    geometry: { lat: 54.9695544, lng: -1.6192341 }, 
+    geometry: { lat: 54.9695544, lng: -1.6192341 },
     // Google schema  -----------
     formatted_address: 'Clarendon Ho/Clayton Street West, Newcastle upon Tyne NE1 5EE, United Kingdom',
     icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png',
     name: 'Latifi',
-    description: "A descriptiopn here",
+    description: 'A descriptiopn here',
     place_id: 'ChIJ0yai17RwfkgRNA4fB-3UGxs',
     rating: 5,
     types: ['restaurant', 'food', 'point_of_interest', 'establishment'],
     user_ratings_total: 2,
 };
 
-let GoogleSchema = {
+export const GoogleSchema = {
     business_status: 'OPERATIONAL',
     formatted_address: '59 Westgate Rd, Newcastle upon Tyne NE1 1SG, United Kingdom',
     geometry: {

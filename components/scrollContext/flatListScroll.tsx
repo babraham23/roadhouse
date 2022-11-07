@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, Animated } from 'react-native';
 
+
 const list = [
     'https://i.picsum.photos/id/0/5616/3744.jpg',
     'https://i.picsum.photos/id/1/5616/3744.jpg',
@@ -13,6 +14,7 @@ const list = [
     'https://i.picsum.photos/id/1022/6000/3376.jpg',
     'https://i.picsum.photos/id/1021/2048/1206.jpg',
 ];
+
 
 const HEADER_HEIGHT = 100;
 

@@ -1,73 +1,60 @@
-import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { RestuarantsData, TrippleData } from '../../_models/explore.model';
-import ParallaxScroll from '../../components/scrollContext/parallaxScroll';
-import ExploreCarousel from '../../components/carousel/exploreCarousel';
-import HorizontalParallax from '../../components/carousel/horizontalParallax';
-import * as Location from 'expo-location';
-import { restDD } from './dd';
+import { StyleSheet, View, Animated } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { MapButton } from '../../components/buttons/roundButtons';
+import BottomSheet from '@gorhom/bottom-sheet';
+import MapHeader from '../../components/headers/mapHeader';
+import Content from '../../components/explore/content';
+import { useTheme } from '../../hooks/useTheme';
+import ScrollBar from '../../components/scrollbar';
+import { useUserContext } from '../../context/user.context';
+import Map from '../../components/map/map';
 
-const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants&location=54.9696,1.6198&radius=9&key=AIzaSyBxDwgAiRmplHmbQfNrX4FJ4ZgqA0wp9X4';
+type Props = {};
 
-// 50.92759902014908, 5.338255252145561  HASSELT
+const ExploreScreen = ({}: Props) => {
+    const { colors } = useTheme();
+    const sheetRef = useRef<BottomSheet>(null);
+    const fadeAnimation = useRef(new Animated.Value(1)).current;
+    const snapPoints = useMemo(() => ['10%', '83%'], []);
+    const [sheetOpen, setSheetOpen] = useState(false);
 
-type Props = {
-    navigation?: any;
-};
-
-const ExploreScreen = ({ navigation }: Props) => {
-    const [isLoading, setLoading] = useState(false);
-    const [data, setData]: any = useState([]);
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
-    const getRestaurants = async () => {
-        try {
-            // const response = await fetch(url);
-            // const json = await response.json();
-            // setData(json.movies);
-            setData(restDD);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
+    const handleSheetChange = useCallback((index) => {
+        if (index === 0) {
+            setSheetOpen(false);
+        } else {
+            setSheetOpen(true);
         }
-    };
-
-    useEffect(() => {
-        getRestaurants();
     }, []);
 
-    // console.log('data -->', data[0]);
+    const handleSnapPress = useCallback((index) => {
+        sheetRef.current?.snapToIndex(index);
+    }, []);
 
     return (
-        <React.Fragment>
-            <ParallaxScroll>
-                {isLoading ? (
-                    <ActivityIndicator />
-                ) : (
-                    <View style={styles.container}>
-                        <ExploreCarousel title={`Recommended`} style="display" items={data} />
-                        <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} />
-                        <ExploreCarousel title={`Recommended`} style="display" items={RestuarantsData} />
-                        {/* <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
-                <HorizontalParallax title={'Top Rated'} />
-                <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
-                <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
-                <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} />
-                <ExploreCarousel title={'Hot Spots'} style="info" items={RestuarantsData} />
-            <ExploreCarousel title={`In the Area`} style="tripple" items={TrippleData} /> */}
-                    </View>
-                )}
-            </ParallaxScroll>
-            <View style={styles.mapButton}>
-                <MapButton title="Map" onPress={() => navigation.navigate('MapScreen')} />
-            </View>
-        </React.Fragment>
+        <View style={styles.container}>
+            <MapHeader />
+            <ScrollBar />
+            <Map />
+            <MapButton title="Map" onPress={() => handleSnapPress(2)} style={styles.mapButton} />
+            <BottomSheet
+                handleStyle={[styles.handleStyle, { backgroundColor: colors.card, borderBottomColor: colors.border }]}
+                handleIndicatorStyle={{ backgroundColor: colors.text }}
+                ref={sheetRef}
+                snapPoints={snapPoints}
+                onChange={handleSheetChange}
+            >
+                <Content fade={sheetOpen} />
+            </BottomSheet>
+            <MapButton
+                opacity={fadeAnimation}
+                map={sheetOpen}
+                title={sheetOpen ? 'Map' : 'List'}
+                style={styles.mapButton}
+                onPress={sheetOpen ? () => handleSnapPress(0) : () => handleSnapPress(1)}
+            />
+        </View>
     );
 };
-
-export default ExploreScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -75,7 +62,16 @@ const styles = StyleSheet.create({
     },
     mapButton: {
         position: 'absolute',
-        bottom: 60,
+        bottom: 30,
         alignSelf: 'center',
     },
+    handleStyle: {
+        borderTopLeftRadius: 7,
+        borderTopRightRadius: 7,
+        height: 36,
+        justifyContent: 'center',
+        borderBottomWidth: 1,
+    },
 });
+
+export default ExploreScreen;
