@@ -5,19 +5,18 @@ import { useTheme } from '../../hooks/useTheme';
 import ContentItem from './contentItem';
 import { RestuarantsData } from '../../_models/explore.model';
 import HorizontalParallax from '../horizontalParalla';
-import { useUserContext } from '../../context/user.context';
 import ImageContentItem from './imageContentItem';
-
+import { usePlacesContext } from '../../context/place.context';
 
 const Content = ({ fade }: any) => {
     const { colors } = useTheme();
-    const { places } = useUserContext();
+    const { places } = usePlacesContext();
     const [photos, setPhotos] = React.useState([]);
     const fadeAnimation = useRef(new Animated.Value(1)).current;
 
     React.useEffect(() => {
         fade ? fadeIn() : fadeOut();
-    }, [fade])
+    }, [fade]);
 
     const fadeIn = () => {
         console.log('FADING IN');
@@ -38,16 +37,15 @@ const Content = ({ fade }: any) => {
     };
 
     return (
-            <BottomSheetScrollView bounces={false} contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background }]}>
-                <Animated.View style={{ flex: 1, opacity: fadeAnimation }}>
-                
+        <BottomSheetScrollView bounces={false} contentContainerStyle={[styles.contentContainer, { backgroundColor: colors.background }]}>
+            <Animated.View style={{ flex: 1, opacity: fadeAnimation }}>
                 <HorizontalParallax />
                 <ImageContentItem />
                 <ContentItem />
                 {/* <HorizontalParallax title={`Hot Spots`} items={RestuarantsData} /> */}
                 {/* <ContentItem /> */}
-                </Animated.View>
-            </BottomSheetScrollView>
+            </Animated.View>
+        </BottomSheetScrollView>
     );
 };
 

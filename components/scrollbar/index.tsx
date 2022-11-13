@@ -2,13 +2,10 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { Text } from '../../style/typography';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useUserContext } from '../../context/user.context';
-import { Images } from '../../style/images';
 import Icons from './icons';
 import { exploreScrolldata } from '../../screens/explore/exploreScrolldata';
+import { usePlacesContext } from '../../context/place.context';
 
 const ScrollBar = ({ data = exploreScrolldata }: any) => {
     const { colors, borderRadius }: any = useTheme();
@@ -17,7 +14,7 @@ const ScrollBar = ({ data = exploreScrolldata }: any) => {
     let [selectedMenuItem, setSelectedMenuItem]: any = React.useState(data[0]);
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
-    const { getPlaces, place } = useUserContext();
+    const { getPlaces, place } = usePlacesContext();
 
     const handleChange = (item: any, key: any) => {
         setSelectedMenuItem(item);

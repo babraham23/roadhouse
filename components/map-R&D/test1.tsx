@@ -1,15 +1,15 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
-import { useUserContext } from '../../context/user.context';
 import { Images } from '../../style/images';
 import { restDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
 import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY, restaurant_search } from '../../api/endpoints';
+import { usePlacesContext } from '../../context/place.context';
 
 const Map = () => {
-    const { latitude, longitude } = useUserContext();
+    const { latitude, longitude } = usePlacesContext();
     const [resturants, setRestuarants] = React.useState([]);
     const [x, setState]: any = React.useState('');
     const [origin, setOrigin] = React.useState({});

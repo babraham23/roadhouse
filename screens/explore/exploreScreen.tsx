@@ -6,7 +6,6 @@ import MapHeader from '../../components/headers/mapHeader';
 import Content from '../../components/explore/content';
 import { useTheme } from '../../hooks/useTheme';
 import ScrollBar from '../../components/scrollbar';
-import { useUserContext } from '../../context/user.context';
 import Map from '../../components/map/map';
 
 type Props = {};

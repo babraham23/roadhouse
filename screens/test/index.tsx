@@ -56,7 +56,6 @@ const list = [
     'https://i.picsum.photos/id/1021/2048/1206.jpg',
 ];
 
-
 const BusinessScreen = ({ route }: any) => {
     let { photos, name } = GoogleSchema;
     const [images, setImages] = useState(photos);

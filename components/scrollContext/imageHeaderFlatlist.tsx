@@ -21,11 +21,10 @@ const imagesDummyData = [
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         id: 3,
     },
-]
+];
 
 const IMAGE_MAX_HEIGHT = 500;
 const HEADER_SHOW = IMAGE_MAX_HEIGHT / 1.5;
-
 
 let { width } = Dimensions.get('window');
 

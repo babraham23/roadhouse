@@ -3,10 +3,11 @@ import React, { useRef, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY } from '../../api/endpoints';
-import { useUserContext } from '../../context/user.context';
 import { useNavigation } from '@react-navigation/native';
 import { MenuMarkerConverter } from '../../functions/helpers';
 import { Images } from '../../style/images';
+import { usePlacesContext } from '../../context/place.context';
+import { useUserContext } from '../../context/user.context';
 
 const { width, height } = Dimensions.get('window');
 
@@ -16,15 +17,16 @@ const GOOGLE_MAPS_APIKEY = API_KEY;
 let origin = { latitude: 54.968567, longitude: -1.62054 };
 
 // we need to set destination
-let destination = { latitude: 54.97186025826307, longitude: -1.6168295272666193 };
+// let destination = { latitude: 54.97186025826307, longitude: -1.6168295272666193 } // down the street
+let destination = { latitude: 54.994913, longitude: -1.663358 }; // blakelaw
 
 // creata a function in user context that sets origin and destination
 
 const Map: React.FC<any> = ({ style }) => {
     const navigation: any = useNavigation();
     let mapView: any = useRef();
-    const { longitude, latitude, places, place } = useUserContext();
-    // const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
+    const { places, place, setLongitude, setLatitude } = usePlacesContext();
+    const { userTravelMode, setUserTravelMode } = useUserContext();
     const [directionActive, setDirectionActive] = useState(false);
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -40,7 +42,8 @@ const Map: React.FC<any> = ({ style }) => {
             navigation.navigate('StorefrontScreen', { item, distance, duration });
         } else {
             let { lat, lng } = item.geometry.location;
-            // setDestination({ latitude: lat, longitude: lng });
+            setLatitude(lat);
+            setLongitude(lng);
             setDirectionActive(true);
             navigation.navigate('BusinessScreen', { item, distance, duration });
         }
@@ -49,7 +52,6 @@ const Map: React.FC<any> = ({ style }) => {
     return (
         <MapView showsPointsOfInterest={false} region={mapRegion} style={[style, StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
             {places.map((item: any, i: number) => {
-                // CONDITIONAL CHECK TO CATER FOR CLIENT AND GOOGLE API
                 let client = item.geometry.lat ? true : false;
                 let latitude = item.geometry.lat ? item.geometry.lat : item.geometry.location.lat;
                 let longitude = item.geometry.lng ? item.geometry.lng : item.geometry.location.lng;
@@ -65,8 +67,7 @@ const Map: React.FC<any> = ({ style }) => {
             })}
             {directionActive && (
                 <MapViewDirections
-                    mode="WALKING"
-                    // origin={{ latitude, longitude }}
+                    mode={userTravelMode} // use setTravelMode from user context
                     origin={origin}
                     destination={destination}
                     apikey={GOOGLE_MAPS_APIKEY}
@@ -77,8 +78,10 @@ const Map: React.FC<any> = ({ style }) => {
                         console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
                     }}
                     onReady={(result) => {
-                        console.log(`Distance: ${result.distance} km`);
-                        console.log(`Duration: ${result.duration} min.`);
+                        // console.log('result -->', result)
+                        console.log('distance -->', result.duration, 'for ', userTravelMode);
+                        // console.log(`Distance: ${result.distance} km`);
+                        // console.log(`Duration: ${result.duration} min.`);
 
                         mapView.fitToCoordinates(result.coordinates, {
                             edgePadding: {

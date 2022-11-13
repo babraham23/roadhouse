@@ -7,6 +7,7 @@ import { Text } from '../../style/typography';
 import { Images } from '../../style/images';
 import { MenuScrollIconConverter } from '../../functions/helpers';
 import { usePlacesContext } from '../../context/place.context';
+import { products } from '../../_dummydata_/placedd2'
 
 const MenuScroll2 = () => {
     const { colors, borderRadius }: any = useTheme();
@@ -17,7 +18,6 @@ const MenuScroll2 = () => {
     const [{ dynamicIndex }, setState] = React.useState({ dynamicIndex: 0 });
     let [posArr]: any = React.useState([]);
 
-    const { products } = usePlacesContext();
 
     const handleChange = (item: any, key: any) => {
         dispatch({ type: SET_MENU_ITEM, payload: item }); // this works

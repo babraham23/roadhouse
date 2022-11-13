@@ -7,16 +7,16 @@ import { SET_MENU } from '../../state/reducers/menuReducer';
 import { SET_MENU_ITEM } from '../../state/reducers/setMenuItem';
 import { useDispatch } from 'react-redux';
 import { products } from '../../_dummydata_/placedd';
-import { useUserContext } from '../../context/user.context';
 import { getPlacesPhotos } from '../../api/endpoints';
 import { useTheme } from '../../hooks/useTheme';
+import { usePlacesContext } from '../../context/place.context';
 
 const HorizontalParallax = () => {
     const { width } = useWindowDimensions();
     const navigation: any = useNavigation();
     const dispatch = useDispatch();
     const scrollX = useRef(new Animated.Value(0)).current;
-    const { places } = useUserContext();
+    const { places } = usePlacesContext();
     const { colors } = useTheme();
 
     const handleNav = (item: any) => {

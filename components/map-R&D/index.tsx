@@ -3,10 +3,10 @@ import React, { useRef, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { API_KEY } from '../../api/endpoints';
-import { useUserContext } from '../../context/user.context';
 import { Images } from '../../style/images';
 import { mcdDD } from '../../screens/explore/dd';
 import { useNavigation } from '@react-navigation/native';
+import { usePlacesContext } from '../../context/place.context';
 
 const { width, height } = Dimensions.get('window');
 // const ASPECT_RATIO = width / height;
@@ -18,7 +18,7 @@ const GOOGLE_MAPS_APIKEY = API_KEY;
 const Map = () => {
     const navigation: any = useNavigation();
     let mapView: any = useRef();
-    const { longitude, latitude, places } = useUserContext();
+    const { longitude, latitude, places } = usePlacesContext();
     const [destination, setDestination] = useState({ latitude: 0, longitude: 0 });
     const [directionActive, setDirectionActive] = useState(false);
     const [mapRegion, setmapRegion] = React.useState({

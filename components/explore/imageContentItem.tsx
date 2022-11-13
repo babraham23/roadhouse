@@ -4,17 +4,17 @@ import { Text } from '../../style/typography';
 import DisplayCard from '../cards/displayCard';
 import { useTheme } from '../../hooks/useTheme';
 import { restDD } from '../../screens/explore/dd';
-import { useUserContext } from '../../context/user.context';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import ImageCard from '../cards/imageCard';
+import { usePlacesContext } from '../../context/place.context';
 
 const ImageContentItem = () => {
     const { colors } = useTheme();
     const [isLoading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
     const { loading } = useSelector((state: any) => state.loadingReducer);
-    const { longitude, latitude, places } = useUserContext();
+    const { longitude, latitude, places } = usePlacesContext();
     const navigation: any = useNavigation();
     return (
         <View style={styles.container}>

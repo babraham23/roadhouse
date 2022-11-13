@@ -1,78 +1,53 @@
 import React, { createContext, FC, useContext, useEffect, useState } from 'react';
-import * as Location from 'expo-location';
 import { useDispatch } from 'react-redux';
-import { SET_LOADING } from '../state/reducers/loadingReducer';
-import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
-import { marketDD } from '../screens/explore/dd';
-import { useCreateBasicUserMutation, useGetPlacesByKeywordsQuery, useGetUserQuery } from '../graphql/generated/output';
+import { useCreateBasicUserMutation, useGetPlacesByKeywordsQuery } from '../graphql/generated/output';
 import { GetData, StoreData } from '../functions/asyncStorage';
 import { generateID } from '../functions/helpers';
+import * as Location from 'expo-location';
 
 type Context = {
     userType?: any;
     setUserType?: any;
-    location?: any;
-    latitude?: any;
-    longitude?: any;
-    setLatitude?: any;
-    setLongitude?: any;
-    setLocation?: any;
-    getUserLocation?: any;
-    places?: any;
-    getPlaces?: any;
-    place?: any;
-    setPlace?: any;
     userId?: any;
     setUserId?: any;
+    userTravelMode?: any;
+    setUserTravelMode?: any;
+    userTravelMethod?: any;
+    userLoaction?: any;
+    setUser?: any;
+    userLatitude?: any;
+    userLongitude?: any;
+    setUserLatitude?: any;
+    setUserLongitude?: any;
 };
 
 const UserContext = createContext<Context>({
     userType: undefined,
-    setUserType: null,
-    location: undefined,
-    latitude: undefined,
-    longitude: undefined,
-    setLatitude: undefined,
-    setLongitude: undefined,
-    setLocation: undefined,
-    getUserLocation: undefined,
-    getPlaces: undefined,
     userId: undefined,
-    setUserId: undefined,
+    userTravelMode: undefined,
+    userLoaction: undefined,
+    setUserLatitude: undefined,
+    setUserLongitude: undefined,
 });
 
+//distance --> 13.7 for  DRIVING
+//distance --> 59.61666666666667 for  WALKING
+//distance --> 21.85 for  BICYCLING
+
 export const UserProvider: FC = ({ children }) => {
-    const [location, setLocation]: any = useState(null);
-    const [latitude, setLatitude]: any = useState('');
-    const [longitude, setLongitude]: any = useState('');
     const [userType, setUserType]: any = useState('');
-    const [errorMsg, setErrorMsg]: any = useState(null);
-    let [places, setPlaces]: any = useState([]);
-    const [place, setPlace]: any = useState('');
-    const dispatch = useDispatch();
     const [createBasicUser] = useCreateBasicUserMutation();
     const [userId, setUserId]: any = useState('');
-    const getPlacesCall = useGetPlacesByKeywordsQuery();
-    // const users = useGetUserQuery();
+    const [userTravelMode, setUserTravelMode]: any = useState('DRIVING'); //"DRIVING", "BICYCLING", "WALKING", "TRANSIT".
+    const [userLocation, setUserLocation]: any = useState(null);
+    const [errorMsg, setErrorMsg]: any = useState(null);
+    const [userLatitude, setUserLatitude]: any = useState(54.969588);
+    const [userLongitude, setUserLongitude]: any = useState(-1.619521);
 
-    const getUserLocation = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-        }
-        getUser();
-        // dispatch({ type: SET_LOADING, payload: true });
-        let location = await Location.getCurrentPositionAsync({});
-        setLocation(location);
-        setLatitude(location.coords.latitude);
-        setLongitude(location.coords.longitude);
-        // dispatch({ type: SET_LOADING, payload: false });
-    };
-
+    -1.619521;
     const getUser = async () => {
         const deviceId = await GetData('@deviceId');
-        console.log(deviceId);
+        console.log('deviceId -->', deviceId);
         if (!deviceId || deviceId === 'removed' || deviceId === undefined) {
             const deviceId = generateID();
             await StoreData('@deviceId', deviceId);
@@ -96,70 +71,24 @@ export const UserProvider: FC = ({ children }) => {
         }
     };
 
-    const getPlaces = async (type: any) => {
-        if (type === 'Bars') {
-            getBars();
-        } else if (type === 'Restaurants') {
-            getRestaurants();
-        } else if (type === 'Markets') {
-            getMarket();
-        } else {
-            getPlacesByKeyword(type);
+    const getUserLocation = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        console.log('status -->', status);
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
         }
-    };
-
-    const getBars = async () => {
-        let lat = 54.96963755347803;
-        let lng = -1.619493032708466;
-        try {
-            const barResponse = await fetch(pub_search(lng, lat));
-            const bars = await barResponse.json();
-            if (bars.status === 'REQUEST_DENIED') alert('Request denied');
-            else {
-                setPlaces(bars.results);
-                setPlace('Bars');
-            }
-        } catch (error) {
-            console.error('error 532 -->', error);
-        }
-    };
-
-    const getRestaurants = async () => {
-        let lat = 54.96963755347803;
-        let lng = -1.619493032708466;
-        try {
-            const restaurantResponse = await fetch(restaurant_search(lng, lat));
-            const restaurant = await restaurantResponse.json();
-            console.log('restaurant', JSON.stringify(restaurant.results[3]));
-            if (restaurant.status === 'REQUEST_DENIED') alert('Request denied');
-            else {
-                setPlaces(restaurant.results);
-                setPlace('Restaurants');
-            }
-        } catch (error) {
-            console.error('error e62 -->', error);
-        }
-    };
-
-    const getMarket = () => {
-        setPlace('Markets');
-        setPlaces(marketDD);
-    };
-
-    const getPlacesByKeyword = async (keyword: string) => {
-        let {
-            data: { getPlacesByKeywords },
-        } = await getPlacesCall.refetch({
-            keywords: keyword,
-        });
-        console.log('getPlacesByKeywords -->', getPlacesByKeywords);
-        setPlaces(getPlacesByKeywords);
-        setPlace(keyword);
+        // dispatch({ type: SET_LOADING, payload: true });
+        let location = await Location.getCurrentPositionAsync({});
+        console.log('location -->', location);
+        // setUserLatitude(location.coords.latitude); // my location for dev
+        // setUserLongitude(location.coords.longitude);  // my location for dev
+        // dispatch({ type: SET_LOADING, payload: false });
     };
 
     useEffect(() => {
-        getUserLocation();
-        getRestaurants();
+        getUser();
+        // getUserLocation();
     }, []);
 
     return (
@@ -167,17 +96,13 @@ export const UserProvider: FC = ({ children }) => {
             value={{
                 userType,
                 setUserType,
-                location,
-                latitude,
-                longitude,
-                setLatitude,
-                setLongitude,
-                setLocation,
-                getUserLocation,
-                places,
-                getPlaces,
-                place,
                 userId,
+                userTravelMode,
+                setUserTravelMode,
+                setUserLatitude,
+                setUserLongitude,
+                userLatitude,
+                userLongitude,
             }}
         >
             {children}

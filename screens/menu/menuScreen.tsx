@@ -10,6 +10,8 @@ import Content from '../../components/menu/content';
 import ViewBasketButton from '../../components/buttons/viewBasketButton';
 import { usePlacesContext } from '../../context/place.context';
 
+import { products } from '../../_dummydata_/placedd2';
+
 const { width } = Dimensions.get('window');
 
 const snapToOffsets = [0, Platform.OS === 'android' ? 400 : 380];
@@ -22,7 +24,8 @@ const MenuScreen = () => {
     let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
     let [posArr]: any = React.useState([]);
 
-    const { products } = usePlacesContext();
+
+    // console.log('products in menu screen', products);
 
     const onScroll = useAnimatedScrollHandler({
         onScroll: (event) => (translateX.value = event.contentOffset.x),
@@ -34,9 +37,9 @@ const MenuScreen = () => {
             backgroundColor = interpolateColor(
                 translateX.value,
                 products.map((_: any, i: any) => width * i),
-                products.map((product: any) => product.cardBackgroundColor)
+                products.map((product: any) => product.color2)
             );
-        } else backgroundColor = products[0].cardBackgroundColor;
+        } else backgroundColor = products[0].color1;
         return { backgroundColor };
     });
 
