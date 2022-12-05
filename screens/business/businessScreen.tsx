@@ -15,6 +15,7 @@ import DirectionLayout from '../../components/business/directionLayout';
 import BottomButtonLayout from '../../components/business/bottomButtonLayout';
 // import { useLikePlaceMutation } from '../../graphql/generated/output';
 import { useUserContext } from '../../context/user.context';
+import FAB from '../../components/buttons/FAB';
 
 /*
 ***** PARAMS *****
@@ -137,7 +138,8 @@ const BusinessScreen = ({ route }: any) => {
                     </Text>
                 </View>
             </ImageHeaderScroll>
-            <BottomButtonLayout />
+            <FAB />
+            {/* <BottomButtonLayout /> */}
         </>
     );
 };

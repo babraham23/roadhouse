@@ -25,8 +25,7 @@ let destination = { latitude: 54.994913, longitude: -1.663358 }; // blakelaw
 const Map: React.FC<any> = ({ style }) => {
     const navigation: any = useNavigation();
     let mapView: any = useRef();
-    const { places, place, setLongitude, setLatitude } = usePlacesContext();
-    const { userTravelMode, setUserTravelMode } = useUserContext();
+    const { places, place, setLongitude, setLatitude, userTravelMode, setUserTravelMode } = usePlacesContext();
     const [directionActive, setDirectionActive] = useState(false);
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -49,9 +48,21 @@ const Map: React.FC<any> = ({ style }) => {
         }
     };
 
+    const createEvent = (location) => {
+        navigation.navigate('CreateEventScreen', { location });
+    }
+
     return (
-        <MapView showsPointsOfInterest={false} region={mapRegion} style={[style, StyleSheet.absoluteFill, { marginBottom: 20 }]} ref={(c) => (mapView = c)} showsUserLocation>
+        <MapView
+            showsPointsOfInterest={false}
+            region={mapRegion}
+            style={[style, StyleSheet.absoluteFill, { marginBottom: 20 }]}
+            ref={(c) => (mapView = c)}
+            showsUserLocation
+            onLongPress={(e) => createEvent(e.nativeEvent.coordinate)}
+        >
             {places.map((item: any, i: number) => {
+                // console.log('passed item -->', JSON.stringify(item));
                 let client = item.geometry.lat ? true : false;
                 let latitude = item.geometry.lat ? item.geometry.lat : item.geometry.location.lat;
                 let longitude = item.geometry.lng ? item.geometry.lng : item.geometry.location.lng;
@@ -93,7 +104,7 @@ const Map: React.FC<any> = ({ style }) => {
                         });
                     }}
                     onError={(errorMessage) => {
-                        // console.log('GOT AN ERROR');
+                        console.log('GOT AN ERROR', errorMessage);
                     }}
                 />
             )}

@@ -24,7 +24,6 @@ const MenuScreen = () => {
     let selectedMenuItem: any = useSelector((state: any) => state.menuItemReducer);
     let [posArr]: any = React.useState([]);
 
-
     // console.log('products in menu screen', products);
 
     const onScroll = useAnimatedScrollHandler({

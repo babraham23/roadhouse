@@ -10,6 +10,7 @@ let maxwidth = 4160;
 export const getPlacesPhotos = (photo_reference: any) =>
     `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxwidth}&maxheight=${maxheight}&photo_reference=${photo_reference}&key=${API_KEY}`;
 export const restaurant_search = (lat: number, lng: number) => `${BASE_API}restaurants&location=${lat},${lng}&radius=${radius_number_of_meters}&key=${API_KEY}`;
-export const pub_search = (lng: number, lat: number) => `${BASE_API}bar&location=${lat},${lng}&radius=${radius_number_of_meters}&key=${API_KEY}`;
+// export const pub_search = (lng: number, lat: number) => `${BASE_API}bar&location=${lat},${lng}&radius=${radius_number_of_meters}&key=${API_KEY}`;
+export const pub_search = (lng: number, lat: number) => `${BASE_API}bars&location=${lat},${lng}&radius=${1}&key=${API_KEY}`;
 
 export const detailed_search = (place_id: string) => `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&key=${API_KEY}`;

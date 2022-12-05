@@ -2,7 +2,7 @@ import React, { createContext, FC, useContext, useEffect, useState } from 'react
 import * as Location from 'expo-location';
 import { useDispatch } from 'react-redux';
 import { SET_LOADING } from '../state/reducers/loadingReducer';
-import { pub_search, restaurant_search, bakery_search } from '../api/endpoints';
+import { pub_search, restaurant_search } from '../api/endpoints';
 import { marketDD } from '../screens/explore/dd';
 import { useCreateBasicUserMutation, useGetPlacesByKeywordsQuery, useGetUserQuery } from '../graphql/generated/output';
 import { GetData, StoreData } from '../functions/asyncStorage';
@@ -25,6 +25,10 @@ type Context = {
     setPlace?: any;
     userId?: any;
     setUserId?: any;
+    userTravelMode?: any;
+    setUserTravelMode?: any;
+    userEvent?: any;
+    setUserEvenet?: any;
 };
 
 const PlacesContext = createContext<Context>({
@@ -40,6 +44,8 @@ const PlacesContext = createContext<Context>({
     getPlaces: undefined,
     userId: undefined,
     setUserId: undefined,
+    userTravelMode: undefined,
+    setUserTravelMode: undefined,
 });
 
 export const PlacesProvider: FC = ({ children }) => {
@@ -53,6 +59,23 @@ export const PlacesProvider: FC = ({ children }) => {
     const [createBasicUser] = useCreateBasicUserMutation();
     const [userId, setUserId]: any = useState('');
     const getPlacesCall = useGetPlacesByKeywordsQuery();
+    const [userTravelMode, setUserTravelMode]: any = useState('DRIVING'); //"DRIVING", "BICYCLING", "WALKING", "TRANSIT".
+    const [userEvent, setUserEvenet] = useState('');
+
+    const getUserLocation = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        console.log('status -->', status);
+        if (status !== 'granted') {
+            alert('Permission to access location was denied');
+            return;
+        }
+        // dispatch({ type: SET_LOADING, payload: true });
+        let location = await Location.getCurrentPositionAsync({});
+        console.log('location -->', location);
+        // setUserLatitude(location.coords.latitude); // my location for dev
+        // setUserLongitude(location.coords.longitude);  // my location for dev
+        // dispatch({ type: SET_LOADING, payload: false });
+    };
 
     const getPlaces = async (type: any) => {
         if (type === 'Bars') {
@@ -65,14 +88,13 @@ export const PlacesProvider: FC = ({ children }) => {
             getPlacesByKeyword(type);
         }
     };
-    
 
     const getBars = async () => {
-        let lat = 54.969637;
-        let lng = -1.619493;
+        let lat = 54.969;
+        let lng = -1.619;
         try {
             const barResponse = await fetch(pub_search(lat, lng));
-            console.log('success getting the bars-->', barResponse) 
+            // console.log('success getting the bars-->', barResponse);
             const bars = await barResponse.json();
             if (bars.status === 'REQUEST_DENIED') alert('Request denied');
             else {
@@ -89,7 +111,7 @@ export const PlacesProvider: FC = ({ children }) => {
         let lng = -1.619493;
         try {
             const restaurantResponse = await fetch(restaurant_search(lat, lng));
-            console.log('success getting restaurants in myy location -->', restaurantResponse);
+            // console.log('success getting restaurants in myy location -->', restaurantResponse);
             const restaurant = await restaurantResponse.json();
             if (restaurant.status === 'REQUEST_DENIED') alert('Request denied');
             else {
@@ -116,9 +138,13 @@ export const PlacesProvider: FC = ({ children }) => {
         setPlace(keyword);
     };
 
+    const createEvent = () => {};
+
     useEffect(() => {
         getRestaurants();
     }, []);
+
+    // console.log('placs context-->', JSON.stringify(places[0]));
 
     return (
         <PlacesContext.Provider
@@ -135,6 +161,8 @@ export const PlacesProvider: FC = ({ children }) => {
                 getPlaces,
                 place,
                 userId,
+                userTravelMode,
+                setUserTravelMode,
             }}
         >
             {children}

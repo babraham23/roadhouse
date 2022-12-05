@@ -15,10 +15,6 @@ type Context = {
     userTravelMethod?: any;
     userLoaction?: any;
     setUser?: any;
-    userLatitude?: any;
-    userLongitude?: any;
-    setUserLatitude?: any;
-    setUserLongitude?: any;
 };
 
 const UserContext = createContext<Context>({
@@ -26,8 +22,6 @@ const UserContext = createContext<Context>({
     userId: undefined,
     userTravelMode: undefined,
     userLoaction: undefined,
-    setUserLatitude: undefined,
-    setUserLongitude: undefined,
 });
 
 //distance --> 13.7 for  DRIVING
@@ -38,7 +32,6 @@ export const UserProvider: FC = ({ children }) => {
     const [userType, setUserType]: any = useState('');
     const [createBasicUser] = useCreateBasicUserMutation();
     const [userId, setUserId]: any = useState('');
-    const [userTravelMode, setUserTravelMode]: any = useState('DRIVING'); //"DRIVING", "BICYCLING", "WALKING", "TRANSIT".
     const [userLocation, setUserLocation]: any = useState(null);
     const [errorMsg, setErrorMsg]: any = useState(null);
     const [userLatitude, setUserLatitude]: any = useState(54.969588);
@@ -71,24 +64,8 @@ export const UserProvider: FC = ({ children }) => {
         }
     };
 
-    const getUserLocation = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        console.log('status -->', status);
-        if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-        }
-        // dispatch({ type: SET_LOADING, payload: true });
-        let location = await Location.getCurrentPositionAsync({});
-        console.log('location -->', location);
-        // setUserLatitude(location.coords.latitude); // my location for dev
-        // setUserLongitude(location.coords.longitude);  // my location for dev
-        // dispatch({ type: SET_LOADING, payload: false });
-    };
-
     useEffect(() => {
         getUser();
-        // getUserLocation();
     }, []);
 
     return (
@@ -97,12 +74,6 @@ export const UserProvider: FC = ({ children }) => {
                 userType,
                 setUserType,
                 userId,
-                userTravelMode,
-                setUserTravelMode,
-                setUserLatitude,
-                setUserLongitude,
-                userLatitude,
-                userLongitude,
             }}
         >
             {children}

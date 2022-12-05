@@ -25,6 +25,7 @@ import StorefrontScreen from '../screens/storefront';
 import SignUpScreen from '../screens/signUp';
 import CheckoutScreen from '../screens/checkout/checkoutScreen';
 import { PlacesProvider } from '../context/place.context';
+import CreateEventScreen from '../screens/events/CreateEventScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -84,6 +85,7 @@ function RootNavigator() {
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="CreateEventScreen" component={CreateEventScreen} options={{ headerShown: false }} />
             </Stack.Group>
         </Stack.Navigator>
     );
