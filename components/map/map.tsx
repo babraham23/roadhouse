@@ -50,7 +50,7 @@ const Map: React.FC<any> = ({ style }) => {
 
     const createEvent = (location) => {
         navigation.navigate('CreateEventScreen', { location });
-    }
+    };
 
     return (
         <MapView

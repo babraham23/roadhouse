@@ -4,7 +4,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const StarRating = (props) => {
-
     // This array will contain our star tags. We will include this
     // array between the view tag.
     let stars = [];
@@ -17,31 +16,30 @@ const StarRating = (props) => {
             name = 'ios-star-outline';
         }
 
-        stars.push((<Ionicons name={name} size={15} style={styles.star} key={i} />));
+        stars.push(<Ionicons name={name} size={15} style={styles.star} key={i} />);
     }
 
     return (
-        <View style={ styles.container }>
-            { stars }
+        <View style={styles.container}>
+            {stars}
             <Text style={styles.text}>({props.reviews})</Text>
         </View>
     );
-	
-}
+};
 
 export default StarRating;
 
 const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	star: {
-		color: '#FF8C00'
-	},
-	text: {
-		fontSize: 12,
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    star: {
+        color: '#FF8C00',
+    },
+    text: {
+        fontSize: 12,
         marginLeft: 5,
         color: '#444',
-	}
+    },
 });
