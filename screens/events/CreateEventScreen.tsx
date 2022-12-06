@@ -3,6 +3,21 @@ import React from 'react';
 import ModalHeader from '../../components/headers/modalHeader';
 import { Text } from '../../style/typography';
 
+/*
+Let body =
+{
+  placeName: string,
+  typeOfEvent: string, //sesh/make friends/discuss topic/
+  nameOfEvent: string,
+  date: string,
+  time: string,
+  description: string,
+  privateEvent: boolean,
+  location: geometry,
+  
+}
+*/
+
 const CreateEventScreen = () => {
     return (
         <>
@@ -16,13 +31,12 @@ const CreateEventScreen = () => {
                 <Text>- (TextInput)</Text>
                 <Text>When is the event?</Text>
                 <Text>- (DatePicker)</Text>
-                <Text>What time is the event?</Text>
+                <Text>What time is the event? Description </Text>
                 <Text>- (TimePicker)</Text>
                 <Text>Friends (private) - or open to public</Text>
                 <Text>- (Toggle)</Text>
                 <Text>How many people are attending?</Text>
                 <Text>- (TextInput)</Text>
-                <Text>What is the event about?</Text>
                 <Text>- (TextArea)</Text>
                 <Text>Params: Longitude and Latitude for map</Text>
             </View>
