@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import ModalHeader from '../../components/headers/modalHeader';
 import { Text } from '../../style/typography';
+import CreateEventForm from '../../components/forms/createEventForm';
 
 /*
 Let body =
@@ -14,7 +15,7 @@ Let body =
   description: string,
   privateEvent: boolean,
   location: geometry,
-  
+
 }
 */
 
@@ -23,7 +24,8 @@ const CreateEventScreen = () => {
         <>
             <ModalHeader title="Create Event" />
             <View style={styles.container}>
-                <Text>If navigated from a restaurant show name and details</Text>
+              <CreateEventForm />
+                {/* <Text>If navigated from a restaurant show name and details</Text>
                 <Text>- (dropdown)</Text>
                 <Text>What type of event is it friend/meetup/sesh?</Text>
                 <Text>- (TextArea)</Text>
@@ -38,7 +40,7 @@ const CreateEventScreen = () => {
                 <Text>How many people are attending?</Text>
                 <Text>- (TextInput)</Text>
                 <Text>- (TextArea)</Text>
-                <Text>Params: Longitude and Latitude for map</Text>
+                <Text>Params: Longitude and Latitude for map</Text> */}
             </View>
         </>
     );
@@ -49,6 +51,6 @@ export default CreateEventScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
+        // padding: 10,
     },
 });

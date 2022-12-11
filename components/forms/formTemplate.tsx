@@ -11,20 +11,22 @@ type Props = {
     description?: string;
     onBackPress?: any;
     canContinue?: boolean;
+    noBack?: boolean;
+    style?: any;
 };
 
-const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onPress, description }) => {
+const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onPress, description, noBack, style }) => {
     const { colors } = useTheme();
     const navigation = useNavigation();
     return (
         <>
-            <TouchableOpacity
+            {!noBack ? <TouchableOpacity
                 onPress={onBackPress ? onBackPress : () => navigation.goBack()}
                 style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}
             >
                 <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
-            </TouchableOpacity>
-            <ScrollView bounces={true}>
+            </TouchableOpacity> : null}
+            <ScrollView style={style} bounces={true}>
                 <View style={styles.container}>
                     <View style={styles.descriptionWrapper}>
                         <Text bold fontSize={18}>
@@ -44,8 +46,8 @@ export default FormTemplate;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 100,
-        paddingHorizontal: 20,
+        // paddingTop: 100,
+        paddingHorizontal: 10,
     },
     arrowWrapper: {
         position: 'absolute',

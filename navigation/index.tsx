@@ -26,6 +26,7 @@ import SignUpScreen from '../screens/signUp';
 import CheckoutScreen from '../screens/checkout/checkoutScreen';
 import { PlacesProvider } from '../context/place.context';
 import CreateEventScreen from '../screens/events/CreateEventScreen';
+import SignInScreen from '../screens/signUp/SignInScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     // const navigationRef: any = useNavigationContainerRef();
@@ -74,8 +75,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
-            {/* <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} /> */}
-            {/* <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} /> */}
+            <Stack.Screen name="SignInScreen" component={SignInScreen} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false }} />
             <Stack.Screen name="ExploreScreen" component={ExploreScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CreatePlace" component={CreatePlace} options={{ headerShown: false }} />
@@ -86,7 +88,7 @@ function RootNavigator() {
                 <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateEventScreen" component={CreateEventScreen} options={{ headerShown: false }} />
-            </Stack.Group>
+            </Stack.Group> */}
         </Stack.Navigator>
     );
 }

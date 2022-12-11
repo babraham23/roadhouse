@@ -14,3 +14,7 @@ export const restaurant_search = (lat: number, lng: number) => `${BASE_API}resta
 export const pub_search = (lng: number, lat: number) => `${BASE_API}bars&location=${lat},${lng}&radius=${1}&key=${API_KEY}`;
 
 export const detailed_search = (place_id: string) => `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&key=${API_KEY}`;
+
+export const endpoints = {
+    google: 'https://www.googleapis.com/oauth2/v4/token',
+}
