@@ -24,7 +24,7 @@ const CreateEventScreen = () => {
         <>
             <ModalHeader title="Create Event" />
             <View style={styles.container}>
-              <CreateEventForm />
+                <CreateEventForm />
                 {/* <Text>If navigated from a restaurant show name and details</Text>
                 <Text>- (dropdown)</Text>
                 <Text>What type of event is it friend/meetup/sesh?</Text>

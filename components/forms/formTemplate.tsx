@@ -20,12 +20,14 @@ const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onP
     const navigation = useNavigation();
     return (
         <>
-            {!noBack ? <TouchableOpacity
-                onPress={onBackPress ? onBackPress : () => navigation.goBack()}
-                style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}
-            >
-                <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
-            </TouchableOpacity> : null}
+            {!noBack ? (
+                <TouchableOpacity
+                    onPress={onBackPress ? onBackPress : () => navigation.goBack()}
+                    style={[styles.arrowWrapper, { backgroundColor: colors.background, borderColor: colors.border }]}
+                >
+                    <Ionicons name="arrow-back-sharp" size={24} color={colors.text} />
+                </TouchableOpacity>
+            ) : null}
             <ScrollView style={style} bounces={true}>
                 <View style={styles.container}>
                     <View style={styles.descriptionWrapper}>

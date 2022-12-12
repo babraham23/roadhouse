@@ -17,4 +17,4 @@ export const detailed_search = (place_id: string) => `https://maps.googleapis.co
 
 export const endpoints = {
     google: 'https://www.googleapis.com/oauth2/v4/token',
-}
+};

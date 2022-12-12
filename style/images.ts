@@ -21,6 +21,8 @@ export const Images = {
     FRIES: require('../assets/icons/french-fries.png'),
     COFFEE: require('../assets/icons/coffee-cup.png'),
 
+    GOOGLE_LOGO: require('../assets/icons/google-logo.png'),
+
     PLACEHOLDER2: require('../assets/images/placeholder2.jpeg'),
 
     // McDOnalds Placholders

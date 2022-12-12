@@ -11,7 +11,7 @@ import {
 // import { useUser } from './useUser';
 
 export const useAuth = () => {
-    const [ googleResponse, googleAuth]: any = Google.useAuthRequest({
+    const [googleResponse, googleAuth]: any = Google.useAuthRequest({
         expoClientId: '1080382822276-eqklp58m1q9fl85m7aj89n1ofp8bdj7p.apps.googleusercontent.com',
         // iosClientId: '1080382822276-a0ms51p5cfc523bivhchs8nk04u2scq0.apps.googleusercontent.com',
         // androidClientId: '1080382822276-dqohv9donltabnijor1uun2765hstr4v.apps.googleusercontent.com',
@@ -33,7 +33,7 @@ export const useAuth = () => {
             }
         }
 
-        console.log('googleResponse -->', googleResponse)
+        console.log('googleResponse -->', googleResponse);
 
         if (googleResponse?.type === 'success') {
             const { access_token } = googleResponse.params;

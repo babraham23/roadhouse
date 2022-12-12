@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { GoogleButton } from '../../components/buttons/GoogleButton';
+import { GoogleButton } from '../../components/buttons/SignInButton';
 import { useAuth } from '../../hooks/useGoogleAuth';
 
 const SignInScreen = () => {

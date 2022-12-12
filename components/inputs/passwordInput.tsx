@@ -8,11 +8,11 @@ type Props = {
     error?: any;
     placeholder?: string;
     onChangeText: any;
-    keyboardType?: any;
 };
 
-const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props) => {
+const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
     const { colors, borderRadius } = useTheme();
+    const [secure, setSecure] = React.useState(true);
     return (
         <View style={style}>
             <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: colors.border, backgroundColor: colors.card }]}>
@@ -23,12 +23,13 @@ const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props)
                     underlineColorAndroid="transparent"
                     autoCapitalize={'none'}
                     multiline={false}
-                    secureTextEntry={false}
+                    secureTextEntry={secure ? true : false}
                     onChangeText={onChangeText}
-                    keyboardType={keyboardType}
                 />
+                <TouchableOpacity style={styles.typeToggle} onPress={() => setSecure(!secure)}>
+                    {secure ? <Feather name="eye" color={colors.text} size={15} /> : <Feather name="eye-off" color={colors.text} size={15} />}
+                </TouchableOpacity>
             </View>
-            {/* {error ? <MessageError error={error} /> : <View style={styles.errorPlaceholder} />} */}
         </View>
     );
 };
@@ -39,18 +40,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 40,
         justifyContent: 'center',
-        paddingHorizontal: 10,
+        paddingLeft: 10,
+        paddingRight: 20,
     },
     typeToggle: {
         position: 'absolute',
-        right: 5,
+        right: 20,
         top: 12,
     },
     textInput: {
         flex: 1,
         fontFamily: 'regular',
-        paddingHorizontal: 5,
-        fontSize: 17,
+        paddingLeft: 5,
+        fontSize: 16,
     },
     errorPlaceholder: {
         height: 20,
@@ -58,4 +60,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Input;
+export default PasswordInput;

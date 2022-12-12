@@ -1,0 +1,52 @@
+response
+{
+  "type": "success",
+  "error": null,
+  "url": "exp://192.168.1.123:19000/--/expo-auth-session#state=bfRE8kOTW9&access_token=ya29.a0AeTM1ievJ5vWjTkvvItsvYlyEC1oCtpovwsQtzOjNLoSl6qeL0-TJdC5D3v5mN6unAjGW3tzLEBwx8jPZYMhqDoK0tATbQviZndPYPnp_4gG8rAnE3J9FrjJeO12VWzjfRP0q4f4p3qvWFDtb6SXW8RGJyzEaCgYKAYQSARISFQHWtWOm-RCqEy_cuNSQi2aKzmb6Zg0163&token_type=Bearer&expires_in=3599&scope=email%20profile%20openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&authuser=0&prompt=consent",
+  "params": {
+    "exp://192.168.1.123:19000/--/expo-auth-session": "",
+    "state": "bfRE8kOTW9",
+    "access_token": "ya29.a0AeTM1ievJ5vWjTkvvItsvYlyEC1oCtpovwsQtzOjNLoSl6qeL0-TJdC5D3v5mN6unAjGW3tzLEBwx8jPZYMhqDoK0tATbQviZndPYPnp_4gG8rAnE3J9FrjJeO12VWzjfRP0q4f4p3qvWFDtb6SXW8RGJyzEaCgYKAYQSARISFQHWtWOm-RCqEy_cuNSQi2aKzmb6Zg0163",
+    "token_type": "Bearer",
+    "expires_in": "3599",
+    "scope": "email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+    "authuser": "0",
+    "prompt": "consent"
+  },
+  "authentication": {
+    "accessToken": "ya29.a0AeTM1ievJ5vWjTkvvItsvYlyEC1oCtpovwsQtzOjNLoSl6qeL0-TJdC5D3v5mN6unAjGW3tzLEBwx8jPZYMhqDoK0tATbQviZndPYPnp_4gG8rAnE3J9FrjJeO12VWzjfRP0q4f4p3qvWFDtb6SXW8RGJyzEaCgYKAYQSARISFQHWtWOm-RCqEy_cuNSQi2aKzmb6Zg0163",
+    "tokenType": "Bearer",
+    "expiresIn": "3599",
+    "scope": "email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+    "state": "bfRE8kOTW9",
+    "issuedAt": 1670799438
+  },
+  "errorCode": null
+}
+
+authenticate
+{
+  "accessToken": "ya29.a0AeTM1ievJ5vWjTkvvItsvYlyEC1oCtpovwsQtzOjNLoSl6qeL0-TJdC5D3v5mN6unAjGW3tzLEBwx8jPZYMhqDoK0tATbQviZndPYPnp_4gG8rAnE3J9FrjJeO12VWzjfRP0q4f4p3qvWFDtb6SXW8RGJyzEaCgYKAYQSARISFQHWtWOm-RCqEy_cuNSQi2aKzmb6Zg0163",
+  "tokenType": "Bearer",
+  "expiresIn": "3599",
+  "scope": "email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+  "state": "bfRE8kOTW9",
+  "issuedAt": 1670799438
+}
+
+request
+{
+  "url": "https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https%3A%2F%2Fauth.expo.io%2F%40brettabraham23%2Froadhouse&client_id=526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com&response_type=token&state=Uk9Up0uKsu&scope=openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email",
+  "responseType": "token",
+  "clientId": "526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com",
+  "redirectUri": "https://auth.expo.io/@brettabraham23/roadhouse",
+  "scopes": [
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "state": "Uk9Up0uKsu",
+  "extraParams": {},
+  "codeChallengeMethod": "S256",
+  "usePKCE": false
+}
