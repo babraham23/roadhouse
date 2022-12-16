@@ -1,4 +1,4 @@
-import { RegisterInterface } from "../_interfaces/register.interface";
+import { RegisterInterface } from '../_interfaces/register.interface';
 
 export class RegisterModel {
     username: string;

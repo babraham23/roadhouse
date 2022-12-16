@@ -14,14 +14,18 @@ type Props = {
 const SignInButton = ({ text, style, onPress, google }: Props) => {
     const { colors, borderRadius } = useTheme();
     return (
-        <TouchableOpacity activeOpacity={0.8} style={[styles.button, style, { backgroundColor: colors.card, borderColor: colors.primary, borderRadius: borderRadius.button }]} onPress={onPress}>
+        <TouchableOpacity
+            activeOpacity={0.8}
+            style={[styles.button, style, { backgroundColor: colors.card, borderColor: colors.primary, borderRadius: borderRadius.button }]}
+            onPress={onPress}
+        >
             <View style={styles.logoWrapper}>
                 {google ? <Image style={styles.logo} source={Images.GOOGLE_LOGO} /> : <MaterialIcons name="email" size={24} color={colors.text} />}
             </View>
             <Text bold center>
                 {text}
             </Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
     );
 };
 

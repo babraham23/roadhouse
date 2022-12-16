@@ -13,9 +13,10 @@ type Props = {
 const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
     const { colors, borderRadius } = useTheme();
     const [secure, setSecure] = React.useState(true);
+    const [ bottomBorderColor, setBottomBorderColor ] = React.useState(colors.border);
     return (
         <View style={style}>
-            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: colors.border, backgroundColor: colors.card }]}>
+            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: bottomBorderColor, backgroundColor: colors.card }]}>
                 <TextInput
                     placeholderTextColor={colors.dark_grey}
                     placeholder={placeholder}
@@ -25,9 +26,11 @@ const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
                     multiline={false}
                     secureTextEntry={secure ? true : false}
                     onChangeText={onChangeText}
+                    onFocus={() => setBottomBorderColor(colors.primary)}
+                    onBlur={() => setBottomBorderColor(colors.border)}
                 />
                 <TouchableOpacity style={styles.typeToggle} onPress={() => setSecure(!secure)}>
-                    {secure ? <Feather name="eye" color={colors.text} size={15} /> : <Feather name="eye-off" color={colors.text} size={15} />}
+                    {secure ? <Feather name="eye" color={bottomBorderColor} size={15} /> : <Feather name="eye-off" color={bottomBorderColor} size={15} />}
                 </TouchableOpacity>
             </View>
         </View>
@@ -37,7 +40,7 @@ const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
 const styles = StyleSheet.create({
     inputWrapper: {
         flexDirection: 'row',
-        borderWidth: 1,
+        borderBottomWidth: 1,
         height: 40,
         justifyContent: 'center',
         paddingLeft: 10,

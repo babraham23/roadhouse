@@ -10,6 +10,8 @@ import Input from '../../components/inputs/textInput';
 import { RegisterModel } from '../../_models/register.model';
 import ArrowBackButton from '../../components/buttons/arrowBackButton';
 import PasswordInput from '../../components/inputs/passwordInput';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -17,27 +19,34 @@ const SignInScreen = () => {
     const [{ username, email, password }, setState] = React.useState(new RegisterModel());
 
     const [request, response, promptAsync] = Google.useAuthRequest({
+        // responseType: "id_token",
         expoClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
         iosClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
         androidClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
         webClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
     });
 
-    console.log('request -->', JSON.stringify(request));
+    const getUserInfo = async (token: any) => {
+        axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`)
+        .then((res: any) => {
+            console.log('res -->', res.data);
+        }).catch((err: any) => {
+            console.log('err -->', err);
+        })
+    }
 
     React.useEffect(() => {
         if (response?.type === 'success') {
             const { authentication } = response;
-            console.log('authentication -->', JSON.stringify(authentication));
+            getUserInfo(authentication?.accessToken);
         }
-        console.log('response -->', JSON.stringify(response));
     }, [response]);
 
     return (
         <View style={styles.container}>
             <ArrowBackButton style={styles.back} />
-            <Text bold fontSize={20}>
-                Create an account
+            <Text bold fontSize={23}>
+                Create your account
             </Text>
 
             <View style={styles.inputWrapper}>

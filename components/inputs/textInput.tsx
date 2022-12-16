@@ -13,9 +13,10 @@ type Props = {
 
 const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props) => {
     const { colors, borderRadius } = useTheme();
+    const [ bottomBorderColor, setBottomBorderColor ] = React.useState(colors.border);
     return (
         <View style={style}>
-            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: colors.border, backgroundColor: colors.card }]}>
+            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: bottomBorderColor, backgroundColor: colors.card }]}>
                 <TextInput
                     placeholderTextColor={colors.dark_grey}
                     placeholder={placeholder}
@@ -26,6 +27,8 @@ const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props)
                     secureTextEntry={false}
                     onChangeText={onChangeText}
                     keyboardType={keyboardType}
+                    onFocus={() => setBottomBorderColor(colors.primary)}
+                    onBlur={() => setBottomBorderColor(colors.border)}
                 />
             </View>
             {/* {error ? <MessageError error={error} /> : <View style={styles.errorPlaceholder} />} */}
@@ -36,7 +39,7 @@ const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props)
 const styles = StyleSheet.create({
     inputWrapper: {
         flexDirection: 'row',
-        borderWidth: 1,
+        borderBottomWidth: 1,
         height: 40,
         justifyContent: 'center',
         paddingHorizontal: 10,
