@@ -13,7 +13,7 @@ type Props = {
 const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
     const { colors, borderRadius } = useTheme();
     const [secure, setSecure] = React.useState(true);
-    const [ bottomBorderColor, setBottomBorderColor ] = React.useState(colors.border);
+    const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
         <View style={style}>
             <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: bottomBorderColor, backgroundColor: colors.card }]}>

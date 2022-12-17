@@ -13,7 +13,7 @@ type Props = {
 
 const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props) => {
     const { colors, borderRadius } = useTheme();
-    const [ bottomBorderColor, setBottomBorderColor ] = React.useState(colors.border);
+    const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
         <View style={style}>
             <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: bottomBorderColor, backgroundColor: colors.card }]}>

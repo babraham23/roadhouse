@@ -21,19 +21,20 @@ const SignInScreen = () => {
     const [request, response, promptAsync] = Google.useAuthRequest({
         // responseType: "id_token",
         expoClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
-        iosClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
-        androidClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
-        webClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
+        // iosClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
+        // androidClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
+        // webClientId: '526403850992-68fkf5rs5henv8kb84ar32eh6esien55.apps.googleusercontent.com',
     });
 
     const getUserInfo = async (token: any) => {
         axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`)
-        .then((res: any) => {
-            console.log('res -->', res.data);
-        }).catch((err: any) => {
-            console.log('err -->', err);
-        })
-    }
+            .then((res: any) => {
+                console.log('res -->', res.data);
+            })
+            .catch((err: any) => {
+                console.log('err -->', err);
+            });
+    };
 
     React.useEffect(() => {
         if (response?.type === 'success') {
@@ -60,7 +61,7 @@ const SignInScreen = () => {
 
             <OrDivider />
             <SignInButton text="Sign In with Email" style={styles.button} onPress={() => {}} />
-            <SignInButton text="Sign In with Google" style={styles.button} google onPress={() => promptAsync()} />
+            <SignInButton text="Continue with Google" style={styles.button} google onPress={() => promptAsync()} />
         </View>
     );
 };
