@@ -3,9 +3,11 @@ import { View, Text, TextInput, Platform, StyleSheet, TouchableOpacity } from 'r
 import * as Animatable from 'react-native-animatable';
 import { useTheme } from '../../hooks/useTheme';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const SearchInput = ({ style, placeholder, autoCapitalize, onChangeText, onEndEditing, autoCorrect, keyboardType, spellCheck }: any) => {
     const { colors, borderRadius }: any = useTheme();
+    const navigation = useNavigation();
     return (
         <View style={[style, styles.wrapper, { backgroundColor: colors.card, borderRadius: borderRadius.input, borderColor: colors.border }]}>
             <View style={[styles.iconWrapper, { borderColor: colors.text }]}>
@@ -25,9 +27,9 @@ const SearchInput = ({ style, placeholder, autoCapitalize, onChangeText, onEndEd
                 underlineColorAndroid="transparent"
             />
 
-            {/* <TouchableOpacity style={[styles.iconWrapper, { borderColor: colors.text }]}>
-				<Ionicons name={'close'} color={colors.text} size={25}  />
-			</TouchableOpacity> */}
+            <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')} style={[styles.iconWrapper, { borderColor: colors.text }]}>
+                <Ionicons name={'menu'} color={colors.text} size={25} />
+            </TouchableOpacity>
         </View>
     );
 };

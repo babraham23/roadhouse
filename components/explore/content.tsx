@@ -19,7 +19,6 @@ const Content = ({ fade }: any) => {
     }, [fade]);
 
     const fadeIn = () => {
-        console.log('FADING IN');
         Animated.timing(fadeAnimation, {
             toValue: 1,
             duration: 400,

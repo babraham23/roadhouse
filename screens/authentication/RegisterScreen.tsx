@@ -27,7 +27,8 @@ const SignInScreen = () => {
     });
 
     const getUserInfo = async (token: any) => {
-        axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`)
+        axios
+            .get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`)
             .then((res: any) => {
                 console.log('res -->', res.data);
             })
@@ -35,7 +36,7 @@ const SignInScreen = () => {
                 console.log('err -->', err);
             });
     };
-
+ 
     React.useEffect(() => {
         if (response?.type === 'success') {
             const { authentication } = response;

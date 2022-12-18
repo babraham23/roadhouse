@@ -2,15 +2,17 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../hooks/useTheme';
+import ForgotPasswordButton from '../buttons/forgotPasswordButton';
 
 type Props = {
     style?: any;
     error?: any;
     placeholder?: string;
     onChangeText: any;
+    onForgotPasswordPress?: any;
 };
 
-const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
+const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswordPress }: Props) => {
     const { colors, borderRadius } = useTheme();
     const [secure, setSecure] = React.useState(true);
     const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
@@ -33,6 +35,7 @@ const PasswordInput = ({ style, error, placeholder, onChangeText }: Props) => {
                     {secure ? <Feather name="eye" color={bottomBorderColor} size={15} /> : <Feather name="eye-off" color={bottomBorderColor} size={15} />}
                 </TouchableOpacity>
             </View>
+            <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
         </View>
     );
 };
@@ -60,6 +63,10 @@ const styles = StyleSheet.create({
     errorPlaceholder: {
         height: 20,
         width: '100%',
+    },
+    forgotPassword: {
+        // flex: 1,
+        justifyContent: 'flex-end',
     },
 });
 

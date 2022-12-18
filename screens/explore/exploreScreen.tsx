@@ -17,13 +17,10 @@ const ExploreScreen = ({}: Props) => {
     const snapPoints = useMemo(() => ['10%', '83%'], []);
     const [sheetOpen, setSheetOpen] = useState(false);
 
-    const handleSheetChange = useCallback((index) => {
-        if (index === 0) {
-            setSheetOpen(false);
-        } else {
-            setSheetOpen(true);
-        }
-    }, []);
+    const handleSheetChange = (index) => {
+        if (index === 0) setSheetOpen(false);
+        else setSheetOpen(true);
+    };
 
     const handleSnapPress = useCallback((index) => {
         sheetRef.current?.snapToIndex(index);
