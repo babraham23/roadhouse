@@ -35,7 +35,10 @@ const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswo
                     {secure ? <Feather name="eye" color={bottomBorderColor} size={15} /> : <Feather name="eye-off" color={bottomBorderColor} size={15} />}
                 </TouchableOpacity>
             </View>
-            <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
+            <View style={styles.forgotWrapper}>
+                <View />
+                <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
+            </View>
         </View>
     );
 };
@@ -64,9 +67,13 @@ const styles = StyleSheet.create({
         height: 20,
         width: '100%',
     },
+    forgotWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     forgotPassword: {
-        // flex: 1,
-        justifyContent: 'flex-end',
+        paddingTop: 3,
+        paddingRight: 3,
     },
 });
 

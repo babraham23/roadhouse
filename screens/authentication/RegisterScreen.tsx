@@ -36,7 +36,7 @@ const SignInScreen = () => {
                 console.log('err -->', err);
             });
     };
- 
+
     React.useEffect(() => {
         if (response?.type === 'success') {
             const { authentication } = response;

@@ -27,7 +27,6 @@ const Content = ({ fade }: any) => {
     };
 
     const fadeOut = () => {
-        console.log('FADING OUT');
         Animated.timing(fadeAnimation, {
             toValue: 0,
             duration: 400,

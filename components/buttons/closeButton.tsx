@@ -4,19 +4,21 @@ import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTheme } from '../../hooks/useTheme';
 
-const CloseButton = ({ onPress, style }: any) => {
+const CloseButton = ({ onPress, style, size }: any) => {
     const { colors }: any = useTheme();
     const navigation = useNavigation();
     return (
         <View style={[style, styles.container]}>
             <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
-                <MaterialCommunityIcons name="window-close" size={18} color={colors.text} />
+                <MaterialCommunityIcons name="window-close" size={size ? size : 18} color={colors.text} />
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        
+    },
 });
 export default CloseButton;
