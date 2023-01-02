@@ -165,5 +165,5 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 30,
         right: 40,
-    }
+    },
 });

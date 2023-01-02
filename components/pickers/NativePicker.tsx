@@ -4,10 +4,18 @@ import { Picker } from '@react-native-picker/picker';
 import { useTheme } from '../../hooks/useTheme';
 import * as Animatable from 'react-native-animatable';
 import CloseButton from '../buttons/closeButton';
+import BlueTextButton from '../buttons/blueTextButton';
+
+
+const data = [
+    { label: 'Make friends 👯‍♀️', value: 'Make friends 👯‍♀️' },
+    { label: 'Party 🥳', value: 'Party 🥳' },
+    { label: 'Discuss a topic 👩‍🏫', value: 'Discuss a topic 👩‍🏫' },
+    { label: 'Food and drink 🧋🥪', value: 'Food and drink 🧋🥪' },
+]
 
 const NativePicker = ({ style, setSelected, selected, onClosePress }: any) => {
     const { colors, borderRadius } = useTheme();
-
     return (
         <Animatable.View
             style={[
@@ -17,12 +25,11 @@ const NativePicker = ({ style, setSelected, selected, onClosePress }: any) => {
             ]}
             animation="fadeInUpBig"
         >
-            <CloseButton onPress={onClosePress} style={styles.close}  />
+            <BlueTextButton title={'Done'} onPress={onClosePress} style={styles.close} />
             <Picker style={[styles.picker]} selectedValue={selected} onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}>
-                <Picker.Item label="Java" value="Java" />
-                <Picker.Item label="JavaScript" value="JavaScript" />
-                <Picker.Item label="Java2" value="Java2" />
-                <Picker.Item label="JavaScript2" value="JavaScript2" />
+                {data.map((item, i) => {
+                    return <Picker.Item key={i} label={item.label} value={item.value} />
+                })}
             </Picker>
         </Animatable.View>
     );
@@ -43,5 +50,5 @@ const styles = StyleSheet.create({
         top: 10,
         zIndex: 100,
         elevation: 100,
-    }
+    },
 });

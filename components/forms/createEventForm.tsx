@@ -71,7 +71,9 @@ const CreateEventForm = () => {
                 <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, postcode: value }))} style={styles.input} />
             </View> */}
             </FormTemplate>
-            {pickerVisible ? <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} /> : null}
+            {pickerVisible ? (
+                <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} />
+            ) : null}
         </>
     );
 };

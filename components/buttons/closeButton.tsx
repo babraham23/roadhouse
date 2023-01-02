@@ -17,7 +17,6 @@ const CloseButton = ({ onPress, style, size }: any) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-    },
+    container: {},
 });
 export default CloseButton;

@@ -20,9 +20,13 @@ const NativePickerInput = ({ style, error, placeholder, onPress, keyboardType, s
     const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
         <View style={style}>
-            <TouchableOpacity activeOpacity={1} onPress={onPress} style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: visible ? colors.primary : colors.border, backgroundColor: colors.card }]}>
+            <TouchableOpacity
+                activeOpacity={1}
+                onPress={onPress}
+                style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: visible ? colors.primary : colors.border, backgroundColor: colors.card }]}
+            >
                 <Text>{selected}</Text>
-            </TouchableOpacity >
+            </TouchableOpacity>
         </View>
     );
 };

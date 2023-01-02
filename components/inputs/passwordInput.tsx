@@ -2,7 +2,8 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../hooks/useTheme';
-import ForgotPasswordButton from '../buttons/forgotPasswordButton';
+import ForgotPasswordButton from '../buttons/blueTextButton';
+import BlueTextButton from '../buttons/blueTextButton';
 
 type Props = {
     style?: any;
@@ -40,7 +41,7 @@ const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswo
                 {forgotPassword ? (
                     <>
                         <View />
-                        <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
+                        <BlueTextButton title={'Forgot Password?'} onPress={onForgotPasswordPress} style={styles.forgotPassword} />
                     </>
                 ) : null}
             </View>
