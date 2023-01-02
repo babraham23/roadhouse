@@ -1,12 +1,14 @@
 import { RegisterInterface } from '../_interfaces/register.interface';
 
 export class RegisterModel {
-    username: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
 
     constructor(data: RegisterInterface | any = {}) {
-        this.username = data.username || '';
+        this.firstName = data.firstName || '';
+        this.lastName = data.lastName || '';
         this.email = data.email || '';
         this.password = data.password || '';
     }

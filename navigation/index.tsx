@@ -22,7 +22,7 @@ import TestScreen from '../screens/test';
 import BusinessScreen from '../screens/business/businessScreen';
 import CreatePlace from '../screens/client/createPlace';
 import StorefrontScreen from '../screens/storefront';
-import SignUpScreen from '../screens/authentication';
+import RegisterScreen from '../screens/authentication/RegisterScreen';
 import CheckoutScreen from '../screens/checkout/checkoutScreen';
 import { PlacesProvider } from '../context/place.context';
 import CreateEventScreen from '../screens/events/CreateEventScreen';
@@ -64,7 +64,8 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
     return (
         <Drawer.Navigator drawerContent={(props: any) => <ViewBasketDrawer {...props} />} screenOptions={{ drawerPosition: 'right', drawerStyle: { width: '80%' } }}>
-            <Drawer.Screen name="RootNavigator" component={RootNavigator} options={{ headerShown: false, swipeEnabled: false }} />
+            <Drawer.Screen name="CreateEventScreen" component={CreateEventScreen} options={{ headerShown: false }} />
+            {/* <Drawer.Screen name="RootNavigator" component={RootNavigator} options={{ headerShown: false, swipeEnabled: false }} /> */}
         </Drawer.Navigator>
     );
 }
@@ -79,7 +80,7 @@ function RootNavigator() {
             <Stack.Screen name="MenuScreen" component={MenuScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CreatePlace" component={CreatePlace} options={{ headerShown: false }} />
             <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerShown: false }} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />

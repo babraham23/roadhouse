@@ -138,8 +138,7 @@ const BusinessScreen = ({ route }: any) => {
                     </Text>
                 </View>
             </ImageHeaderScroll>
-            <FAB />
-            {/* <BottomButtonLayout /> */}
+            <FAB style={styles.fab} />
         </>
     );
 };
@@ -162,4 +161,9 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         borderBottomWidth: 0.5,
     },
+    fab: {
+        position: 'absolute',
+        bottom: 30,
+        right: 40,
+    }
 });

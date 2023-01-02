@@ -6,13 +6,17 @@ import FormTemplate from './formTemplate';
 import Input from '../inputs/textInput';
 import { PlaceModel } from '../../_models/place.model';
 import TextArea from '../inputs/textArea';
+import NativePicker from '../pickers/NativePicker';
+import NativePickerInput from '../pickers/NativePickerInput';
 
 let pageDisc = 'What type of event is it?';
 
 const CreateEventForm = () => {
     const [{ placeName, description, address1, address2, city, country, postcode, lat, lng, keywords }, setState] = React.useState(new PlaceModel());
+    const [pickerVisible, setPickerVisible] = useState(false);
     const [addGeometryToPlaceMutation] = useUpdateGeometryInPlaceMutation();
     const [createPlaceMutation] = useCreatePlaceMutation({});
+    const [selected, setSelected] = useState();
 
     async function updateGeometryData() {
         let variables = {
@@ -44,25 +48,31 @@ const CreateEventForm = () => {
         // let res = await createPlaceMutation({ variables });
     }
 
+    const onPickerSelect = (value: any) => {
+        console.log('value', value);
+        setSelected(value);
+    };
+
     return (
-        <FormTemplate style={styles.container} noBack description={pageDisc} canContinue onPress={() => createPlace()}>
-            <Text style={styles.heading}>Whats the event about?</Text>
-            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
-            <Text style={styles.heading}>Description </Text>
-            <TextArea onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
-            <Text style={styles.heading}>Address Line 1</Text>
-            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
-            <Text style={styles.heading}>Address Line 2 </Text>
-            <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} />
-            <View style={{ width: '50%' }}>
-                <Text style={styles.heading}>Postcode</Text>
+        <>
+            <FormTemplate style={styles.container} noBack description={pageDisc} canContinue onPress={() => createPlace()}>
+                <Text style={styles.heading}>Name of this event?</Text>
+                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
+                <Text style={styles.heading}>Type of event (dropdown)?</Text>
+                <NativePickerInput visible={pickerVisible} selected={selected} onPress={() => setPickerVisible(!pickerVisible)} style={styles.input} />
+                <Text style={styles.heading}>What's this all about? </Text>
+                <TextArea onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
+                <Text style={styles.heading}>Location / Address</Text>
+                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
+                <Text style={styles.heading}>Time and Date (date picker)</Text>
+                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} />
+                {/* <View style={{ width: '50%' }}>
+                <Text style={styles.heading}>Starts at</Text>
                 <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, postcode: value }))} style={styles.input} />
-            </View>
-            <Text style={styles.heading}>Longitude</Text>
-            <Input onChangeText={(value: number) => setState((prevState) => ({ ...prevState, lng: value }))} style={styles.input} />
-            <Text style={styles.heading}>Latitude</Text>
-            <Input onChangeText={(value: number) => setState((prevState) => ({ ...prevState, lat: value }))} style={styles.input} />
-        </FormTemplate>
+            </View> */}
+            </FormTemplate>
+            {pickerVisible ? <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} /> : null}
+        </>
     );
 };
 
@@ -79,5 +89,11 @@ const styles = StyleSheet.create({
     input: {
         paddingTop: 10,
         paddingBottom: 25,
+    },
+    picker: {
+        position: 'absolute',
+        bottom: 0,
+        // zIndex: 100,
+        // elevation: 100,
     },
 });

@@ -4,23 +4,42 @@ import { Text } from '../../style/typography';
 import { useTheme } from '../../hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
 
-const DontHaveAnAccount = ({ style }) => {
+const DontHaveAnAccount = ({ style, haveAnAccount }: any) => {
     const { colors } = useTheme();
     const navigation = useNavigation();
 
     const handleNavigation = () => {
-        navigation.goBack();
-        navigation.navigate('SignUpScreen');
+        // make sure android is handled correctly
+        if (haveAnAccount) {
+            navigation.goBack();
+            navigation.navigate('SignInScreen');
+        } else {
+            navigation.goBack();
+            navigation.navigate('RegisterScreen');
+        }
     };
 
     return (
         <View style={[style, styles.container]}>
-            <Text bold >Dont have an account? </Text>
-            <TouchableOpacity onPress={() => handleNavigation()}>
-                <Text bold color={colors.primary} textDecorationLine="underline">
-                    Sign Up
-                </Text>
-            </TouchableOpacity>
+            {haveAnAccount ? (
+                <>
+                    <Text bold>Already have an account? </Text>
+                    <TouchableOpacity onPress={() => handleNavigation()}>
+                        <Text bold color={colors.primary} textDecorationLine="underline">
+                            Sign In
+                        </Text>
+                    </TouchableOpacity>
+                </>
+            ) : (
+                <>
+                    <Text bold>Dont have an account? </Text>
+                    <TouchableOpacity onPress={() => handleNavigation()}>
+                        <Text bold color={colors.primary} textDecorationLine="underline">
+                            Sign Up
+                        </Text>
+                    </TouchableOpacity>
+                </>
+            )}
         </View>
     );
 };

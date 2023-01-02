@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { GoogleButton } from '../../components/buttons/SignInButton';
-import { useAuth } from '../../hooks/useGoogleAuth';
+import FAB from '../../components/buttons/FAB';
+
 
 const SignInScreen = () => {
-    const { googleAuth } = useAuth();
     return (
         <View style={styles.container}>
-            <GoogleButton text="Continue with Google" style={styles.button} onPress={async () => await googleAuth()} />
+            
+            <FAB style={styles.button} />
+
         </View>
     );
 };
@@ -17,8 +18,12 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         padding: 20,
     },
-    button: { marginBottom: 10 },
+    button: { 
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+    },
 });

@@ -15,9 +15,10 @@ type Props = {
 
 const TextArea = ({ style, error, placeholder, onChangeText, editable, value, scrollEnabled }: Props) => {
     const { colors, borderRadius } = useTheme();
+    const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
         <View style={style}>
-            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: colors.border, backgroundColor: colors.card }]}>
+            <View style={[styles.inputWrapper, { borderRadius: borderRadius.input, borderColor: bottomBorderColor, backgroundColor: colors.card }]}>
                 <TextInput
                     placeholderTextColor={colors.dark_grey}
                     placeholder={placeholder}
@@ -30,6 +31,8 @@ const TextArea = ({ style, error, placeholder, onChangeText, editable, value, sc
                     editable={editable}
                     value={value}
                     scrollEnabled={scrollEnabled}
+                    onFocus={() => setBottomBorderColor(colors.primary)}
+                    onBlur={() => setBottomBorderColor(colors.border)}
                 />
             </View>
             {/* {error ? <MessageError error={error} /> : null} */}

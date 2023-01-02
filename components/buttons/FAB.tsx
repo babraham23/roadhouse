@@ -7,9 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 type Props = {
     onEventPress?: () => void;
     onDirectionsPress?: () => void;
+    style?: any;
 };
 
-const FAB = ({ onEventPress, onDirectionsPress }: Props) => {
+const FAB = ({ onEventPress, onDirectionsPress, style }: Props) => {
     const { colors, dark } = useTheme();
     const mode: any = React.useRef(new Animated.Value(0)).current;
     const [zIndex, setZindex] = useState(0);
@@ -26,19 +27,9 @@ const FAB = ({ onEventPress, onDirectionsPress }: Props) => {
         ]).start();
     };
 
-    const eventX = mode.interpolate({
-        inputRange: [0, 0],
-        outputRange: [0, 0],
-    });
-
     const eventY = mode.interpolate({
         inputRange: [0, 1],
         outputRange: [0, -100],
-    });
-
-    const directionsX = mode.interpolate({
-        inputRange: [0, 0],
-        outputRange: [0, 0],
     });
 
     const directionsY = mode.interpolate({
@@ -54,20 +45,14 @@ const FAB = ({ onEventPress, onDirectionsPress }: Props) => {
     const styles = StyleSheet.create({
         container: {
             position: 'absolute',
-            bottom: 50,
-            right: 50,
         },
         buttonWrapper: {
-            // position: 'absolute',
-            // bottom: 50,
-            // right: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         fabButtonWrapper: {
-            // alignItems: 'center',
-            // alignSelf: 'center',
-            // position: 'absolute',
-            // right: 61,
-            // bottom: 50,
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         button: {
             alignItems: 'center',
@@ -76,7 +61,7 @@ const FAB = ({ onEventPress, onDirectionsPress }: Props) => {
             height: 55,
             borderRadius: 30,
             backgroundColor: colors.primary,
-            borderWidth: 2.5,
+            borderWidth: 3,
             borderColor: '#ff0849',
         },
         secondaryButton: {
@@ -92,14 +77,14 @@ const FAB = ({ onEventPress, onDirectionsPress }: Props) => {
     });
 
     return (
-        <View style={styles.container}>
+        <View style={[style, styles.container]}>
             <View style={styles.fabButtonWrapper}>
-                <Animated.View style={{ position: 'absolute', left: eventX, top: eventY }}>
+                <Animated.View style={{ position: 'absolute', top: eventY }}>
                     <TouchableOpacity onPress={() => navigation.navigate('CreateEventScreen')} activeOpacity={0.8} style={styles.secondaryButton}>
                         <MaterialIcons name="event" size={24} color={'white'} />
                     </TouchableOpacity>
                 </Animated.View>
-                <Animated.View style={{ position: 'absolute', left: directionsX, top: directionsY }}>
+                <Animated.View style={{ position: 'absolute', top: directionsY }}>
                     <TouchableOpacity onPress={onDirectionsPress} activeOpacity={0.8} style={styles.secondaryButton}>
                         <SimpleLineIcons name="directions" size={24} color={'white'} />
                     </TouchableOpacity>

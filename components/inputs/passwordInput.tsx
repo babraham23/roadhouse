@@ -10,9 +10,10 @@ type Props = {
     placeholder?: string;
     onChangeText: any;
     onForgotPasswordPress?: any;
+    forgotPassword?: boolean;
 };
 
-const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswordPress }: Props) => {
+const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswordPress, forgotPassword }: Props) => {
     const { colors, borderRadius } = useTheme();
     const [secure, setSecure] = React.useState(true);
     const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
@@ -36,8 +37,12 @@ const PasswordInput = ({ style, error, placeholder, onChangeText, onForgotPasswo
                 </TouchableOpacity>
             </View>
             <View style={styles.forgotWrapper}>
-                <View />
-                <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
+                {forgotPassword ? (
+                    <>
+                        <View />
+                        <ForgotPasswordButton onForgotPasswordPress={onForgotPasswordPress} style={styles.forgotPassword} />
+                    </>
+                ) : null}
             </View>
         </View>
     );
