@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { Images } from '../style/images';
 
 export const generateID = () => {
@@ -26,4 +27,8 @@ export const MenuMarkerConverter = (place: string) => {
     else if (place === 'Market') return Images.MARKET;
     else if (place === 'Liked') return Images.HEART;
     else if (place === 'Hamburgers') return Images.HAMBURGER;
+};
+
+export const ConvertDate = (date: any) => {
+    return moment(date).format('DD/MM/YYYY');
 };

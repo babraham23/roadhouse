@@ -8,6 +8,7 @@ import { PlaceModel } from '../../_models/place.model';
 import TextArea from '../inputs/textArea';
 import NativePicker from '../pickers/NativePicker';
 import NativePickerInput from '../pickers/NativePickerInput';
+import DatePicker from '../pickers/DatePicker';
 
 let pageDisc = 'What type of event is it?';
 
@@ -59,21 +60,20 @@ const CreateEventForm = () => {
                 <Text style={styles.heading}>Name of this event?</Text>
                 <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
                 <Text style={styles.heading}>Type of event (dropdown)?</Text>
-                <NativePickerInput visible={pickerVisible} selected={selected} onPress={() => setPickerVisible(!pickerVisible)} style={styles.input} />
+                {/* <NativePickerInput visible={pickerVisible} selected={selected} onPress={() => setPickerVisible(!pickerVisible)} style={styles.input} /> */}
+                <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} />
                 <Text style={styles.heading}>What's this all about? </Text>
                 <TextArea onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
                 <Text style={styles.heading}>Location / Address</Text>
                 <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
                 <Text style={styles.heading}>Time and Date (date picker)</Text>
-                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} />
+                {/* <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} /> */}
+                <DatePicker />
                 {/* <View style={{ width: '50%' }}>
                 <Text style={styles.heading}>Starts at</Text>
                 <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, postcode: value }))} style={styles.input} />
             </View> */}
             </FormTemplate>
-            {pickerVisible ? (
-                <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} />
-            ) : null}
         </>
     );
 };

@@ -19,7 +19,7 @@ const NativePickerInput = ({ style, error, placeholder, onPress, keyboardType, s
     const { colors, borderRadius } = useTheme();
     const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
-        <View style={style}>
+        <View style={[style, styles.container]}>
             <TouchableOpacity
                 activeOpacity={1}
                 onPress={onPress}
@@ -32,6 +32,10 @@ const NativePickerInput = ({ style, error, placeholder, onPress, keyboardType, s
 };
 
 const styles = StyleSheet.create({
+    container: {
+        marginTop: 10,
+        marginBottom: 25,
+    },
     inputWrapper: {
         // flexDirection: 'row',
         borderBottomWidth: 1,
