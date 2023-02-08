@@ -20,22 +20,22 @@ const BlurModal = ({ hideDoneButton, visible, setVisible, children }: Props) => 
             {visible ? (
                 <BlurView tint="dark" intensity={50} style={[styles.screenPositioning]}>
                     {/* <GestureRecognizer style={{ flex: 1 }} onSwipeDown={() => setVisible(false)}> */}
-                        <Modal animationType={'slide'} transparent={true} visible={visible} onRequestClose={() => setVisible(false)}>
-                            <View style={[styles.modalWrapper, { backgroundColor: colors.card, borderColor: colors.grey }]}>
-                                {hideDoneButton ? null : (
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }} >
-                                        <View style={{ height: 20, width: 20 }} />
+                    <Modal animationType={'slide'} transparent={true} visible={visible} onRequestClose={() => setVisible(false)}>
+                        <View style={[styles.modalWrapper, { backgroundColor: colors.card, borderColor: colors.grey }]}>
+                            {hideDoneButton ? null : (
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <View style={{ height: 20, width: 20 }} />
                                     <TouchableOpacity onPress={() => setVisible(false)} style={styles.doneText}>
                                         <Text bold fontSize={15} color={'#91AAD4'}>
                                             Done
                                         </Text>
                                     </TouchableOpacity>
-                                    </View>
-                                )}
-                                {/* <TouchableOpacity onPress={() => setVisible(false)} style={styles.dragger} /> */}
-                                {children}
-                            </View>
-                        </Modal>
+                                </View>
+                            )}
+                            {/* <TouchableOpacity onPress={() => setVisible(false)} style={styles.dragger} /> */}
+                            {children}
+                        </View>
+                    </Modal>
                     {/* </GestureRecognizer> */}
                 </BlurView>
             ) : null}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        height
+        height,
     },
     modalWrapper: {
         height: 270,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     doneText: {
-        paddingRight: 20
+        paddingRight: 20,
         // position: 'absolute',
         // right: 20,
         // top: -20,

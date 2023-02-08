@@ -15,7 +15,6 @@ import { UserProvider } from '../context/user.context';
 import MenuScreen from '../screens/menu/menuScreen';
 import SelectedItemScreen from '../screens/menu/selectedItemScreen';
 import ViewBasketDrawer from '../components/drawer/viewBasketDrawer';
-import MapScreen from '../screens/map';
 import ExploreScreen from '../screens/explore/exploreScreen';
 
 import TestScreen from '../screens/test';
@@ -85,7 +84,6 @@ function RootNavigator() {
                 <Stack.Screen name="SelectedItemScreen" component={SelectedItemScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="BusinessScreen" component={BusinessScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateEventScreen" component={CreateEventScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="SignInScreen" component={SignInScreen} options={{ headerShown: false }} />
             </Stack.Group>

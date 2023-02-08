@@ -52,7 +52,7 @@ const DatePicker = ({ onChange }: any) => {
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 10
+        paddingTop: 10,
     },
     pickerContainer: {
         width: '100%',

@@ -19,12 +19,18 @@ Let body =
 }
 */
 
-const CreateEventScreen = () => {
+const CreateEventScreen = ({ route }) => {
+    let location = route.params?.location
+    let lat = route.params?.location.latitude
+    let lng = route.params?.location.longitude
+    let name = route.params?.name
+    let formatted_address = route.params?.formatted_address
+    // todo - make sure params being sent from business screen are handled correctly
     return (
         <>
             <ModalHeader title="Create Event" />
             <View style={styles.container}>
-                <CreateEventForm />
+                <CreateEventForm lat={lat} lng={lng} formatted_address={formatted_address} name={name} />
                 {/* <Text>If navigated from a restaurant show name and details</Text>
                 <Text>- (dropdown)</Text>
                 <Text>What type of event is it friend/meetup/sesh?</Text>

@@ -1,4 +1,4 @@
-import moment from 'moment'
+import moment from 'moment';
 import { Images } from '../style/images';
 
 export const generateID = () => {

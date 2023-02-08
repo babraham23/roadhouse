@@ -13,9 +13,10 @@ type Props = {
     canContinue?: boolean;
     noBack?: boolean;
     style?: any;
+    buttonTitlle?: string;
 };
 
-const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onPress, description, noBack, style }) => {
+const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onPress, description, noBack, style, buttonTitlle }) => {
     const { colors } = useTheme();
     const navigation = useNavigation();
     return (
@@ -38,7 +39,7 @@ const FormTemplate: React.FC<Props> = ({ children, canContinue, onBackPress, onP
                     {children}
                 </View>
             </ScrollView>
-            {canContinue ? <FormButton title="Continue" onPress={onPress} /> : null}
+            {canContinue ? <FormButton title={buttonTitlle || 'Continue'} onPress={onPress} /> : null}
         </>
     );
 };
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // paddingTop: 100,
         paddingHorizontal: 10,
+        paddingBottom: 50,
     },
     arrowWrapper: {
         position: 'absolute',

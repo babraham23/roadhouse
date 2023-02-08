@@ -9,9 +9,10 @@ type Props = {
     placeholder?: string;
     onChangeText: any;
     keyboardType?: any;
+    value?: any;
 };
 
-const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props) => {
+const Input = ({ style, error, placeholder, onChangeText, keyboardType, value }: Props) => {
     const { colors, borderRadius } = useTheme();
     const [bottomBorderColor, setBottomBorderColor] = React.useState(colors.border);
     return (
@@ -29,6 +30,7 @@ const Input = ({ style, error, placeholder, onChangeText, keyboardType }: Props)
                     keyboardType={keyboardType}
                     onFocus={() => setBottomBorderColor(colors.primary)}
                     onBlur={() => setBottomBorderColor(colors.border)}
+                    value={value}
                 />
             </View>
             {/* {error ? <MessageError error={error} /> : <View style={styles.errorPlaceholder} />} */}

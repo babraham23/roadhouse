@@ -11,6 +11,7 @@ const Icons = ({ title }: any) => {
             {title == 'Markets' ? <Image source={active ? Images.MARKET : Images.MARKET_NOT} style={styles.icon} /> : null}
             {title == 'Liked' ? <Image source={active ? Images.HEART : Images.HEART_NOT} style={styles.icon} /> : null}
             {title == 'Hamburgers' ? <Image source={active ? Images.HAMBURGER : Images.HEART_NOT} style={styles.icon} /> : null}
+            {title == 'Make Friends' ? <Image source={active ? Images.FRIENDS : Images.FRIENDS} style={styles.friendsIcon} /> : null}
         </View>
     );
 };
@@ -23,4 +24,9 @@ const styles = StyleSheet.create({
         height: 20,
         resizeMode: 'contain',
     },
+    friendsIcon: {
+        width: 40,
+        height: 20,
+        resizeMode: 'cover',
+    }
 });

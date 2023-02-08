@@ -8,6 +8,7 @@ import MiniProductCarousel from '../../components/storefront/miniProductCarousel
 import RepeatCarousel from '../../components/carousel/repeatCarousel';
 import BottomButtonLayout from '../../components/business/bottomButtonLayout';
 import StoreSearch from '../../components/inputs/storeSearch';
+import FAB from '../../components/buttons/FAB';
 
 const dummyData = [
     {
@@ -63,7 +64,8 @@ const StorefrontScreen = () => {
                 <RepeatCarousel data={dummyData} />
                 <MiniProductCarousel />
             </ScrollContextProvider>
-            <BottomButtonLayout pro />
+            <FAB style={styles.fab} />
+            {/* <BottomButtonLayout pro /> */}
         </>
     );
 };
@@ -78,5 +80,10 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 200,
+    },
+    fab: {
+        position: 'absolute',
+        bottom: 30,
+        right: 40,
     },
 });

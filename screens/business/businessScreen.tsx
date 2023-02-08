@@ -55,7 +55,7 @@ menu
 how busy a place is 
 */
 
-const BusinessScreen = ({ route }: any) => {
+const BusinessScreen = ({ route, navigation }: any) => {
     let { distance, duration } = route.params;
     let { photos, name, rating, formatted_address, place_id } = route.params.item;
     const { colors } = useTheme();
@@ -89,6 +89,10 @@ const BusinessScreen = ({ route }: any) => {
     useEffect(() => {
         getInformationAboutBusiness();
     }, []);
+
+    const onCreateEventPress = () => {
+        () => navigation.navigate('CreateEventScreen', { name, formatted_address });
+    };
 
     return (
         <>
@@ -138,7 +142,7 @@ const BusinessScreen = ({ route }: any) => {
                     </Text>
                 </View>
             </ImageHeaderScroll>
-            <FAB style={styles.fab} />
+            <FAB style={styles.fab} onCreateEventPress={onCreateEventPress} />
         </>
     );
 };

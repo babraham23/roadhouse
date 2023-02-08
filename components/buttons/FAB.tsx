@@ -8,9 +8,10 @@ type Props = {
     onEventPress?: () => void;
     onDirectionsPress?: () => void;
     style?: any;
+    onCreateEventPress?: () => void;
 };
 
-const FAB = ({ onEventPress, onDirectionsPress, style }: Props) => {
+const FAB = ({ onEventPress, onDirectionsPress, style, onCreateEventPress }: Props) => {
     const { colors, dark } = useTheme();
     const mode: any = React.useRef(new Animated.Value(0)).current;
     const [zIndex, setZindex] = useState(0);
@@ -80,7 +81,7 @@ const FAB = ({ onEventPress, onDirectionsPress, style }: Props) => {
         <View style={[style, styles.container]}>
             <View style={styles.fabButtonWrapper}>
                 <Animated.View style={{ position: 'absolute', top: eventY }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('CreateEventScreen')} activeOpacity={0.8} style={styles.secondaryButton}>
+                    <TouchableOpacity onPress={onCreateEventPress} activeOpacity={0.8} style={styles.secondaryButton}>
                         <MaterialIcons name="event" size={24} color={'white'} />
                     </TouchableOpacity>
                 </Animated.View>

@@ -7,17 +7,18 @@ import Input from '../inputs/textInput';
 import { PlaceModel } from '../../_models/place.model';
 import TextArea from '../inputs/textArea';
 import NativePicker from '../pickers/NativePicker';
-import NativePickerInput from '../pickers/NativePickerInput';
 import DatePicker from '../pickers/DatePicker';
+import { CreateEventModel } from '../../_models/createEvent.model';
 
 let pageDisc = 'What type of event is it?';
 
-const CreateEventForm = () => {
-    const [{ placeName, description, address1, address2, city, country, postcode, lat, lng, keywords }, setState] = React.useState(new PlaceModel());
+const CreateEventForm = ({ lat, lng }: any) => {
+    const [{ title, description, address1, placeName, city, country, postcode }, setState] = React.useState(new CreateEventModel());
     const [pickerVisible, setPickerVisible] = useState(false);
     const [addGeometryToPlaceMutation] = useUpdateGeometryInPlaceMutation();
     const [createPlaceMutation] = useCreatePlaceMutation({});
     const [selected, setSelected] = useState();
+    const [ date, setDate ] = useState(new Date());
 
     async function updateGeometryData() {
         let variables = {
@@ -29,13 +30,13 @@ const CreateEventForm = () => {
         console.log(res);
     }
 
-    async function createPlace() {
+    async function createEvent() {
         const variables = {
-            ...new PlaceModel(),
-            placeName, //'placeName'
+            ...new CreateEventModel(),
+            title, //'placeName'
             description, //'description'
             address1, //'address1'
-            address2, //'address2'
+            placeName, //'address2'
             city, //'city'
             postcode, //'postcode'
             country, //'country'
@@ -43,10 +44,10 @@ const CreateEventForm = () => {
             // lng: -1.619495778338448, //'lng'
             lat,
             lng,
-            keywords: ['hamburgers', 'pizza', 'beer'], //'keywords'
+            date, //'keywords'
         };
         console.log('variables -->', variables);
-        // let res = await createPlaceMutation({ variables });
+        // let res = await createEventMutation({ variables });
     }
 
     const onPickerSelect = (value: any) => {
@@ -54,25 +55,24 @@ const CreateEventForm = () => {
         setSelected(value);
     };
 
+    const onDateTimeSelect = (value: any) => {
+        console.log('value', value);
+        setDate(date)
+    };
+
     return (
         <>
-            <FormTemplate style={styles.container} noBack description={pageDisc} canContinue onPress={() => createPlace()}>
+            <FormTemplate buttonTitlle="Create Event" style={styles.container} noBack description={pageDisc} canContinue onPress={() => createEvent()}>
                 <Text style={styles.heading}>Name of this event?</Text>
-                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, placeName: value }))} style={styles.input} />
+                <Input value={title} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, title: value }))} style={styles.input} />
                 <Text style={styles.heading}>Type of event (dropdown)?</Text>
-                {/* <NativePickerInput visible={pickerVisible} selected={selected} onPress={() => setPickerVisible(!pickerVisible)} style={styles.input} /> */}
                 <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} />
                 <Text style={styles.heading}>What's this all about? </Text>
-                <TextArea onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
-                <Text style={styles.heading}>Location / Address</Text>
-                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
+                <TextArea  value={description} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
+                <Text style={styles.heading}>Where is the event?</Text>
+                <Input value={lat.toString() + lng.toString()} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
                 <Text style={styles.heading}>Time and Date (date picker)</Text>
-                {/* <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address2: value }))} style={styles.input} /> */}
-                <DatePicker />
-                {/* <View style={{ width: '50%' }}>
-                <Text style={styles.heading}>Starts at</Text>
-                <Input onChangeText={(value: string) => setState((prevState) => ({ ...prevState, postcode: value }))} style={styles.input} />
-            </View> */}
+                <DatePicker onChange={onDateTimeSelect} />
             </FormTemplate>
         </>
     );

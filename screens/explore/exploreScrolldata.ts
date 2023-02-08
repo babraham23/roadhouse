@@ -26,10 +26,10 @@ export const exploreScrolldata: any = [
         title: 'Hamburgers',
         image: Images.HAMBURGER,
     },
-    // {
-    //     Id: 7,
-    //     title: 'Cafes',
-    //     icon: 'emoticon-happy-outline',
-    //     image: Images.LOGO_ROUND,
-    // },
+    {
+        Id: 6,
+        title: 'Make Friends',
+        icon: 'emoticon-happy-outline',
+        image: Images.FRIENDS,
+    },
 ];
