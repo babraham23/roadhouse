@@ -9,7 +9,6 @@ export class CreateEventModel {
     lat: number;
     lng: number;
     date: Date;
-    
 
     constructor(data: any = {}) {
         this.title = data.title || '';

@@ -18,7 +18,7 @@ const CreateEventForm = ({ lat, lng }: any) => {
     const [addGeometryToPlaceMutation] = useUpdateGeometryInPlaceMutation();
     const [createPlaceMutation] = useCreatePlaceMutation({});
     const [selected, setSelected] = useState();
-    const [ date, setDate ] = useState(new Date());
+    const [date, setDate] = useState(new Date());
 
     async function updateGeometryData() {
         let variables = {
@@ -57,7 +57,7 @@ const CreateEventForm = ({ lat, lng }: any) => {
 
     const onDateTimeSelect = (value: any) => {
         console.log('value', value);
-        setDate(date)
+        setDate(date);
     };
 
     return (
@@ -68,9 +68,13 @@ const CreateEventForm = ({ lat, lng }: any) => {
                 <Text style={styles.heading}>Type of event (dropdown)?</Text>
                 <NativePicker onClosePress={() => setPickerVisible(false)} setSelected={(value: any) => onPickerSelect(value)} selected={selected} style={styles.picker} />
                 <Text style={styles.heading}>What's this all about? </Text>
-                <TextArea  value={description} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
+                <TextArea value={description} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, description: value }))} style={styles.input} />
                 <Text style={styles.heading}>Where is the event?</Text>
-                <Input value={lat.toString() + lng.toString()} onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))} style={styles.input} />
+                <Input
+                    value={lat.toString() + lng.toString()}
+                    onChangeText={(value: string) => setState((prevState) => ({ ...prevState, address1: value }))}
+                    style={styles.input}
+                />
                 <Text style={styles.heading}>Time and Date (date picker)</Text>
                 <DatePicker onChange={onDateTimeSelect} />
             </FormTemplate>

@@ -20,11 +20,11 @@ Let body =
 */
 
 const CreateEventScreen = ({ route }) => {
-    let location = route.params?.location
-    let lat = route.params?.location.latitude
-    let lng = route.params?.location.longitude
-    let name = route.params?.name
-    let formatted_address = route.params?.formatted_address
+    let location = route.params?.location;
+    let lat = route.params?.location.latitude;
+    let lng = route.params?.location.longitude;
+    let name = route.params?.name;
+    let formatted_address = route.params?.formatted_address;
     // todo - make sure params being sent from business screen are handled correctly
     return (
         <>
